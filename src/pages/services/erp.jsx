@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const styles = `
   @keyframes floatSlow {
@@ -137,11 +137,27 @@ function ERPFlowIllustration() {
 }
 
 export default function ERP() {
+  const [viewportWidth, setViewportWidth] = useState(1280);
+  const isMobile = viewportWidth <= 768;
+  const isTablet = viewportWidth > 768 && viewportWidth <= 1024;
+
   useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = styles;
     document.head.appendChild(styleSheet);
     return () => document.head.removeChild(styleSheet);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        setViewportWidth(window.innerWidth);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -151,7 +167,7 @@ export default function ERP() {
       <section
         style={{
           minHeight: "72vh",
-          padding: "clamp(120px, 12vw, 148px) 5% 56px",
+          padding: isMobile ? "96px 20px 36px" : isTablet ? "108px 4.5% 44px" : "clamp(120px, 12vw, 148px) 5% 56px",
           display: "flex",
           alignItems: "center",
           backgroundImage:
@@ -182,8 +198,8 @@ export default function ERP() {
             margin: "0 auto",
             width: "100%",
             display: "grid",
-            gridTemplateColumns: "minmax(320px, 1.2fr) minmax(280px, 0.8fr)",
-            gap: "30px",
+            gridTemplateColumns: isMobile || isTablet ? "1fr" : "minmax(320px, 1.2fr) minmax(280px, 0.8fr)",
+            gap: isMobile ? "22px" : isTablet ? "24px" : "30px",
             alignItems: "start",
             position: "relative",
             zIndex: 2,
@@ -207,11 +223,11 @@ export default function ERP() {
               Enterprise Resource Planning Services
             </span>
 
-            <h1 style={{ fontSize: "calc(2.2rem + 2vw)", lineHeight: 1.14, marginBottom: "22px", fontWeight: 800, maxWidth: "640px" }}>
+            <h1 style={{ fontSize: isMobile ? "clamp(1.95rem, 8vw, 2.35rem)" : isTablet ? "clamp(2.25rem, 5vw, 2.85rem)" : "calc(2.2rem + 2vw)", lineHeight: 1.14, marginBottom: "22px", fontWeight: 800, maxWidth: "640px" }}>
               ERP transformation focused on SAP, Oracle, and NetSuite excellence
             </h1>
 
-            <p style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "620px", opacity: 0.95, marginBottom: "22px" }}>
+            <p style={{ fontSize: isMobile ? "16px" : "18px", lineHeight: 1.75, maxWidth: "620px", opacity: 0.95, marginBottom: "22px" }}>
               We modernize your digital core with clear architecture, controlled migration, and measurable value. From finance and procurement to supply chain and analytics,
               our ERP teams deliver end-to-end programs that reduce complexity and speed business decisions.
             </p>
@@ -247,12 +263,12 @@ export default function ERP() {
                 background: "rgba(255,255,255,0.1)",
                 border: "1px solid rgba(255,255,255,0.25)",
                 borderRadius: "20px",
-                padding: "24px 16px",
+                padding: isMobile ? "18px 12px" : "24px 16px",
                 backdropFilter: "blur(8px)",
               }}
             >
               <ERPFlowIllustration />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginTop: "14px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "10px", marginTop: "14px" }}>
                 {[
                   { k: "250+", v: "ERP Projects" },
                   { k: "40%", v: "Faster Close" },
@@ -269,9 +285,9 @@ export default function ERP() {
         </div>
       </section>
 
-      <section style={{ padding: "86px 5%", background: "#fff" }}>
+      <section style={{ padding: isMobile ? "56px 20px" : isTablet ? "68px 4.5%" : "86px 5%", background: "#fff" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "calc(1.7rem + 1vw)", marginBottom: "14px", fontWeight: 800, color: "#133d7a" }}>
+          <h2 style={{ fontSize: isMobile ? "clamp(1.65rem, 6vw, 2.05rem)" : isTablet ? "clamp(2rem, 3.4vw, 2.35rem)" : "calc(1.7rem + 1vw)", marginBottom: "14px", fontWeight: 800, color: "#133d7a" }}>
             Clear ERP services across strategy, delivery, and managed operations
           </h2>
           <p style={{ color: "#555", maxWidth: "900px", lineHeight: 1.8, marginBottom: "30px" }}>
@@ -279,7 +295,7 @@ export default function ERP() {
             so your teams gain better control of finance, operations, and enterprise data.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "18px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : isTablet ? "repeat(2, minmax(0, 1fr))" : "repeat(auto-fit, minmax(250px, 1fr))", gap: "18px" }}>
             {capabilityCards.map((card, index) => (
               <article
                 key={card.title}
@@ -300,9 +316,9 @@ export default function ERP() {
         </div>
       </section>
 
-      <section style={{ padding: "90px 5%", background: "linear-gradient(135deg, rgba(9,54,112,0.07), rgba(0,198,255,0.06))" }}>
+      <section style={{ padding: isMobile ? "56px 20px" : isTablet ? "70px 4.5%" : "90px 5%", background: "linear-gradient(135deg, rgba(9,54,112,0.07), rgba(0,198,255,0.06))" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-          <h2 style={{ textAlign: "center", fontSize: "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800, color: "#1a1a1a" }}>
+          <h2 style={{ textAlign: "center", fontSize: isMobile ? "clamp(1.7rem, 6.2vw, 2.1rem)" : isTablet ? "clamp(2rem, 3.5vw, 2.4rem)" : "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800, color: "#1a1a1a" }}>
             Deep platform expertise: SAP, Oracle, NetSuite
           </h2>
           <p style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto 38px", color: "#536173", lineHeight: 1.8 }}>
@@ -310,7 +326,7 @@ export default function ERP() {
             measurable outcomes.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "22px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : isTablet ? "repeat(2, minmax(0, 1fr))" : "repeat(auto-fit, minmax(300px, 1fr))", gap: "22px" }}>
             {platformDetails.map((platform, index) => (
               <article
                 key={platform.name}
@@ -392,14 +408,14 @@ export default function ERP() {
         </div>
       </section>
 
-      <section style={{ padding: "84px 5%", backgroundColor: "#fff" }}>
+      <section style={{ padding: isMobile ? "56px 20px" : isTablet ? "68px 4.5%" : "84px 5%", backgroundColor: "#fff" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "calc(1.7rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>ERP delivery model built for low-risk execution</h2>
+          <h2 style={{ fontSize: isMobile ? "clamp(1.65rem, 6vw, 2.05rem)" : isTablet ? "clamp(2rem, 3.4vw, 2.35rem)" : "calc(1.7rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>ERP delivery model built for low-risk execution</h2>
           <p style={{ color: "#5b677a", maxWidth: "860px", lineHeight: 1.8, marginBottom: "32px" }}>
             Every program follows a structured delivery framework with strong governance, transparent milestones, and value tracking from day one.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "16px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : isTablet ? "repeat(2, minmax(0, 1fr))" : "repeat(auto-fit, minmax(250px, 1fr))", gap: "16px" }}>
             {deliverySteps.map((step, index) => (
               <div key={step.title} style={{ border: "1px solid #deebfb", borderRadius: "14px", padding: "20px", background: "#f9fcff" }}>
                 <div
@@ -427,7 +443,7 @@ export default function ERP() {
 
       <section
         style={{
-          padding: "84px 5%",
+          padding: isMobile ? "56px 20px" : isTablet ? "68px 4.5%" : "84px 5%",
           backgroundImage:
             "linear-gradient(135deg, rgba(8,20,44,0.94), rgba(18,48,88,0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80')",
           backgroundSize: "cover",
@@ -435,9 +451,9 @@ export default function ERP() {
           color: "#fff",
         }}
       >
-        <div style={{ maxWidth: "1220px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px", alignItems: "center" }}>
+        <div style={{ maxWidth: "1220px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile || isTablet ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: isMobile ? "20px" : isTablet ? "24px" : "30px", alignItems: "center" }}>
           <div>
-            <h2 style={{ fontSize: "calc(1.7rem + 1vw)", marginBottom: "14px", fontWeight: 800 }}>ERP integration architecture with intelligent automation</h2>
+            <h2 style={{ fontSize: isMobile ? "clamp(1.65rem, 6vw, 2.05rem)" : isTablet ? "clamp(2rem, 3.4vw, 2.35rem)" : "calc(1.7rem + 1vw)", marginBottom: "14px", fontWeight: 800 }}>ERP integration architecture with intelligent automation</h2>
             <p style={{ lineHeight: 1.85, opacity: 0.95 }}>
               We connect ERP with CRM, eCommerce, data platforms, and third-party systems using API-led architecture and event-driven integrations. This creates a single source
               of truth, improves process speed, and enables near real-time reporting across the enterprise.
@@ -449,7 +465,7 @@ export default function ERP() {
           </div>
 
           <div style={{ textAlign: "center" }}>
-            <svg width="420" height="280" viewBox="0 0 420 280" style={{ maxWidth: "100%", background: "rgba(255,255,255,0.08)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.2)" }}>
+            <svg width="420" height="280" viewBox="0 0 420 280" style={{ width: "100%", maxWidth: "420px", height: "auto", background: "rgba(255,255,255,0.08)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.2)" }}>
               <defs>
                 <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#00c6ff" />
@@ -481,9 +497,9 @@ export default function ERP() {
         </div>
       </section>
 
-      <section style={{ padding: "78px 5%", background: "#fff" }}>
+      <section style={{ padding: isMobile ? "52px 20px" : isTablet ? "64px 4.5%" : "78px 5%", background: "#fff" }}>
         <div style={{ maxWidth: "1180px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>Ready to scale your ERP landscape?</h2>
+          <h2 style={{ fontSize: isMobile ? "clamp(1.7rem, 6.2vw, 2.1rem)" : isTablet ? "clamp(2rem, 3.5vw, 2.4rem)" : "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>Ready to scale your ERP landscape?</h2>
           <p style={{ color: "#596982", lineHeight: 1.8, maxWidth: "820px", margin: "0 auto 28px" }}>
             Whether your priority is SAP S/4HANA modernization, Oracle Cloud ERP adoption, or NetSuite expansion, we help you deliver faster outcomes with lower transformation
             risk.

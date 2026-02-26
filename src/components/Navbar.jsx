@@ -677,6 +677,7 @@ export default function Navbar() {
               <Link to="/services/quality-engineering" onClick={() => setMenuOpen(false)}>Quality Engineering</Link>
               <Link to="/services/ui-ux" onClick={() => setMenuOpen(false)}>UX / UI Design</Link>
               <Link to="/services/mobility" onClick={() => setMenuOpen(false)}>Mobility</Link>
+              <Link to="/services/erp" onClick={() => setMenuOpen(false)}>ERP</Link>
             </div>
           </div>
 
