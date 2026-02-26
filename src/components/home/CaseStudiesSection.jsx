@@ -583,8 +583,16 @@ export default function CaseStudiesSection() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1440);
+
+  const isMobile = windowWidth < 768;
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.1 }
@@ -599,16 +607,20 @@ export default function CaseStudiesSection() {
       setMousePos({ x, y });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    if (window.innerWidth >= 768) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   // ========== ENHANCED SVG ILLUSIONS ==========
   const renderIllusion = (category) => {
-    const iconStyle = { width: "120px", height: "120px", zIndex: 2 };
+    const iconStyle = { width: isMobile ? "96px" : "120px", height: isMobile ? "96px" : "120px", zIndex: 2 };
     switch (category) {
       case "Cloud":
         return (
@@ -724,6 +736,7 @@ export default function CaseStudiesSection() {
           color: #ffffff;
           font-family: 'Plus Jakarta Sans', sans-serif;
           min-height: 100vh;
+          overflow: hidden;
         }
 
         /* Overlay to darken background slightly for better readability */
@@ -756,7 +769,7 @@ export default function CaseStudiesSection() {
 
         .case-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
           gap: 30px;
           max-width: 1400px;
           margin: 0 auto;
@@ -878,6 +891,89 @@ export default function CaseStudiesSection() {
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+          .case-section {
+            padding: 80px 5%;
+            background-attachment: scroll;
+          }
+          .case-header {
+            margin-bottom: 56px;
+          }
+          .case-grid {
+            gap: 22px;
+          }
+          .case-content {
+            padding: 24px;
+          }
+          .case-content h3 {
+            font-size: 20px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .case-section {
+            padding: 64px 20px;
+            min-height: auto;
+          }
+          .case-header {
+            margin-bottom: 42px;
+          }
+          .case-title {
+            font-size: clamp(28px, 7vw, 36px);
+            line-height: 1.2;
+          }
+          .case-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+          .case-card {
+            border-radius: 18px;
+          }
+          .case-card:hover {
+            transform: none;
+          }
+          .case-img-container {
+            height: 170px;
+          }
+          .case-category {
+            top: 14px;
+            left: 14px;
+            font-size: 10px;
+            padding: 4px 10px;
+          }
+          .case-content {
+            padding: 18px;
+          }
+          .case-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+          .case-content p {
+            font-size: 14px;
+            margin-bottom: 18px;
+          }
+          .case-link {
+            width: 100%;
+            justify-content: center;
+            padding: 10px 16px;
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .case-section {
+            padding: 56px 14px;
+          }
+          .case-img-container {
+            height: 155px;
+          }
+          .icon-glow {
+            width: 64px;
+            height: 64px;
+            filter: blur(30px);
+          }
+        }
       `}</style>
 
       <div className={`case-header reveal ${isVisible ? 'active' : ''}`}>

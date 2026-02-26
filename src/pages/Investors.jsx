@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Server, Database, Cloud, Globe, Shield, Zap, Target } from 'lucide-react';
 
 export default function Investors() {
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 768;
+  const isTablet = windowWidth >= 768 && windowWidth < 1024;
 
   const fadeIn = {
     hidden: { opacity: 0, y: 30 },
@@ -104,12 +116,12 @@ export default function Investors() {
   );
 
   return (
-    <div style={{ background: "#f8fafc", minHeight: "100vh", paddingBottom: "80px" }}>
+    <div style={{ background: "#f8fafc", minHeight: "100vh", paddingBottom: isMobile ? "64px" : "80px" }}>
       {/* Hero Section */}
       <section style={{
         background: "linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%)",
         color: "white",
-        padding: "160px 6% 120px",
+        padding: isMobile ? "120px 20px 80px" : isTablet ? "140px 5% 100px" : "160px 6% 120px",
         position: "relative",
         overflow: "hidden"
       }}>
@@ -123,9 +135,9 @@ export default function Investors() {
           zIndex: 0
         }} />
 
-        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "60px", alignItems: "center" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: isTablet || isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? "40px" : "60px", alignItems: "center" }}>
 
-          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+          <motion.div initial="hidden" animate="visible" variants={fadeIn} style={{ textAlign: isMobile ? "center" : "left" }}>
             <span style={{
               display: "inline-block",
               padding: "8px 16px",
@@ -151,10 +163,10 @@ export default function Investors() {
               Mastering <br />
               <span style={{ background: "linear-gradient(to right, #60a5fa, #a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Enterprise IT</span>
             </h1>
-            <p style={{ fontSize: "clamp(16px, 1.8vw, 20px)", color: "#cbd5e1", maxWidth: "600px", marginBottom: "40px", lineHeight: "1.7" }}>
+            <p style={{ fontSize: "clamp(16px, 1.8vw, 20px)", color: "#cbd5e1", maxWidth: isMobile ? "100%" : "600px", marginBottom: "40px", lineHeight: "1.7", marginLeft: isMobile ? "auto" : "0", marginRight: isMobile ? "auto" : "0" }}>
               We specialize in delivering robust ERP solutions, seamless cloud migrations, and data-driven insights. Partner with our experts to architect a scalable and future-ready digital core for your business.
             </p>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: isMobile ? "center" : "flex-start" }}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -171,7 +183,9 @@ export default function Investors() {
                   display: "flex",
                   alignItems: "center",
                   gap: "10px",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                  width: isMobile ? "100%" : "auto",
+                  justifyContent: "center"
                 }}
               >
                 Consult an Expert <ArrowRight size={20} />
@@ -183,7 +197,7 @@ export default function Investors() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            style={{ width: "100%", maxWidth: "550px", margin: "0 auto", filter: "drop-shadow(0 20px 40px rgba(99, 102, 241, 0.3))" }}
+            style={{ width: "100%", maxWidth: isMobile ? "380px" : "550px", margin: "0 auto", filter: "drop-shadow(0 20px 40px rgba(99, 102, 241, 0.3))" }}
           >
             <ERPIllustration />
           </motion.div>
@@ -192,7 +206,7 @@ export default function Investors() {
       </section>
 
       {/* Core Expertise Metrics */}
-      <section style={{ padding: "0 6%", marginTop: "-60px", position: "relative", zIndex: 2 }}>
+      <section style={{ padding: isMobile ? "0 20px" : "0 6%", marginTop: isMobile ? "-40px" : "-60px", position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <motion.div
             initial="hidden"
@@ -209,7 +223,7 @@ export default function Investors() {
             ].map((metric, idx) => (
               <motion.div key={idx} variants={fadeIn} style={{
                 background: "white",
-                padding: "32px",
+                padding: isMobile ? "24px" : "32px",
                 borderRadius: "20px",
                 boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
                 border: "1px solid rgba(226, 232, 240, 0.8)",
@@ -220,7 +234,7 @@ export default function Investors() {
                 <div style={{ background: "#e0e7ff", padding: "12px", borderRadius: "14px", marginBottom: "20px" }}>
                   {metric.icon}
                 </div>
-                <h3 style={{ fontSize: "36px", fontWeight: "800", color: "#0f172a", marginBottom: "8px", letterSpacing: "-1px" }}>{metric.value}</h3>
+                <h3 style={{ fontSize: isMobile ? "30px" : "36px", fontWeight: "800", color: "#0f172a", marginBottom: "8px", letterSpacing: "-1px" }}>{metric.value}</h3>
                 <p style={{ color: "#64748b", fontWeight: "600", fontSize: "15px" }}>{metric.label}</p>
               </motion.div>
             ))}
@@ -229,17 +243,17 @@ export default function Investors() {
       </section>
 
       {/* Our Services Section */}
-      <section style={{ padding: "120px 6%" }}>
+      <section style={{ padding: isMobile ? "80px 20px" : "120px 6%" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: "center", marginBottom: "70px" }}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: "center", marginBottom: isMobile ? "50px" : "70px" }}>
             <span style={{ color: "#4f46e5", fontWeight: "700", textTransform: "uppercase", letterSpacing: "1px", fontSize: "14px" }}>Core Competencies</span>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontWeight: "800", color: "#0f172a", margin: "16px 0", letterSpacing: "-1px" }}>Driving Digital Operations</h2>
-            <p style={{ fontSize: "18px", color: "#64748b", maxWidth: "750px", margin: "0 auto", lineHeight: "1.7" }}>
+            <p style={{ fontSize: isMobile ? "16px" : "18px", color: "#64748b", maxWidth: "750px", margin: "0 auto", lineHeight: "1.7" }}>
               We provide end-to-end technology solutions to optimize your business processes, enhance operational efficiency, and accelerate growth.
             </p>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "60px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: isMobile ? "36px" : "60px" }}>
 
             {/* Service 1: ERP */}
             <motion.div
@@ -247,14 +261,14 @@ export default function Investors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px", alignItems: "center", background: "white", padding: "40px", borderRadius: "32px", border: "1px solid #e2e8f0", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}
+              style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))", gap: isMobile ? "24px" : "40px", alignItems: "center", background: "white", padding: isMobile ? "24px" : "40px", borderRadius: isMobile ? "24px" : "32px", border: "1px solid #e2e8f0", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}
             >
               <div>
                 <div style={{ background: "rgba(79, 70, 229, 0.1)", display: "inline-flex", padding: "12px", borderRadius: "16px", marginBottom: "24px" }}>
                   <Server size={32} color="#4f46e5" />
                 </div>
-                <h3 style={{ fontSize: "32px", fontWeight: "800", color: "#0f172a", marginBottom: "16px" }}>Enterprise Resource Planning (ERP)</h3>
-                <p style={{ fontSize: "18px", color: "#475569", lineHeight: "1.7", marginBottom: "24px" }}>
+                <h3 style={{ fontSize: isMobile ? "26px" : "32px", fontWeight: "800", color: "#0f172a", marginBottom: "16px" }}>Enterprise Resource Planning (ERP)</h3>
+                <p style={{ fontSize: isMobile ? "16px" : "18px", color: "#475569", lineHeight: "1.7", marginBottom: "24px" }}>
                   Unlock the full potential of your enterprise with comprehensive ERP solutions. We specialize in SAP S/4HANA implementations, migrations, and support, helping you streamline finance, supply chain, and manufacturing operations into a unified, intelligent digital core.
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -268,7 +282,7 @@ export default function Investors() {
                   ))}
                 </ul>
               </div>
-              <div style={{ background: "#f8fafc", borderRadius: "24px", padding: "40px", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "350px", border: "1px solid #f1f5f9" }}>
+              <div style={{ background: "#f8fafc", borderRadius: "24px", padding: isMobile ? "20px" : "40px", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? "260px" : "350px", border: "1px solid #f1f5f9" }}>
                 {/* Minimalist ERP Graphic */}
                 <svg width="100%" height="250" viewBox="0 0 300 250">
                   <defs>
@@ -381,8 +395,8 @@ export default function Investors() {
                   transition={{ duration: 0.5, delay: service.delay }}
                   style={{
                     background: "white",
-                    padding: "40px",
-                    borderRadius: "32px",
+                    padding: isMobile ? "24px" : "40px",
+                    borderRadius: isMobile ? "24px" : "32px",
                     border: "1px solid #e2e8f0",
                     boxShadow: "0 15px 35px rgba(0,0,0,0.04)",
                     display: "flex",
@@ -393,11 +407,11 @@ export default function Investors() {
                   <div style={{ background: service.iconBg, display: "inline-flex", padding: "12px", borderRadius: "16px", marginBottom: "24px", alignSelf: "flex-start" }}>
                     {service.icon}
                   </div>
-                  <h3 style={{ fontSize: "28px", fontWeight: "800", color: "#0f172a", marginBottom: "16px" }}>{service.title}</h3>
+                  <h3 style={{ fontSize: isMobile ? "24px" : "28px", fontWeight: "800", color: "#0f172a", marginBottom: "16px" }}>{service.title}</h3>
                   <p style={{ fontSize: "16px", color: "#475569", lineHeight: "1.7", marginBottom: "24px", flexGrow: 1 }}>
                     {service.desc}
                   </p>
-                  <div style={{ width: "100%", height: "220px", borderRadius: "18px", overflow: "hidden", marginBottom: "24px" }}>
+                  <div style={{ width: "100%", height: isMobile ? "180px" : "220px", borderRadius: "18px", overflow: "hidden", marginBottom: "24px" }}>
                     <img
                       src={service.image}
                       alt={service.title}
@@ -430,11 +444,11 @@ export default function Investors() {
       </section>
 
       {/* Expertise Delivery / Why Choose Us */}
-      <section style={{ padding: "100px 6%", background: "white", borderTop: "1px solid #f1f5f9" }}>
+      <section style={{ padding: isMobile ? "80px 20px" : "100px 6%", background: "white", borderTop: "1px solid #f1f5f9" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: "center", marginBottom: "60px" }}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: "center", marginBottom: isMobile ? "44px" : "60px" }}>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontWeight: "800", color: "#0f172a", marginBottom: "16px", letterSpacing: "-1px" }}>The Galacticos Advantage</h2>
-            <p style={{ fontSize: "18px", color: "#64748b", maxWidth: "700px", margin: "0 auto", lineHeight: "1.7" }}>
+            <p style={{ fontSize: isMobile ? "16px" : "18px", color: "#64748b", maxWidth: "700px", margin: "0 auto", lineHeight: "1.7" }}>
               Our methodology guarantees low-risk implementations and high-quality deliverables, backed by industry-standard frameworks and certified deep-tech professionals.
             </p>
           </motion.div>
@@ -474,7 +488,7 @@ export default function Investors() {
                 whileHover={{ y: -8 }}
                 style={{
                   background: "#f8fafc",
-                  padding: "32px",
+                  padding: isMobile ? "24px" : "32px",
                   borderRadius: "24px",
                   border: "1px solid rgba(226, 232, 240, 0.8)",
                   transition: "all 0.3s ease"
@@ -503,7 +517,7 @@ export default function Investors() {
       </section>
 
       {/* Deep CTA Section */}
-      <section style={{ padding: "100px 6%" }}>
+      <section style={{ padding: isMobile ? "80px 20px" : "100px 6%" }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -511,8 +525,8 @@ export default function Investors() {
           variants={fadeIn}
           style={{
             background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)",
-            borderRadius: "32px",
-            padding: "80px 40px",
+            borderRadius: isMobile ? "24px" : "32px",
+            padding: isMobile ? "56px 24px" : "80px 40px",
             textAlign: "center",
             color: "white",
             maxWidth: "1100px",
@@ -523,19 +537,19 @@ export default function Investors() {
           }}
         >
           {/* Decorative rings */}
-          <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "500px", height: "500px", border: "2px solid rgba(255,255,255,0.05)", borderRadius: "50%" }}></div>
-          <div style={{ position: "absolute", bottom: "-50%", right: "-10%", width: "600px", height: "600px", border: "2px solid rgba(255,255,255,0.05)", borderRadius: "50%" }}></div>
+          {!isMobile && <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "500px", height: "500px", border: "2px solid rgba(255,255,255,0.05)", borderRadius: "50%" }}></div>}
+          {!isMobile && <div style={{ position: "absolute", bottom: "-50%", right: "-10%", width: "600px", height: "600px", border: "2px solid rgba(255,255,255,0.05)", borderRadius: "50%" }}></div>}
 
           <div style={{ position: "relative", zIndex: 2 }}>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "800", marginBottom: "24px", letterSpacing: "-1px" }}>Ready to transform your enterprise?</h2>
-            <p style={{ fontSize: "20px", color: "#c7d2fe", maxWidth: "600px", margin: "0 auto 48px auto", lineHeight: "1.6" }}>
+            <p style={{ fontSize: isMobile ? "17px" : "20px", color: "#c7d2fe", maxWidth: "600px", margin: "0 auto 48px auto", lineHeight: "1.6" }}>
               Engage with our technology experts to discuss your IT landscape, blueprint a modernization strategy, and accelerate your digital journey.
             </p>
             <motion.button
               onClick={() => navigate('/contact')}
               whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
               whileTap={{ scale: 0.95 }}
-              style={{ background: "white", color: "#1e1b4b", border: "none", padding: "20px 48px", borderRadius: "16px", fontSize: "18px", fontWeight: "700", cursor: "pointer", transition: "all 0.2s" }}
+              style={{ background: "white", color: "#1e1b4b", border: "none", padding: isMobile ? "16px 24px" : "20px 48px", borderRadius: "16px", fontSize: isMobile ? "16px" : "18px", fontWeight: "700", cursor: "pointer", transition: "all 0.2s", width: isMobile ? "100%" : "auto" }}
             >
               Contact Our Experts
             </motion.button>
