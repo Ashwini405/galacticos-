@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Globe, Shield, Database, Activity, Zap, Lock, Layers, BarChart2, Cpu, Network } from "lucide-react";
+import { ChevronLeft, ChevronRight, Globe, Shield, Database, Activity, Lock, Layers, BarChart2, Cpu, Cloud, TrendingUp, Users } from "lucide-react";
 import {
   LineChart, Line, AreaChart, Area, BarChart, Bar,
-  ComposedChart, PieChart, Pie, Cell,
+  ComposedChart,
   ResponsiveContainer
 } from "recharts";
 
@@ -36,47 +36,41 @@ export default function PremiumVanguardHero() {
 
   const slides = useMemo(() => [
     {
-      label: "AI_NODE_ACTIVE",
-      title: "Cognitive routing and intelligent data processing",
-      subtitle: "Edge-computing nodes processing petabytes of telemetry via decentralized AI orchestrators.",
-      color: "#007BFF", // Bright Blue
+      label: "SAP_S4HANA_CORE",
+      title: "Building the Intelligent Digital Core for Enterprises",
+      subtitle: "End-to-end SAP S/4HANA transformation programs modernizing finance, supply chain, and operational ecosystems.",
+      color: "#007BFF",
       features: [
-        { icon: <Cpu strokeWidth={1.5} size={20} />, text: "Self-Healing Networks" },
-        { icon: <Zap strokeWidth={1.5} size={20} />, text: "Zero Latency" },
-        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Quantum Ready" },
-        { icon: <Globe strokeWidth={1.5} size={20} />, text: "Global Scope" }
+        { icon: <Database strokeWidth={1.5} size={20} />, text: "SAP S/4HANA Implementation" },
+        { icon: <Layers strokeWidth={1.5} size={20} />, text: "Process Optimization" },
+        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Governance & Compliance" },
+        { icon: <Globe strokeWidth={1.5} size={20} />, text: "Global Rollouts" }
       ],
       badges: [
-        { text: "99.9% Efficiency", top: "5%", right: "-5%" },
-        { text: "AI Optimized", bottom: "15%", left: "-10%" }
+        { text: "Digital Core Modernization", top: "5%", right: "-5%" },
+        { text: "Enterprise Ready", bottom: "15%", left: "-10%" }
       ],
       chart: (d) => (
         <AreaChart data={d}>
-          <defs>
-            <linearGradient id="c1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#007BFF" stopOpacity={0.6} />
-              <stop offset="95%" stopColor="#FF00AA" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Area type="monotone" dataKey="val" stroke="#007BFF" strokeWidth={2} fill="url(#c1)" />
+          <Area type="monotone" dataKey="val" stroke="#007BFF" strokeWidth={2} fillOpacity={0.2} />
           <Line type="monotone" dataKey="val2" stroke="#FF00AA" strokeWidth={1.5} dot={false} />
         </AreaChart>
       )
     },
     {
-      label: "MARKET_SYNC_04",
-      title: "High-frequency analysis for decentralized systems",
-      subtitle: "Zero-latency market data synchronization and algorithmic pipeline execution platforms.",
-      color: "#00E5FF", // Cyan
+      label: "CLOUD_TRANSFORMATION",
+      title: "Scalable Cloud Migration & Modernization",
+      subtitle: "Strategic migration to AWS, Azure, and GCP with cost governance, DevSecOps integration, and resilient infrastructure design.",
+      color: "#00E5FF",
       features: [
-        { icon: <Activity strokeWidth={1.5} size={20} />, text: "Real-time Sync" },
-        { icon: <Layers strokeWidth={1.5} size={20} />, text: "Multi-layer Comm" },
-        { icon: <Lock strokeWidth={1.5} size={20} />, text: "Encrypted Ledgers" },
-        { icon: <BarChart2 strokeWidth={1.5} size={20} />, text: "Live Analytics" }
+        { icon: <Cloud strokeWidth={1.5} size={20} />, text: "Multi-Cloud Strategy" },
+        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Security First Design" },
+        { icon: <Activity strokeWidth={1.5} size={20} />, text: "DevSecOps Integration" },
+        { icon: <BarChart2 strokeWidth={1.5} size={20} />, text: "Cost Optimization" }
       ],
       badges: [
-        { text: "0.2ms Latency", top: "10%", left: "-5%" },
-        { text: "HFT Ready", bottom: "10%", right: "-5%" }
+        { text: "Optimized TCO", top: "10%", left: "-5%" },
+        { text: "Cloud Native Ready", bottom: "10%", right: "-5%" }
       ],
       chart: (d) => (
         <BarChart data={d}>
@@ -86,70 +80,47 @@ export default function PremiumVanguardHero() {
       )
     },
     {
-      label: "NETWORK_HEALTH_99",
-      title: "Zero-latency peering across global meshes",
-      subtitle: "Unifying 12 availability zones world-wide for immediate, uninterrupted connectivity.",
-      color: "#39FF14", // Neon Green
+      label: "DATA_AI_PLATFORM",
+      title: "Enterprise Data Platforms & AI Acceleration",
+      subtitle: "Designing modern data architectures that enable real-time analytics, executive dashboards, and AI-driven decision intelligence.",
+      color: "#39FF14",
       features: [
-        { icon: <Network strokeWidth={1.5} size={20} />, text: "Mesh Topology" },
-        { icon: <Globe strokeWidth={1.5} size={20} />, text: "12 Global Zones" },
-        { icon: <Zap strokeWidth={1.5} size={20} />, text: "Instant Failover" },
-        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Edge Security" }
+        { icon: <Database strokeWidth={1.5} size={20} />, text: "Data Architecture" },
+        { icon: <Cpu strokeWidth={1.5} size={20} />, text: "AI Enablement" },
+        { icon: <BarChart2 strokeWidth={1.5} size={20} />, text: "Advanced Analytics" },
+        { icon: <Globe strokeWidth={1.5} size={20} />, text: "Enterprise Scale" }
       ],
       badges: [
-        { text: "100 Gbps Peering", top: "40%", right: "-12%" },
-        { text: "Zero Drops", bottom: "5%", left: "5%" }
+        { text: "AI Driven Insights", top: "40%", right: "-12%" },
+        { text: "Executive Dashboards", bottom: "5%", left: "5%" }
       ],
       chart: (d) => (
         <LineChart data={d}>
-          <Line type="stepAfter" dataKey="val" stroke="#39FF14" strokeWidth={3} dot={false} />
-          <Line type="stepAfter" dataKey="val2" stroke="rgba(255,255,255,0.3)" strokeWidth={2} dot={false} strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="val" stroke="#39FF14" strokeWidth={3} dot={false} />
+          <Line type="monotone" dataKey="val2" stroke="rgba(255,255,255,0.3)" strokeWidth={2} dot={false} />
         </LineChart>
       )
     },
     {
-      label: "FIREWALL_ARMED",
-      title: "Quantum-ready protection for next-gen enterprises",
-      subtitle: "Deploying advanced neural firewalls and autonomous threat mitigation to secure critical data assets.",
-      color: "#7000FF", // Purple
+      label: "ENTERPRISE_SECURITY",
+      title: "Zero-Trust Security & Risk-Controlled Operations",
+      subtitle: "Strengthening enterprise resilience through secure architectures, compliance alignment, and 24x7 monitoring frameworks.",
+      color: "#7000FF",
       features: [
-        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Zero Trust" },
-        { icon: <Activity strokeWidth={1.5} size={20} />, text: "Auto Mitigation" },
-        { icon: <Database strokeWidth={1.5} size={20} />, text: "Cold Storage" },
-        { icon: <Lock strokeWidth={1.5} size={20} />, text: "Post-Quantum" }
+        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Zero Trust Architecture" },
+        { icon: <Lock strokeWidth={1.5} size={20} />, text: "Regulatory Compliance" },
+        { icon: <Activity strokeWidth={1.5} size={20} />, text: "24x7 Monitoring" },
+        { icon: <Layers strokeWidth={1.5} size={20} />, text: "Risk Mitigation" }
       ],
       badges: [
-        { text: "DDoS Protected", top: "-5%", right: "10%" },
-        { text: "SOC2 Certified", bottom: "5%", left: "5%" }
+        { text: "SOC & Governance", top: "-5%", right: "10%" },
+        { text: "Enterprise Resilience", bottom: "5%", left: "5%" }
       ],
       chart: (d) => (
         <ComposedChart data={d}>
           <Area type="monotone" dataKey="val" fill="rgba(112, 0, 255, 0.25)" stroke="#7000FF" strokeWidth={3} />
-          <Line type="monotone" dataKey="val2" stroke="#fff" strokeWidth={2} dot={{ r: 4, fill: '#7000FF' }} />
+          <Line type="monotone" dataKey="val2" stroke="#fff" strokeWidth={2} dot={false} />
         </ComposedChart>
-      )
-    },
-    {
-      label: "ENCRYPTION_SAFE",
-      title: "256-bit encrypted data vault solutions",
-      subtitle: "Immutable, globally distributed storage infrastructures built for regulatory compliance and immense scale.",
-      color: "#FAFF00", // Yellow
-      features: [
-        { icon: <Lock strokeWidth={1.5} size={20} />, text: "256-Bit Standard" },
-        { icon: <Database strokeWidth={1.5} size={20} />, text: "Immutable Ledgers" },
-        { icon: <Shield strokeWidth={1.5} size={20} />, text: "Compliance Init" },
-        { icon: <Layers strokeWidth={1.5} size={20} />, text: "Scale Ready" }
-      ],
-      badges: [
-        { text: "Cold Stored", top: "15%", left: "-5%" },
-        { text: "Always Verifiable", bottom: "10%", right: "-8%" }
-      ],
-      chart: (d) => (
-        <PieChart>
-          <Pie data={d} dataKey="val" innerRadius="65%" outerRadius="85%" paddingAngle={6}>
-            {d.map((_, i) => <Cell key={i} fill={i % 3 === 0 ? "#FAFF00" : "rgba(255,255,255,0.05)"} />)}
-          </Pie>
-        </PieChart>
       )
     }
   ], []);

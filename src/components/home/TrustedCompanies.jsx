@@ -190,7 +190,7 @@ export default function TrustedCompanies() {
             <div className="logo-item"><img src="https://www.kpipartners.com/hubfs/KPI-Partners-2021/Icons/KPI%20Logo%20(1).svg" alt="KPI Partners" /></div>
             <div className="logo-item"><img src="https://levitateconsulting.tech/home/wp-content/uploads/2020/01/headerlogo.png" alt="Levitate Consulting" /></div>
             <div className="logo-item"><img src="https://pyxismcg.com/images/logo.png" alt="Pyxis" /></div>
-            <div className="logo-item"><img src="https://kanerika.com/wp-content/uploads/2025/05/Kanerika-Full-logo.svg" alt="Kanerika" /></div>
+            <div className="logo-item"><img src="https://logo.clearbit.com/kanerika.com" alt="Kanerica" /></div>
 
             {/* SET 2 (Duplicate for continuous marquee effect) */}
             <div className="logo-item"><img src="https://www.sagarsoft.in/wp-content/uploads/2022/07/logo-black.png" alt="Sagarsoft" /></div>
@@ -199,7 +199,7 @@ export default function TrustedCompanies() {
             <div className="logo-item"><img src="https://www.kpipartners.com/hubfs/KPI-Partners-2021/Icons/KPI%20Logo%20(1).svg" alt="KPI Partners" /></div>
             <div className="logo-item"><img src="https://levitateconsulting.tech/home/wp-content/uploads/2020/01/headerlogo.png" alt="Levitate Consulting" /></div>
             <div className="logo-item"><img src="https://pyxismcg.com/images/logo.png" alt="Pyxis" /></div>
-            <div className="logo-item"><img src="https://kanerika.com/wp-content/uploads/2025/05/Kanerika-Full-logo.svg" alt="Kanerika" /></div>
+            <div className="logo-item"><img src="https://logo.clearbit.com/kanerika.com" alt="Kanerica" /></div>
           </div>
         </div>
       </div>

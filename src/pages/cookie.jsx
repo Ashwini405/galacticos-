@@ -97,7 +97,7 @@ export default function CookiePolicy() {
 
       {/* HERO */}
       <header className="cp-hero">
-        <div className="cp-hero-label">Legal Documentation</div>
+        
         <h1>Cookie <em>Policy</em></h1>
         <div className="cp-hero-meta">
           <div className="cp-meta-item">

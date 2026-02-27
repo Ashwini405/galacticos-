@@ -351,7 +351,7 @@ export default function PrivacyPolicy() {
 
       {/* Hero */}
       <header className="tc-hero">
-        <div className="tc-hero-label">Legal Documentation</div>
+        
         <h1>Privacy <em>Policy</em></h1>
         <div className="tc-hero-meta">
           <div className="tc-meta-item">

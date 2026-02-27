@@ -71,11 +71,14 @@ export default function Expertise() {
                             lineHeight: "1.1",
                             letterSpacing: "-1px"
                         }}>
-                            Elevating Enterprises with <br />
-                            <span style={{ background: "linear-gradient(to right, #4f46e5, #a5b4fc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Advanced Technology Solutions</span>
+                            Engineering the Digital Core of <br />
+                            <span style={{ background: "linear-gradient(to right, #4f46e5, #a5b4fc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                                Modern Enterprises
+                            </span>
                         </h1>
                         <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "#cbd5e1", maxWidth: "650px", marginBottom: "40px", lineHeight: "1.6" }}>
-                            Galacticos Network empowers global enterprises with cutting-edge ERP implementation, cloud virtualization, and intelligent data solutions, driving digital transformation at scale.
+                            Galacticos Network delivers enterprise transformation across SAP, Oracle, Cloud, Data, and Intelligent Automation.
+                            We architect scalable digital platforms that enhance operational efficiency, strengthen governance, and accelerate measurable business outcomes.
                         </p>
                     </motion.div>
                 </div>
@@ -92,10 +95,10 @@ export default function Expertise() {
                         style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}
                     >
                         {[
-                            { label: "ERP Implementations", value: "50+", icon: <Target size={24} color="#6366f1" /> },
-                            { label: "Cloud Migrations", value: "100+", icon: <Cloud size={24} color="#6366f1" /> },
-                            { label: "Data Experts", value: "150+", icon: <Database size={24} color="#6366f1" /> },
-                            { label: "Client Satisfaction", value: "98%", icon: <Zap size={24} color="#6366f1" /> }
+                            { label: "Global Clients", value: "10+", icon: <Globe size={24} color="#6366f1" /> },
+                            { label: "Technology Professionals", value: "95+", icon: <Users size={24} color="#6366f1" /> },
+                            { label: "Certified Experts", value: "30+", icon: <Shield size={24} color="#6366f1" /> },
+                            { label: "Average Industry Experience", value: "8+ Years", icon: <TrendingUp size={24} color="#6366f1" /> }
                         ].map((metric, idx) => (
                             <motion.div key={idx} variants={fadeIn} style={{
                                 background: "white",
@@ -124,7 +127,8 @@ export default function Expertise() {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: "center", marginBottom: "60px" }}>
                         <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontWeight: "800", color: "#0f172a", marginBottom: "16px", letterSpacing: "-1px" }}>Architecting the Future of Enterprise</h2>
                         <p style={{ fontSize: "18px", color: "#64748b", maxWidth: "700px", margin: "0 auto", lineHeight: "1.7" }}>
-                            Our multi-disciplinary teams orchestrate seamless integrations across applications, infrastructure, and analytics to build resilient, high-performance organizations.
+                            Our cross-functional teams integrate enterprise applications, cloud infrastructure, and advanced analytics
+                            into a unified ecosystem—reducing complexity, improving agility, and enabling scalable growth.
                         </p>
                     </motion.div>
 
@@ -138,19 +142,19 @@ export default function Expertise() {
                         {[
                             {
                                 title: "ERP Excellence",
-                                desc: "End-to-end SAP S/4HANA transformations, unifying business operations, enhancing visibility, and establishing a robust digital core.",
+                                desc: "End-to-end SAP S/4HANA implementations and modernization programs that streamline finance, supply chain, and operations while building a resilient digital core.",
                                 icon: <Target size={32} color="#fff" />,
                                 gradient: "linear-gradient(135deg, #4f46e5 0%, #312e81 100%)"
                             },
                             {
                                 title: "Cloud Modernization",
-                                desc: "Strategic cloud migration and native application development on AWS, Azure, and GCP, optimizing infrastructure agility.",
+                                desc: "Strategic cloud adoption, migration, and modernization across AWS, Azure, and GCP—optimizing infrastructure performance, cost governance, and security posture.",
                                 icon: <Cloud size={32} color="#fff" />,
                                 gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)"
                             },
                             {
                                 title: "Data & AI Intelligence",
-                                desc: "Unlocking actionable insights through modern data architectures, advanced analytics, and machine learning orchestration.",
+                                desc: "Designing modern data platforms, real-time analytics frameworks, and AI-driven solutions that transform raw data into actionable executive intelligence.",
                                 icon: <Database size={32} color="#fff" />,
                                 gradient: "linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%)"
                             }
@@ -195,7 +199,8 @@ export default function Expertise() {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ flex: "1 1 500px" }}>
                         <h2 style={{ fontSize: "clamp(32px, 4vw, 40px)", fontWeight: "800", color: "#0f172a", marginBottom: "24px", letterSpacing: "-1px" }}>A Methodical Approach to Innovation</h2>
                         <p style={{ fontSize: "18px", color: "#64748b", marginBottom: "32px", lineHeight: "1.7" }}>
-                            We fuse deep industry expertise with technological mastery. Our proprietary playbooks ensure risk-mitigated delivery, accelerated time-to-value, and continuous optimization.
+                            Our delivery framework combines enterprise architecture rigor, risk-controlled implementation models,
+                            and continuous optimization strategies—ensuring predictable outcomes and long-term scalability.
                         </p>
                         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
                             {["Enterprise Architecture Design", "Business Process Re-engineering", "System Integration & Automation", "Managed Services & Support"].map((item, idx) => (
@@ -289,7 +294,8 @@ export default function Expertise() {
                     <div style={{ position: "relative", zIndex: 2 }}>
                         <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "800", marginBottom: "24px", letterSpacing: "-1px" }}>Ready to transform your enterprise?</h2>
                         <p style={{ fontSize: "20px", color: "#c7d2fe", maxWidth: "600px", margin: "0 auto 48px auto", lineHeight: "1.6" }}>
-                            Engage with our technology specialists to architect a bespoke strategy that accelerates your digital evolution.
+                            Partner with Galacticos Network to modernize your enterprise architecture,
+                            optimize digital investments, and accelerate strategic transformation initiatives.
                         </p>
                         <motion.button
                             onClick={() => navigate('/contact')}

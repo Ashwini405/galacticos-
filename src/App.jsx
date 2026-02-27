@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -97,6 +98,44 @@ import ScrollToTop from "./components/ScrollToTop";
 
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.pathname.startsWith("/services")) {
+      return;
+    }
+
+    const handleServiceCtaRedirect = (event) => {
+      const button = event.target.closest("button");
+
+      if (!button) {
+        return;
+      }
+
+      const shouldRedirect = button.matches(
+        ".cta-btn, .cta-btn-outline, .cta-connect, .cta-button, .cta-white-btn, .cta-orange-btn"
+      );
+
+      if (!shouldRedirect) {
+        return;
+      }
+
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+
+      event.preventDefault();
+      navigate("/contact");
+    };
+
+    document.addEventListener("click", handleServiceCtaRedirect);
+
+    return () => {
+      document.removeEventListener("click", handleServiceCtaRedirect);
+    };
+  }, [location.pathname, navigate]);
+
   return (
     <>
       <ScrollToTop />
@@ -110,6 +149,7 @@ export default function App() {
         <Route path="/investors" element={<Investors />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/services/saas/mulesoft" element={<MuleSoft />} />
         <Route path="/services/qa/playwright" element={<Playwright />} />
         <Route path="/services/qa/automation" element={<AutomationTesting />} />
@@ -127,11 +167,8 @@ export default function App() {
 
 
         <Route path="/services/ux/systems" element={<DesignSystems />} />
-        javascript
         <Route path="/services/ux/accessibility" element={<DesignSystems />} />
-        javascript
         <Route path="/services/mobility/cross" element={<CrossPlatform />} />
-        javascript
         <Route path="/services/mobility/ui" element={<UiUx />} />
 
 

@@ -647,7 +647,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link className="nav-link" to="/investors">EXPERTISE</Link>
+            <Link className="nav-link" to="/expertise">EXPERTISE</Link>
             <Link className="nav-link" to="/careers">CAREERS</Link>
             <Link className="nav-link contact-btn" to="/contact">CONTACT US</Link>
           </nav>
@@ -681,7 +681,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link to="/investors" className="nav-link" onClick={() => setMenuOpen(false)}>EXPERTISE</Link>
+          <Link to="/expertise" className="nav-link" onClick={() => setMenuOpen(false)}>EXPERTISE</Link>
           <Link to="/careers" className="nav-link" onClick={() => setMenuOpen(false)}>CAREERS</Link>
           <Link to="/contact" className="contact-btn" style={{ textAlign: 'center', marginTop: '10px' }} onClick={() => setMenuOpen(false)}>CONTACT US</Link>
         </div>

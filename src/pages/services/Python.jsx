@@ -9,7 +9,7 @@ export default function Python() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1117 0%, #161b22 50%, #1c2128 100%)', position: 'relative', overflow: 'hidden' }}>
+    <div className="python-page" style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1117 0%, #161b22 50%, #1c2128 100%)', position: 'relative', overflow: 'hidden' }}>
       <style>{`
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
@@ -48,6 +48,31 @@ export default function Python() {
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(55, 118, 171, 0.4); }
         .cta-btn-outline { background: transparent; color: #58a6ff; padding: 16px 36px; border-radius: 12px; font-size: 16px; font-weight: 700; border: 2px solid #58a6ff; cursor: pointer; transition: all 0.3s ease; }
         .cta-btn-outline:hover { background: rgba(88, 166, 255, 0.1); transform: translateY(-3px); }
+
+        @media (max-width: 992px) {
+          .python-main { padding: 100px 5% !important; }
+          .python-stats { gap: 14px !important; }
+          .python-code-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .python-service-grid { grid-template-columns: 1fr !important; }
+          .python-tech { padding: 28px 20px !important; }
+          .python-cta { padding: 36px 20px !important; }
+        }
+
+        @media (max-width: 640px) {
+          .python-main { padding: 108px 4.5% 72px !important; }
+          .python-page h1 { font-size: clamp(30px, 8.5vw, 42px) !important; }
+          .python-page h2 { font-size: clamp(24px, 6.5vw, 30px) !important; }
+          .python-page h3 { font-size: clamp(21px, 5.8vw, 26px) !important; }
+          .terminal-body { padding: 14px !important; font-size: 12px !important; }
+          .python-hero { margin-bottom: 56px !important; }
+          .code-rain,
+          .python-floating-left,
+          .python-floating-right {
+            display: none !important;
+          }
+          .python-cta-buttons { flex-direction: column; align-items: stretch; }
+          .python-cta-buttons button { width: 100%; }
+        }
       `}</style>
       
       {/* Code Rain Background */}
@@ -60,13 +85,13 @@ export default function Python() {
       </div>
       
       {/* Floating Code Brackets */}
-      <div style={{ position: 'absolute', top: '15%', left: '5%', fontSize: '120px', opacity: 0.05, fontFamily: 'monospace', color: '#3776ab', animation: 'float 8s ease-in-out infinite' }}>{'{'}</div>
-      <div style={{ position: 'absolute', bottom: '20%', right: '8%', fontSize: '100px', opacity: 0.05, fontFamily: 'monospace', color: '#3776ab', animation: 'float 10s ease-in-out infinite 2s' }}>{'}'}</div>
+      <div className="python-floating-left" style={{ position: 'absolute', top: '15%', left: '5%', fontSize: '120px', opacity: 0.05, fontFamily: 'monospace', color: '#3776ab', animation: 'float 8s ease-in-out infinite' }}>{'{'}</div>
+      <div className="python-floating-right" style={{ position: 'absolute', bottom: '20%', right: '8%', fontSize: '100px', opacity: 0.05, fontFamily: 'monospace', color: '#3776ab', animation: 'float 10s ease-in-out infinite 2s' }}>{'}'}</div>
       
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '120px 6%', position: 'relative', zIndex: 1 }}>
+      <div className="python-main" style={{ maxWidth: '1400px', margin: '0 auto', padding: '120px 6%', position: 'relative', zIndex: 1 }}>
         
         {/* Hero Section */}
-        <div style={{ textAlign: 'center', marginBottom: '80px', animation: 'fadeInUp 1s ease-out' }}>
+        <div className="python-hero" style={{ textAlign: 'center', marginBottom: '80px', animation: 'fadeInUp 1s ease-out' }}>
           <div style={{ display: 'inline-block', marginBottom: '30px', animation: 'glow 3s ease-in-out infinite' }}>
             <svg width="100" height="100" viewBox="0 0 200 200">
               <defs>
@@ -87,7 +112,7 @@ export default function Python() {
            Leverage Python to power data-driven decision making, intelligent automation, and scalable digital platforms. We enable enterprises to modernize legacy systems, build AI-led solutions, and accelerate cloud transformation.
           </p>
           
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '40px' }}>
+          <div className="python-stats" style={{ display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '40px' }}>
             {[
               { number: 'AI & Data Platforms Delivered', label: 'ML Models', icon: '🤖' },
               { number: 'Enterprise Automation Programs', label: 'Data Projects', icon: '📊' },
@@ -107,7 +132,7 @@ export default function Python() {
 
         {/* Code Example Section */}
         
-        <div style={{ marginBottom: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', alignItems: 'center' }}>
+        <div className="python-code-grid" style={{ marginBottom: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', alignItems: 'center' }}>
           <div className="terminal-window" style={{ animation: 'slideIn 0.8s ease-out' }}>
             <div className="terminal-header">
               <div className="terminal-dot" style={{ background: '#ff5f56' }} />
@@ -167,7 +192,7 @@ export default function Python() {
             Enterprise-Grade Python Capabilities
           </p>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div className="python-service-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
             {[
               { title: 'AI & Machine Learning Solutions', icon: '🌐', desc: 'Design and deploy enterprise AI solutions for predictive analytics, NLP, computer vision, and intelligent decision systems.', features: ['Django & Flask', 'REST APIs', 'GraphQL', 'Real-time Apps'] },
               { title: 'Data Engineering & Modern Data Platforms', icon: '🤖', desc: 'Build scalable data pipelines, real-time processing systems, and cloud-based analytics platforms for business insights.', features: ['Deep Learning', 'NLP', 'Computer Vision', 'Predictive Analytics'] },
@@ -191,7 +216,7 @@ export default function Python() {
         </div>
 
         {/* Technologies */}
-        <div style={{ background: 'rgba(22, 27, 34, 0.8)', backdropFilter: 'blur(20px)', borderRadius: '24px', padding: '50px', border: '1px solid #30363d', marginBottom: '80px' }}>
+        <div className="python-tech" style={{ background: 'rgba(22, 27, 34, 0.8)', backdropFilter: 'blur(20px)', borderRadius: '24px', padding: '50px', border: '1px solid #30363d', marginBottom: '80px' }}>
           <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#fff', marginBottom: '40px', textAlign: 'center' }}>
             Technologies We Use
           </h2>
@@ -205,14 +230,14 @@ export default function Python() {
         </div>
 
         {/* CTA Section */}
-        <div style={{ textAlign: 'center', padding: '60px', background: 'linear-gradient(135deg, rgba(55, 118, 171, 0.15), rgba(88, 166, 255, 0.05))', borderRadius: '24px', border: '1px solid rgba(55, 118, 171, 0.3)' }}>
+        <div className="python-cta" style={{ textAlign: 'center', padding: '60px', background: 'linear-gradient(135deg, rgba(55, 118, 171, 0.15), rgba(88, 166, 255, 0.05))', borderRadius: '24px', border: '1px solid rgba(55, 118, 171, 0.3)' }}>
           <h3 style={{ fontSize: '32px', fontWeight: '800', color: '#fff', marginBottom: '16px' }}>
             Transform Your Business with AI & Data
           </h3>
           <p style={{ fontSize: '16px', color: '#8b949e', marginBottom: '35px', maxWidth: '500px', margin: '0 auto 35px' }}>
            Connect with our experts to build intelligent, scalable, and future-ready enterprise solutions powered by Python.
           </p>
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="python-cta-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button className="cta-btn" onClick={handleNavigation}>
               Get Started
             </button>

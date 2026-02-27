@@ -688,7 +688,7 @@ export default function Footer() {
             </div>
             <div className="gn-stats">
               <div className="gn-stat">
-                <div className="gn-stat-num">50+</div>
+                <div className="gn-stat-num">25+</div>
                 <div className="gn-stat-label">Global Clients</div>
               </div>
               <div className="gn-stat">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ============================================
 // ENHANCED SVG ILLUSTRATIONS & COMPONENTS
@@ -531,6 +532,7 @@ const EnhancedIntegrationSVG = () => (
 // ============================================
 
 export default function EnhancedCloudSaaS() {
+  const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredListItem, setHoveredListItem] = useState(null);
   const [hoveredIconCard, setHoveredIconCard] = useState(null);
@@ -672,6 +674,8 @@ export default function EnhancedCloudSaaS() {
           grid-template-columns: 1fr !important;
           text-align: center;
           gap: 40px;
+          padding-top: 108px !important;
+          padding-bottom: 64px !important;
         }
         .hero-content {
           padding-right: 0 !important;
@@ -717,6 +721,10 @@ export default function EnhancedCloudSaaS() {
       @media (max-width: 480px) {
         section {
           padding: 50px 4% !important;
+        }
+        .hero-section {
+          padding-top: 102px !important;
+          padding-bottom: 56px !important;
         }
         h1 {
           font-size: 32px !important;
@@ -1260,6 +1268,7 @@ export default function EnhancedCloudSaaS() {
         <div style={styles.ctaButtons} className="cta-buttons">
           <button
             style={styles.button}
+            onClick={() => navigate('/contact')}
             onMouseEnter={(e) => {
               e.target.style.transform = "translateY(-6px) scale(1.05)";
               e.target.style.boxShadow = "0 25px 45px rgba(0,0,0,0.3)";
@@ -1273,6 +1282,7 @@ export default function EnhancedCloudSaaS() {
           </button>
           <button
             style={styles.button}
+            onClick={() => navigate('/contact')}
             onMouseEnter={(e) => {
               e.target.style.transform = "translateY(-6px) scale(1.05)";
               e.target.style.boxShadow = "0 25px 45px rgba(0,0,0,0.3)";
@@ -1286,6 +1296,7 @@ export default function EnhancedCloudSaaS() {
           </button>
           <button
             style={{...styles.button, background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", color: "#fff", fontWeight: 800}}
+            onClick={() => navigate('/contact')}
             onMouseEnter={(e) => {
               e.target.style.transform = "translateY(-6px) scale(1.05)";
               e.target.style.boxShadow = "0 25px 45px rgba(245, 87, 108, 0.4)";

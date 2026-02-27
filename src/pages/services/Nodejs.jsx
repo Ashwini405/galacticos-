@@ -10,7 +10,7 @@ export default function Nodejs() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1117 0%, #161b22 50%, #1c2128 100%)', position: 'relative', overflow: 'hidden' }}>
+    <div className="node-page" style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1117 0%, #161b22 50%, #1c2128 100%)', position: 'relative', overflow: 'hidden' }}>
       <style>{`
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
@@ -50,6 +50,32 @@ export default function Nodejs() {
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(68, 160, 63, 0.4); }
         .cta-btn-outline { background: transparent; color: #68a063; padding: 16px 36px; border-radius: 12px; font-size: 16px; font-weight: 700; border: 2px solid #68a063; cursor: pointer; transition: all 0.3s ease; }
         .cta-btn-outline:hover { background: rgba(104, 160, 99, 0.1); transform: translateY(-3px); }
+
+        @media (max-width: 992px) {
+          .node-main { padding: 100px 5% !important; }
+          .node-stats { gap: 14px !important; }
+          .node-code-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .node-service-grid { grid-template-columns: 1fr !important; }
+          .node-ecosystem { padding: 28px 20px !important; }
+          .node-cta { padding: 36px 20px !important; }
+        }
+
+        @media (max-width: 640px) {
+          .node-main { padding: 108px 4.5% 72px !important; }
+          .node-page h1 { font-size: clamp(30px, 8.5vw, 42px) !important; }
+          .node-page h2 { font-size: clamp(24px, 6.5vw, 30px) !important; }
+          .node-page h3 { font-size: clamp(21px, 5.8vw, 26px) !important; }
+          .terminal-body { padding: 14px !important; font-size: 12px !important; }
+          .node-stats { gap: 10px !important; }
+          .node-hero { margin-bottom: 56px !important; }
+          .code-rain,
+          .node-floating-left,
+          .node-floating-right {
+            display: none !important;
+          }
+          .node-cta-buttons { flex-direction: column; align-items: stretch; }
+          .node-cta-buttons button { width: 100%; }
+        }
       `}</style>
       
       {/* Code Rain Background */}
@@ -62,13 +88,13 @@ export default function Nodejs() {
       </div>
       
       {/* Floating Code Brackets */}
-      <div style={{ position: 'absolute', top: '15%', left: '5%', fontSize: '120px', opacity: 0.05, fontFamily: 'monospace', color: '#68a063', animation: 'float 8s ease-in-out infinite' }}>{'{'}</div>
-      <div style={{ position: 'absolute', bottom: '20%', right: '8%', fontSize: '100px', opacity: 0.05, fontFamily: 'monospace', color: '#68a063', animation: 'float 10s ease-in-out infinite 2s' }}>{'}'}</div>
+      <div className="node-floating-left" style={{ position: 'absolute', top: '15%', left: '5%', fontSize: '120px', opacity: 0.05, fontFamily: 'monospace', color: '#68a063', animation: 'float 8s ease-in-out infinite' }}>{'{'}</div>
+      <div className="node-floating-right" style={{ position: 'absolute', bottom: '20%', right: '8%', fontSize: '100px', opacity: 0.05, fontFamily: 'monospace', color: '#68a063', animation: 'float 10s ease-in-out infinite 2s' }}>{'}'}</div>
       
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '120px 6%', position: 'relative', zIndex: 1 }}>
+      <div className="node-main" style={{ maxWidth: '1400px', margin: '0 auto', padding: '120px 6%', position: 'relative', zIndex: 1 }}>
         
         {/* Hero Section */}
-        <div style={{ textAlign: 'center', marginBottom: '80px', animation: 'fadeInUp 1s ease-out' }}>
+        <div className="node-hero" style={{ textAlign: 'center', marginBottom: '80px', animation: 'fadeInUp 1s ease-out' }}>
           <div style={{ display: 'inline-block', marginBottom: '30px', animation: 'glow 3s ease-in-out infinite' }}>
             <svg width="100" height="100" viewBox="0 0 200 200">
               <defs>
@@ -89,7 +115,7 @@ export default function Nodejs() {
             We help enterprises build high-performance, cloud-native digital platforms using Node.js. From API-led integration to real-time data processing and microservices, our solutions accelerate modernization and enable scalable business ecosystems.
           </p>
           
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '40px' }}>
+          <div className="node-stats" style={{ display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '40px' }}>
             {[
               { number: '200+', label: 'APIs Built', icon: '🔌' },
               { number: '50+', label: 'Microservices', icon: '🔄' },
@@ -109,7 +135,7 @@ export default function Nodejs() {
 
         {/* Terminal / Code Example Section */}
         
-        <div style={{ marginBottom: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', alignItems: 'center' }}>
+        <div className="node-code-grid" style={{ marginBottom: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', alignItems: 'center' }}>
           <div className="terminal-window" style={{ animation: 'slideIn 0.8s ease-out' }}>
             <div className="terminal-header">
               <div className="terminal-dot" style={{ background: '#ff5f56' }} />
@@ -175,7 +201,7 @@ export default function Nodejs() {
             Comprehensive Node.js development services
           </p>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div className="node-service-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
             {[
   {
     title: 'API & Integration Platforms',
@@ -219,7 +245,7 @@ export default function Nodejs() {
         </div>
 
         {/* Technologies */}
-        <div style={{ background: 'rgba(22, 27, 34, 0.8)', backdropFilter: 'blur(20px)', borderRadius: '24px', padding: '50px', border: '1px solid #30363d', marginBottom: '80px' }}>
+        <div className="node-ecosystem" style={{ background: 'rgba(22, 27, 34, 0.8)', backdropFilter: 'blur(20px)', borderRadius: '24px', padding: '50px', border: '1px solid #30363d', marginBottom: '80px' }}>
           <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#fff', marginBottom: '40px', textAlign: 'center' }}>
             Our Node.js Ecosystem Expertise
           </h2>
@@ -236,14 +262,14 @@ export default function Nodejs() {
         </div>
 
         {/* CTA Section */}
-        <div style={{ textAlign: 'center', padding: '60px', background: 'linear-gradient(135deg, rgba(68, 160, 63, 0.15), rgba(126, 231, 135, 0.05))', borderRadius: '24px', border: '1px solid rgba(68, 160, 63, 0.3)' }}>
+        <div className="node-cta" style={{ textAlign: 'center', padding: '60px', background: 'linear-gradient(135deg, rgba(68, 160, 63, 0.15), rgba(126, 231, 135, 0.05))', borderRadius: '24px', border: '1px solid rgba(68, 160, 63, 0.3)' }}>
           <h3 style={{ fontSize: '32px', fontWeight: '800', color: '#fff', marginBottom: '16px' }}>
             Accelerate Your Digital Platform Journey
           </h3>
           <p style={{ fontSize: '16px', color: '#8b949e', marginBottom: '35px', maxWidth: '500px', margin: '0 auto 35px' }}>
             Partner with us to build scalable API ecosystems, real-time applications, and cloud-native platforms that drive business growth.
           </p>
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="node-cta-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {/* Updated functional buttons */}
             <button className="cta-btn" onClick={handleNavigation}>
               Start Your Transformation

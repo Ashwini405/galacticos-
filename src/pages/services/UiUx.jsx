@@ -54,6 +54,7 @@ export default function UiUx() {
       
       {/* ================= HERO (UNTOUCHED STRUCTURE) ================= */}
       <section
+        className="uiux-hero"
         ref={heroRef}
         style={{
           position: "relative",
@@ -69,6 +70,7 @@ export default function UiUx() {
         }}
       >
         <div
+          className="uiux-hero-glow"
           style={{
             position: "absolute",
             width: 600,
@@ -112,7 +114,7 @@ export default function UiUx() {
         </div>
 
         <div
-          className="hero-svg"
+          className="hero-svg uiux-hero-svg"
           style={{
             width: "clamp(300px, 45%, 600px)",
             marginTop: 40,
@@ -217,7 +219,7 @@ export default function UiUx() {
       </section>
 
       {/* ================= SERVICES SECTION ================= */}
-      <section className="section-padding" style={{ padding: "100px 8%" }}>
+      <section className="section-padding uiux-services" style={{ padding: "100px 8%" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <h2 className="fade-up" style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#0f2027", opacity: 0, transform: "translateY(30px)", transition: "all 0.6s ease" }}>
             Experience Platform Capabilities
@@ -254,7 +256,7 @@ export default function UiUx() {
       </section>
 
       {/* ================= PROCESS SECTION ================= */}
-      <section style={{ background: "#0f2027", color: "#fff", padding: "100px 8%" }}>
+      <section className="uiux-process" style={{ background: "#0f2027", color: "#fff", padding: "100px 8%" }}>
         <div className="flex-responsive" style={{ display: "flex", gap: 60, alignItems: "center" }}>
           <div style={{ flex: 1 }}>
             <h2 className="fade-up" style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, opacity: 0, transform: "translateY(30px)", transition: "all 0.6s ease" }}>
@@ -267,7 +269,7 @@ export default function UiUx() {
                 { step: "03", t: "Architect", d: "Create scalable experience architecture, design systems, and interaction models." },
                 { step: "04", t: "Optimize", d: "Continuously measure adoption, usability, and conversion to drive measurable outcomes." },
               ].map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 20, marginBottom: 30 }}>
+                <div key={i} className="uiux-process-item" style={{ display: "flex", gap: 20, marginBottom: 30 }}>
                   <span style={{ color: "#6EE7B7", fontWeight: 800, fontSize: 20 }}>{item.step}</span>
                   <div>
                     <h5 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>{item.t}</h5>
@@ -300,6 +302,7 @@ export default function UiUx() {
             Partner with our experience engineering specialists to design scalable, high-adoption platforms that connect user needs with business outcomes.
           </p>
           <button
+            className="uiux-cta-btn"
             onClick={() => navigate("/contact")}
             style={{
               marginTop: 40,
@@ -382,6 +385,41 @@ export default function UiUx() {
           }
           .hero-text h1 {
             text-align: center;
+          }
+
+          .uiux-hero {
+            min-height: auto !important;
+            padding-top: 110px !important;
+            padding-bottom: 72px !important;
+            justify-content: center !important;
+          }
+
+          .uiux-hero-glow,
+          .uiux-hero-svg {
+            display: none !important;
+          }
+
+          .uiux-hero-svg {
+            width: min(100%, 420px) !important;
+            margin: 24px auto 0 !important;
+          }
+
+          .uiux-services,
+          .uiux-process {
+            padding-top: 72px !important;
+            padding-bottom: 72px !important;
+          }
+
+          .uiux-process-item {
+            gap: 12px !important;
+            align-items: flex-start;
+          }
+
+          .uiux-cta-btn {
+            width: 100%;
+            max-width: 360px;
+            padding: 16px 24px !important;
+            font-size: 15px !important;
           }
         }
       `}</style>

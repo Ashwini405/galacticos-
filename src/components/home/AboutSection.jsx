@@ -543,8 +543,8 @@ export default function AboutSection() {
             <div className="float-card float-card-1">
               <div className="card-icon"><Network size={26} /></div>
               <div className="card-text">
-                <h4>99.9%</h4>
-                <p>System Uptime</p>
+                <h4>High Availability</h4>
+                <p>Resilient Architecture</p>
               </div>
             </div>
 
@@ -570,8 +570,9 @@ export default function AboutSection() {
           </h2>
 
           <p>
-            We combine deep expertise in SAP, cloud, data, and AI to help organizations
-            scale faster, operate smarter, and build an infrastructure prepared for tomorrow's challenges.
+            We integrate SAP, cloud, data, and AI into a unified enterprise architecture that improves operational resilience,
+            financial visibility, and digital agility. Our teams design scalable platforms that align technology investments
+            with measurable business outcomes.
           </p>
 
           <div className="aesthetic-features">
@@ -579,7 +580,7 @@ export default function AboutSection() {
               <div className="f-icon-wrap"><Globe size={22} /></div>
               <div className="f-text">
                 <h5>Global Scale</h5>
-                <p>Distributed infrastructure supporting millions of concurrent operations.</p>
+                <p>Multi-region enterprise delivery with scalable architecture design.</p>
               </div>
             </div>
 
@@ -587,7 +588,7 @@ export default function AboutSection() {
               <div className="f-icon-wrap"><Zap size={22} /></div>
               <div className="f-text">
                 <h5>Outcome Driven</h5>
-                <p>Focusing on measurable impact and accelerated time-to-market.</p>
+                <p>KPI-aligned programs focused on measurable ROI and accelerated transformation timelines.</p>
               </div>
             </div>
 
@@ -595,7 +596,7 @@ export default function AboutSection() {
               <div className="f-icon-wrap"><Shield size={22} /></div>
               <div className="f-text">
                 <h5>Enterprise Security</h5>
-                <p>Bank-grade encryption and zero-trust architecture built-in.</p>
+                <p>Enterprise-grade security frameworks with governance, compliance, and risk controls embedded by design.</p>
               </div>
             </div>
 
@@ -603,7 +604,7 @@ export default function AboutSection() {
               <div className="f-icon-wrap"><Cpu size={22} /></div>
               <div className="f-text">
                 <h5>Deep Expertise</h5>
-                <p>Specialized talent pools dedicated to solving complex hurdles.</p>
+                <p>Certified SAP and enterprise technology consultants with deep domain specialization.</p>
               </div>
             </div>
           </div>

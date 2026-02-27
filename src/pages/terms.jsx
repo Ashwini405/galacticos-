@@ -399,7 +399,7 @@ export default function TermsAndConditions() {
 
       {/* ── Hero ── */}
       <header className="tc-hero">
-        <div className="tc-hero-label">Legal Documentation</div>
+        
         <h1>Terms and <em>Conditions</em></h1>
         <div className="tc-hero-meta">
           <div className="tc-meta-item">

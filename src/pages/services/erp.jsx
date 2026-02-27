@@ -224,12 +224,12 @@ export default function ERP() {
             </span>
 
             <h1 style={{ fontSize: isMobile ? "clamp(1.95rem, 8vw, 2.35rem)" : isTablet ? "clamp(2.25rem, 5vw, 2.85rem)" : "calc(2.2rem + 2vw)", lineHeight: 1.14, marginBottom: "22px", fontWeight: 800, maxWidth: "640px" }}>
-              ERP transformation focused on SAP, Oracle, and NetSuite excellence
+              Modernizing the Digital Core with SAP, Oracle & NetSuite
             </h1>
 
             <p style={{ fontSize: isMobile ? "16px" : "18px", lineHeight: 1.75, maxWidth: "620px", opacity: 0.95, marginBottom: "22px" }}>
-              We modernize your digital core with clear architecture, controlled migration, and measurable value. From finance and procurement to supply chain and analytics,
-              our ERP teams deliver end-to-end programs that reduce complexity and speed business decisions.
+              We modernize your enterprise systems with structured architecture, risk-controlled migration, and measurable business value. From finance and procurement to
+              supply chain and analytics, our ERP programs reduce complexity and accelerate decision-making.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "28px" }}>
@@ -270,8 +270,8 @@ export default function ERP() {
               <ERPFlowIllustration />
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "10px", marginTop: "14px" }}>
                 {[
-                  { k: "250+", v: "ERP Projects" },
-                  { k: "40%", v: "Faster Close" },
+                  { k: "Enterprise Focus", v: "ERP Programs" },
+                  { k: "Process Efficiency", v: "Improvement Driven" },
                   { k: "24/7", v: "Managed Support" },
                 ].map((item) => (
                   <div key={item.v} style={{ background: "rgba(255,255,255,0.12)", borderRadius: "12px", padding: "10px" }}>
@@ -319,7 +319,7 @@ export default function ERP() {
       <section style={{ padding: isMobile ? "56px 20px" : isTablet ? "70px 4.5%" : "90px 5%", background: "linear-gradient(135deg, rgba(9,54,112,0.07), rgba(0,198,255,0.06))" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
           <h2 style={{ textAlign: "center", fontSize: isMobile ? "clamp(1.7rem, 6.2vw, 2.1rem)" : isTablet ? "clamp(2rem, 3.5vw, 2.4rem)" : "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800, color: "#1a1a1a" }}>
-            Deep platform expertise: SAP, Oracle, NetSuite
+            Platform-Specific ERP Expertise
           </h2>
           <p style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto 38px", color: "#536173", lineHeight: 1.8 }}>
             We bring platform-specific accelerators, certified consultants, and business-process knowledge so each implementation is practical, scalable, and aligned to
@@ -410,7 +410,7 @@ export default function ERP() {
 
       <section style={{ padding: isMobile ? "56px 20px" : isTablet ? "68px 4.5%" : "84px 5%", backgroundColor: "#fff" }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: isMobile ? "clamp(1.65rem, 6vw, 2.05rem)" : isTablet ? "clamp(2rem, 3.4vw, 2.35rem)" : "calc(1.7rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>ERP delivery model built for low-risk execution</h2>
+          <h2 style={{ fontSize: isMobile ? "clamp(1.65rem, 6vw, 2.05rem)" : isTablet ? "clamp(2rem, 3.4vw, 2.35rem)" : "calc(1.7rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>A Structured ERP Delivery Framework Designed for Predictable Outcomes</h2>
           <p style={{ color: "#5b677a", maxWidth: "860px", lineHeight: 1.8, marginBottom: "32px" }}>
             Every program follows a structured delivery framework with strong governance, transparent milestones, and value tracking from day one.
           </p>
@@ -499,10 +499,13 @@ export default function ERP() {
 
       <section style={{ padding: isMobile ? "52px 20px" : isTablet ? "64px 4.5%" : "78px 5%", background: "#fff" }}>
         <div style={{ maxWidth: "1180px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: isMobile ? "clamp(1.7rem, 6.2vw, 2.1rem)" : isTablet ? "clamp(2rem, 3.5vw, 2.4rem)" : "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>Ready to scale your ERP landscape?</h2>
+          <h2 style={{ fontSize: isMobile ? "clamp(1.7rem, 6.2vw, 2.1rem)" : isTablet ? "clamp(2rem, 3.5vw, 2.4rem)" : "calc(1.8rem + 1vw)", marginBottom: "12px", fontWeight: 800 }}>Let’s Build a High-Performance ERP Ecosystem</h2>
           <p style={{ color: "#596982", lineHeight: 1.8, maxWidth: "820px", margin: "0 auto 28px" }}>
             Whether your priority is SAP S/4HANA modernization, Oracle Cloud ERP adoption, or NetSuite expansion, we help you deliver faster outcomes with lower transformation
             risk.
+          </p>
+          <p style={{ color: "#596982", lineHeight: 1.8, maxWidth: "820px", margin: "-10px auto 28px" }}>
+            Engage with our ERP specialists to define your roadmap and unlock measurable enterprise value.
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>

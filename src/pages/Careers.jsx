@@ -1,1116 +1,988 @@
 import { useState } from "react";
 
+const jobs = [
+  {
+    title: "Senior Java Developer",
+    location: "Hyderabad / Remote Hybrid",
+    shift: "1pm – 11pm (UK Shift)",
+    experience: "8+ years",
+    image:
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+    techStack: ["Java", "Spring Boot", "SQL", "Microservices", "AWS"],
+    clientImpact:
+      "Build resilient backend platforms for data-intensive enterprise workflows with better reliability and faster processing.",
+    overview:
+      "Design and build enterprise-grade backend platforms supporting mission-critical business operations across global clients. Contribute to scalable microservices architecture, cloud-native deployments, and high-performance data systems.",
+    responsibilities: [
+      "Design and implement Java-based backend services",
+      "Build and optimize ETL and ingestion pipelines",
+      "Collaborate with analysts and engineering teams",
+      "Debug production issues and improve reliability"
+    ],
+    requirements: [
+      "Strong Java and Spring Boot expertise",
+      "Good SQL and data modeling knowledge",
+      "Experience with microservices and APIs",
+      "Cloud exposure (AWS/Azure) is a plus"
+    ]
+  },
+  {
+    title: "Senior Production Support Engineer",
+    location: "Bengaluru",
+    shift: "Rotational",
+    experience: "6+ years",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    techStack: ["Linux", "SQL", "Monitoring", "Incident Mgmt", "ITIL"],
+    clientImpact:
+      "Maintain uptime and operational continuity for critical client systems through proactive monitoring and rapid resolution.",
+    overview:
+      "Lead enterprise production support operations for mission-critical applications, ensuring business continuity, SLA adherence, and rapid incident resolution through cross-functional collaboration.",
+    responsibilities: [
+      "Provide L2/L3 support for enterprise applications",
+      "Handle incidents, RCA, and problem management",
+      "Monitor application and infrastructure health",
+      "Coordinate with development and DevOps teams"
+    ],
+    requirements: [
+      "Strong Linux/Unix and SQL troubleshooting",
+      "Hands-on with monitoring and ticketing tools",
+      "Experience in ITIL workflows",
+      "Excellent communication and stakeholder management"
+    ]
+  },
+  {
+    title: "Java Developer",
+    location: "Pune / Chennai",
+    shift: "Day Shift",
+    experience: "4+ years",
+    image:
+      "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=80",
+    techStack: ["Java", "Spring", "REST APIs", "Git", "CI/CD"],
+    clientImpact:
+      "Deliver scalable API layers that improve application performance and accelerate feature delivery for business teams.",
+    overview:
+      "Develop and enhance enterprise backend services and API ecosystems that power high-volume business workflows. Work closely with product, QA, and DevOps teams to deliver scalable and resilient solutions.",
+    responsibilities: [
+      "Build and maintain Java microservices",
+      "Write reusable and testable code",
+      "Participate in code reviews and sprint planning",
+      "Improve API performance and maintainability"
+    ],
+    requirements: [
+      "Java, Spring Boot, REST API development",
+      "Solid SQL and database fundamentals",
+      "Working knowledge of Git and CI/CD",
+      "Agile team collaboration experience"
+    ]
+  },
+  {
+    title: "ERP Consultant",
+    location: "Hyderabad / Bengaluru",
+    shift: "Day Shift",
+    experience: "5+ years",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    techStack: ["ERP", "SAP/Oracle", "Business Process", "Integration", "Reporting"],
+    clientImpact:
+      "Enable process standardization and operational visibility through scalable ERP implementations and continuous optimization.",
+    overview:
+      "Deliver enterprise ERP transformation programs across finance, supply chain, and operations, enabling process standardization, governance, and measurable business outcomes for global organizations.",
+    responsibilities: [
+      "Gather business requirements and map ERP solutions",
+      "Configure modules and support integrations",
+      "Coordinate with technical and business stakeholders",
+      "Support testing, go-live, and post-production stabilization"
+    ],
+    requirements: [
+      "Hands-on ERP implementation experience",
+      "Strong understanding of finance or supply chain processes",
+      "Experience with system integration and data migration",
+      "Excellent client communication and documentation skills"
+    ]
+  }
+];
+
+const highlights = [
+  {
+    title: "Global Enterprise Exposure",
+    text: "Work on SAP, Oracle, Salesforce, and Cloud transformation programs across US, Middle East, and India markets.",
+    value: "10+",
+    metric: "Global Clients"
+  },
+  {
+    title: "Certified Talent Network",
+    text: "Collaborate with experienced architects, consultants, and certified professionals across digital platforms.",
+    value: "30+",
+    metric: "Certified Experts"
+  },
+  {
+    title: "High-Impact Delivery",
+    text: "Contribute to strategic enterprise programs with structured mentorship and real ownership opportunities.",
+    value: "95+",
+    metric: "Technology Professionals"
+  }
+];
+
+const process = [
+  "Profile review",
+  "Technical assessment",
+  "Leadership discussion",
+  "Offer and onboarding"
+];
+
+const clientValueProps = [
+  {
+    title: "Enterprise-Scale Exposure",
+    text: "Work on SAP, Oracle, Salesforce, Cloud, and AI programs serving global enterprises and public sector organizations.",
+    icon: "01"
+  },
+  {
+    title: "Clear Career Path",
+    text: "Transparent growth frameworks, technical mentorship, and leadership opportunities designed to accelerate your professional journey.",
+    icon: "02"
+  },
+  {
+    title: "Flexible Engagement Models",
+    text: "Onsite, offshore, hybrid, and global collaboration models that provide exposure to diverse industries and delivery environments.",
+    icon: "03"
+  }
+];
+
 export default function Careers() {
   const [openJob, setOpenJob] = useState(0);
 
-  const jobs = [
-    {
-      title: "Senior Java Developer",
-      shift: "1pm – 11pm (UK Shift)",
-      overview: "We are seeking a skilled Software Engineer specializing in Data Ingestion to join our professional Data Architecture/Engineering team. The role involves working on data architecture, data ingestion, processing, internal distribution, and analytical tools. Projects include intraday and end-of-day data processing, validation, monitoring, and transitioning from legacy systems to modern technologies.",
-      responsibilities: [
-        "Implement and unit-test data engineering subsystems",
-        "Collaborate with fellow developers and analysts on larger projects",
-        "Support, diagnose, and resolve issues with existing data ingestion and data delivery systems",
-        "Learn new tools and programming languages as needed",
-        "Contribute to Tier II production support on a rotational basis, potentially including weekends and holidays"
-      ],
-      requirements: [
-        "Minimum of 8+ years' experience as a Java and Python developer, with Java expertise required",
-        "Previous development experience with Spring Boot, microservices, and strong SQL skills",
-        "Proficiency in programming, profiling, and debugging",
-        "Previous experience in financial companies",
-        "Bachelor or Master's degree in Computer Science or similar",
-        "Experience with ETL concepts or tools is a plus",
-        "Familiarity with Object Oriented Analysis and Design",
-        "Experience with relational and/or NoSQL databases",
-        "Familiarity with AWS, Spark, etc., is advantageous"
-      ]
-    },
-    {
-      title: "Senior Production Support Engineer",
-      shift: "Rotational",
-      overview: "We are looking for an experienced Production Support Engineer to ensure the stability and reliability of our critical systems. This role requires strong technical expertise and the ability to work under pressure in a fast-paced environment.",
-      responsibilities: [
-        "Provide L2/L3 production support for enterprise applications",
-        "Monitor system performance and proactively identify potential issues",
-        "Perform incident management, troubleshooting, and root cause analysis",
-        "Coordinate with development teams to resolve production issues",
-        "Maintain documentation of incidents, resolutions, and system configurations",
-        "Participate in on-call rotation including weekends and holidays"
-      ],
-      requirements: [
-        "Minimum of 6+ years in production support or similar roles",
-        "Strong knowledge of Java, SQL, Linux/Unix systems, and monitoring tools",
-        "Excellent troubleshooting and analytical skills",
-        "Experience in financial services or enterprise environments preferred",
-        "Bachelor's degree in Computer Science or related field",
-        "Experience with incident management tools (ServiceNow, JIRA)",
-        "Knowledge of CI/CD pipelines and DevOps practices",
-        "Strong communication skills for stakeholder management"
-      ]
-    },
-    {
-      title: "Java Developer",
-      shift: "Day Shift",
-      overview: "We are seeking a talented Java Developer to design and develop scalable backend services for our enterprise applications. This role offers opportunities to work with modern technologies and contribute to innovative projects.",
-      responsibilities: [
-        "Design, develop, and maintain Java-based applications",
-        "Write clean, efficient, and well-documented code",
-        "Collaborate with cross-functional teams to define and implement new features",
-        "Participate in code reviews and contribute to best practices",
-        "Debug and resolve application issues",
-        "Work with databases and optimize queries for performance"
-      ],
-      requirements: [
-        "Minimum of 4+ years of Java development experience",
-        "Strong proficiency in Java, Spring Framework, Spring Boot, and RESTful APIs",
-        "Experience with SQL and database design",
-        "Understanding of microservices architecture",
-        "Bachelor's degree in Computer Science or equivalent",
-        "Familiarity with version control systems (Git)",
-        "Knowledge of Agile methodologies",
-        "Experience with cloud platforms (AWS, Azure) is a plus",
-        "Strong problem-solving abilities and attention to detail"
-      ]
-    },
-  ];
-
   return (
-    <div style={{ fontFamily: "Arial, sans-serif" }}>
+    <div className="careers-page">
+      <style>{`
+        .careers-page {
+          font-family: Inter, system-ui, sans-serif;
+          background: linear-gradient(180deg, #f8fbff 0%, #ffffff 26%, #f8fafc 100%);
+          color: #0f172a;
+        }
 
-      {/* HERO */}
-      <section
-        style={{
-          height: "70vh",
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            background: "rgba(0,0,0,0.55)",
-            height: "100%",
-            color: "#fff",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "80px",
-          }}
-        >
-          <h1 style={{ fontSize: "48px" }}>Build the Future with Us</h1>
-          <p style={{ fontSize: "20px" }}>
-            Join a global team delivering transformation for the world’s leading enterprises.
-          </p>
-        </div>
-      </section>
+        @keyframes floatY {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
 
-      {/* INTRO */}
-            {/* ========== GO FARTHER. GROW FURTHER – YASH COLOR EDITION ========== */}
-      <section className="purpose-section">
-        <style>{`
-          .purpose-section {
-            background: linear-gradient(145deg, #0a2540, #1e3a5f);
-            text-align: center;
-            padding: 80px 24px;
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
+        @keyframes pulseSoft {
+          0%, 100% { opacity: 0.55; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.06); }
+        }
+
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .careers-hero {
+          min-height: 74vh;
+          position: relative;
+          overflow: hidden;
+          background:
+            linear-gradient(110deg, rgba(2, 6, 23, 0.8), rgba(29, 78, 216, 0.75)),
+            url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+          display: grid;
+          align-items: center;
+          padding: 112px 3.5% 82px;
+        }
+
+        .hero-bubble,
+        .hero-bubble-two {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(2px);
+          pointer-events: none;
+          animation: pulseSoft 5s ease-in-out infinite;
+        }
+
+        .hero-bubble {
+          width: 260px;
+          height: 260px;
+          right: -70px;
+          top: 24px;
+          background: radial-gradient(circle, rgba(148, 197, 255, 0.45), transparent 70%);
+        }
+
+        .hero-bubble-two {
+          width: 220px;
+          height: 220px;
+          left: -60px;
+          bottom: -30px;
+          animation-delay: 1s;
+          background: radial-gradient(circle, rgba(186, 230, 253, 0.35), transparent 70%);
+        }
+
+        .hero-content {
+          max-width: 1360px;
+          margin: 0 auto;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1.35fr 1fr;
+          gap: 30px;
+          align-items: center;
+          position: relative;
+          z-index: 2;
+        }
+
+        .hero-copy {
+          color: #ffffff;
+          animation: slideUp 0.75s ease-out;
+        }
+
+        .hero-chip {
+          display: inline-block;
+          padding: 7px 14px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.32);
+          background: rgba(255, 255, 255, 0.12);
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+
+        .hero-copy h1 {
+          font-size: clamp(2rem, 4.5vw, 3.4rem);
+          line-height: 1.14;
+          margin-bottom: 14px;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-copy p {
+          font-size: clamp(1rem, 1.7vw, 1.14rem);
+          line-height: 1.75;
+          max-width: 690px;
+          color: rgba(255, 255, 255, 0.92);
+          margin-bottom: 20px;
+        }
+
+        .hero-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 12px 22px;
+          border-radius: 999px;
+          font-weight: 600;
+          text-decoration: none;
+          color: #0f172a;
+          background: #ffffff;
+          transition: transform 0.2s ease;
+        }
+
+        .hero-cta:hover {
+          transform: translateY(-2px);
+        }
+
+        .hero-illus {
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.24);
+          backdrop-filter: blur(5px);
+          border-radius: 18px;
+          padding: 18px;
+          animation: floatY 4s ease-in-out infinite;
+        }
+
+        .hero-illus svg {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .highlights-section {
+          max-width: 1360px;
+          margin: -34px auto 0;
+          padding: 0 3%;
+          position: relative;
+          z-index: 3;
+        }
+
+        @media (min-width: 1025px) {
+          .careers-hero {
+            min-height: 78vh;
+            padding-top: 126px;
+            padding-bottom: 90px;
           }
 
-          .purpose-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+          .hero-content {
+            grid-template-columns: 1.42fr 1fr;
+            gap: 40px;
           }
 
-          .purpose-title {
-            font-size: 42px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 24px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            letter-spacing: -0.02em;
-            position: relative;
-            display: inline-block;
+          .hero-copy h1 {
+            max-width: 860px;
+          }
+        }
+
+        .highlights-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .highlight-card {
+          background: #ffffff;
+          border: 1px solid #dbe7ff;
+          border-radius: 16px;
+          padding: 22px;
+          box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+        }
+
+        .highlight-top {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 10px;
+        }
+
+        .highlight-value {
+          font-size: 1.7rem;
+          font-weight: 800;
+          color: #1d4ed8;
+        }
+
+        .highlight-metric {
+          font-size: 0.83rem;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .highlight-card h3 {
+          margin-bottom: 8px;
+          font-size: 1.06rem;
+        }
+
+        .highlight-card p {
+          color: #475569;
+          line-height: 1.65;
+          font-size: 0.93rem;
+        }
+
+        .client-value-section {
+          max-width: 1360px;
+          margin: 24px auto 0;
+          padding: 0 3%;
+        }
+
+        .client-value-box {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 18px;
+          box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+          padding: 22px;
+        }
+
+        .client-value-head {
+          margin-bottom: 14px;
+        }
+
+        .client-value-head h2 {
+          margin: 0;
+          font-size: 1.34rem;
+        }
+
+        .client-value-head p {
+          margin: 8px 0 0;
+          color: #64748b;
+          line-height: 1.6;
+          font-size: 0.92rem;
+          max-width: 860px;
+        }
+
+        .client-value-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .client-value-card {
+          border: 1px solid #dbeafe;
+          background: #f8fbff;
+          border-radius: 14px;
+          padding: 14px;
+        }
+
+        .client-value-tag {
+          width: 30px;
+          height: 30px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #2563eb, #38bdf8);
+          color: #fff;
+          display: grid;
+          place-items: center;
+          font-size: 0.78rem;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .client-value-card h3 {
+          margin: 0 0 6px;
+          font-size: 1rem;
+          color: #0f172a;
+        }
+
+        .client-value-card p {
+          margin: 0;
+          color: #475569;
+          line-height: 1.62;
+          font-size: 0.9rem;
+        }
+
+        .career-layout {
+          max-width: 1360px;
+          margin: 42px auto 70px;
+          padding: 0 3%;
+          display: grid;
+          grid-template-columns: 1.65fr 1fr;
+          gap: 22px;
+          align-items: start;
+        }
+
+        .jobs-box,
+        .side-box {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 18px;
+          box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+        }
+
+        .box-head {
+          padding: 22px 22px 14px;
+          border-bottom: 1px solid #eef2f7;
+        }
+
+        .box-head h2,
+        .box-head h3 {
+          margin: 0;
+          font-size: 1.34rem;
+        }
+
+        .box-head p {
+          margin: 8px 0 0;
+          color: #64748b;
+          font-size: 0.92rem;
+          line-height: 1.6;
+        }
+
+        .jobs-list {
+          padding: 16px;
+        }
+
+        .job-card {
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          margin-bottom: 12px;
+          overflow: hidden;
+        }
+
+        .job-card:last-child {
+          margin-bottom: 0;
+        }
+
+        .job-header {
+          width: 100%;
+          border: none;
+          background: #fff;
+          padding: 15px;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          text-align: left;
+        }
+
+        .job-header:hover {
+          background: #f8fafc;
+        }
+
+        .job-role {
+          font-size: 1rem;
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+
+        .job-meta {
+          color: #64748b;
+          font-size: 0.85rem;
+        }
+
+        .job-toggle {
+          min-width: 30px;
+          height: 30px;
+          border: 1px solid #cbd5e1;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          color: #334155;
+          font-size: 1.1rem;
+        }
+
+        .job-details {
+          border-top: 1px solid #eef2f7;
+          padding: 14px 15px 16px;
+          background: #fbfdff;
+          animation: slideUp 0.25s ease-out;
+        }
+
+        .job-details p {
+          color: #475569;
+          line-height: 1.65;
+          font-size: 0.92rem;
+          margin-bottom: 12px;
+        }
+
+        .job-details h4 {
+          font-size: 0.92rem;
+          color: #1e3a8a;
+          margin: 0 0 6px;
+        }
+
+        .job-details ul {
+          margin: 0 0 10px;
+          padding-left: 18px;
+          color: #334155;
+          line-height: 1.6;
+          font-size: 0.89rem;
+        }
+
+        .job-details li {
+          margin-bottom: 5px;
+        }
+
+        .job-related {
+          margin-top: 10px;
+          border: 1px solid #dbeafe;
+          border-radius: 12px;
+          overflow: hidden;
+          background: #ffffff;
+          display: grid;
+          grid-template-columns: 220px 1fr;
+          gap: 0;
+        }
+
+        .job-related img {
+          width: 100%;
+          height: 100%;
+          min-height: 150px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .job-related-content {
+          padding: 12px;
+        }
+
+        .job-related-content h5 {
+          margin: 0 0 8px;
+          font-size: 0.9rem;
+          color: #1e3a8a;
+        }
+
+        .tech-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          margin-bottom: 9px;
+        }
+
+        .tech-chip {
+          padding: 5px 9px;
+          border-radius: 999px;
+          border: 1px solid #bfdbfe;
+          background: #eff6ff;
+          color: #1d4ed8;
+          font-size: 0.78rem;
+          font-weight: 600;
+          line-height: 1;
+        }
+
+        .job-impact {
+          margin: 0;
+          color: #334155;
+          line-height: 1.58;
+          font-size: 0.86rem;
+        }
+
+        .media-block {
+          margin: 16px 16px 0;
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1px solid #dbeafe;
+          position: relative;
+        }
+
+        .media-block img {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .media-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.62));
+          display: flex;
+          align-items: end;
+          padding: 14px;
+          color: #fff;
+          font-size: 0.9rem;
+          line-height: 1.55;
+        }
+
+        .side-content {
+          padding: 16px;
+        }
+
+        .process-step {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 10px;
+          margin-bottom: 10px;
+          background: #f8fafc;
+          font-size: 0.9rem;
+          color: #334155;
+        }
+
+        .process-dot {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #2563eb, #38bdf8);
+          color: #fff;
+          display: grid;
+          place-items: center;
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+
+        .mail-box {
+          margin-top: 12px;
+          border: 1px solid #dbeafe;
+          background: #eff6ff;
+          color: #1e3a8a;
+          border-radius: 12px;
+          padding: 12px;
+          font-size: 0.91rem;
+          line-height: 1.6;
+        }
+
+        .mail-btn {
+          margin-top: 12px;
+          width: 100%;
+          border: none;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #1d4ed8, #2563eb);
+          color: #fff;
+          font-weight: 600;
+          padding: 11px 14px;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-flex;
+          justify-content: center;
+        }
+
+        .life-box {
+          margin-top: 14px;
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+          overflow: hidden;
+        }
+
+        .life-box img {
+          width: 100%;
+          height: 140px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .life-caption {
+          padding: 10px;
+          font-size: 0.85rem;
+          line-height: 1.5;
+          color: #475569;
+          background: #fff;
+        }
+
+        @media (max-width: 1024px) {
+          .hero-content,
+          .career-layout {
+            grid-template-columns: 1fr;
           }
 
-          .purpose-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-            border-radius: 3px;
-            animation: glowPulse 2.5s infinite ease-in-out;
+          .hero-content {
+            gap: 22px;
           }
 
-          @keyframes glowPulse {
-            0%, 100% { opacity: 0.8; box-shadow: 0 0 8px rgba(251,191,36,0.4); }
-            50% { opacity: 1; box-shadow: 0 0 16px rgba(251,191,36,0.8); }
+          .highlights-grid {
+            grid-template-columns: 1fr;
           }
 
-          .purpose-text {
-            font-size: 18px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
-            margin: 32px 0 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          .client-value-grid {
+            grid-template-columns: 1fr;
           }
 
-          .purpose-text strong {
-            color: #fcd34d;
-            font-weight: 600;
+          .careers-hero {
+            min-height: auto;
           }
 
-          /* subtle decorative elements */
-          .purpose-section::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 1;
+          .job-related {
+            grid-template-columns: 1fr;
           }
 
-          .purpose-section::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 1;
+          .job-related img {
+            height: 160px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .careers-hero,
+          .highlights-section,
+          .career-layout {
+            padding-left: 5%;
+            padding-right: 5%;
           }
 
-          @media (max-width: 600px) {
-            .purpose-title {
-              font-size: 32px;
-            }
-            .purpose-text {
-              font-size: 16px;
-            }
-          }
-        `}</style>
-
-        <div className="purpose-container">
-          <h2 className="purpose-title">Go farther. Grow further</h2>
-          <p className="purpose-text">
-            At Galacticos Network, you work on high-impact global programs across SAP, cloud, data, and AI. We provide an environment where learning is continuous, innovation is encouraged, and your contributions directly influence enterprise transformation. Our people are our strength, and we invest in their growth through mentorship, certifications, and real-world delivery experience.
-          </p>
-        </div>
-      </section>
-
-      {/* ========== LIFE AT Galacticos Network – ICON‑DRIVEN TIMELINE ========== */}
-<section className="life-section-compact">
-  <style>{`
-    .life-section-compact {
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .life-title {
-      text-align: center;
-      font-size: 36px;
-      font-weight: 800;
-      margin-bottom: 48px;
-      color: #0f172a;
-      position: relative;
-    }
-
-    .life-title::after {
-      content: "";
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #2563eb, #8b5cf6);
-      display: block;
-      margin: 12px auto 0;
-      border-radius: 4px;
-    }
-
-    /* CENTER VERTICAL LINE – shorter, starts closer to title */
-    .life-line {
-      position: absolute;
-      top: 140px;
-      bottom: 60px;
-      left: 50%;
-      width: 2px;
-      background: repeating-linear-gradient(
-        to bottom,
-        #94a3b8,
-        #94a3b8 6px,
-        transparent 6px,
-        transparent 14px
-      );
-      transform: translateX(-50%);
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    .life-row {
-      position: relative;
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      max-width: 1000px;
-      margin: 48px auto;
-    }
-
-    /* NODE on the timeline – smaller, refined */
-    .life-node {
-      position: absolute;
-      left: 50%;
-      width: 16px;
-      height: 16px;
-      background: linear-gradient(135deg, #2563eb, #8b5cf6);
-      border-radius: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      box-shadow: 0 0 0 4px rgba(99,102,241,0.12);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .life-row:hover .life-node {
-      box-shadow: 0 0 0 8px rgba(99,102,241,0.2);
-    }
-
-    /* CONNECTOR LINE – shorter, subtle */
-    .life-connector {
-      position: absolute;
-      top: 50%;
-      width: 48px;
-      height: 1.5px;
-      background: #94a3b8;
-      z-index: 1;
-      opacity: 0.5;
-    }
-
-    .left .life-connector {
-      right: 50%;
-    }
-
-    .right .life-connector {
-      left: 50%;
-    }
-
-    /* ICON CONTAINER – lower height, refined */
-    .life-icon-container {
-      position: relative;
-      width: 50%;
-      height: 220px;
-      border-radius: 20px;
-      background: white;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 1px solid rgba(37,99,235,0.06);
-      transition: all 0.3s ease;
-    }
-
-    .life-icon-container svg {
-      width: 60%;
-      height: 60%;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.03));
-    }
-
-    .life-icon-container:hover svg {
-      transform: scale(1.08);
-    }
-
-    .life-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(37,99,235,0.05), transparent 80%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .life-icon-container:hover .life-overlay {
-      opacity: 1;
-    }
-
-    .life-text {
-      width: 50%;
-    }
-
-    .life-text h4 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 10px;
-    }
-
-    .life-text p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #475569;
-      margin: 0;
-    }
-
-    /* REDESIGNED ICON ANIMATIONS – subtle, elegant */
-    @keyframes gentle-float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-4px); }
-    }
-
-    @keyframes gentle-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes gentle-pulse {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-    }
-
-    @keyframes gentle-dash {
-      0% { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: 40; }
-    }
-
-    .icon-float {
-      animation: gentle-float 4s infinite ease-in-out;
-    }
-
-    .icon-spin {
-      animation: gentle-spin 20s infinite linear;
-    }
-
-    .icon-pulse {
-      animation: gentle-pulse 3s infinite ease-in-out;
-    }
-
-    .icon-dash {
-      stroke-dasharray: 8 8;
-      animation: gentle-dash 2s infinite linear;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .life-line {
-        left: 20px;
-        top: 120px;
-        bottom: 40px;
-      }
-
-      .life-row {
-        flex-direction: column !important;
-        align-items: flex-start;
-        margin-left: 40px;
-        gap: 16px;
-      }
-
-      .life-icon-container,
-      .life-text {
-        width: 100%;
-      }
-
-      .life-icon-container {
-        height: 200px;
-      }
-
-      .life-node {
-        left: 20px;
-      }
-
-      .life-connector {
-        display: none;
-      }
-    }
-  `}</style>
-
-  <h2 className="life-title">Life at Galacticos Network</h2>
-  <div className="life-line"></div>
-
-  {/* ===== TIMELINE ITEMS – ALL NEW ICONS, COMPACT LAYOUT ===== */}
-  {[
-    {
-      title: "Work Hard, Play Hard",
-      desc: "We deliver mission-critical programs for global clients while fostering a collaborative, energetic, and rewarding work environment.",
-      icon: (
-        <svg viewBox="0 0 100 100" className="icon-float">
-          <defs>
-            <linearGradient id="workGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#f97316" />
-              <stop offset="100%" stopColor="#eab308" />
-            </linearGradient>
-          </defs>
-          <rect x="30" y="40" width="40" height="30" rx="8" fill="url(#workGrad2)" opacity="0.9" />
-          <circle cx="40" cy="75" r="5" fill="url(#workGrad2)" />
-          <circle cx="60" cy="75" r="5" fill="url(#workGrad2)" />
-          <path d="M70 35 L80 45 L90 30" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round" className="icon-dash" />
-        </svg>
-      )
-    },
-    {
-      title: "Embrace Continuous Learning",
-      desc: "We enable continuous upskilling through structured learning paths, global certifications, and exposure to next-generation technologies.",
-      icon: (
-        <svg viewBox="0 0 100 100" className="icon-spin">
-          <defs>
-            <linearGradient id="learnGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="30" fill="none" stroke="url(#learnGrad2)" strokeWidth="6" strokeDasharray="4 6" />
-          <path d="M50 20 L50 50 L70 60" stroke="url(#learnGrad2)" strokeWidth="5" fill="none" strokeLinecap="round" />
-          <circle cx="50" cy="50" r="6" fill="url(#learnGrad2)" />
-        </svg>
-      )
-    },
-    {
-      title: "Mentoring Matters",
-      desc: "Our leadership and mentoring programs accelerate career progression and help you build deep domain and technology expertise.",
-      icon: (
-        <svg viewBox="0 0 100 100" className="icon-pulse">
-          <defs>
-            <linearGradient id="mentorGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" />
-              <stop offset="100%" stopColor="#14b8a6" />
-            </linearGradient>
-          </defs>
-          <circle cx="35" cy="45" r="14" fill="url(#mentorGrad2)" />
-          <circle cx="65" cy="45" r="14" fill="url(#mentorGrad2)" />
-          <line x1="35" y1="45" x2="65" y2="45" stroke="white" strokeWidth="4" strokeLinecap="round" />
-          <circle cx="50" cy="75" r="8" fill="url(#mentorGrad2)" opacity="0.8" />
-        </svg>
-      )
-    },
-    {
-      title: "Celebrate Culture & Diversity",
-      desc: "With a globally distributed delivery model, we embrace diverse perspectives and create an inclusive workplace.",
-      icon: (
-        <svg viewBox="0 0 100 100" className="icon-float">
-          <defs>
-            <linearGradient id="cultureGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#f43f5e" />
-            </linearGradient>
-          </defs>
-          <circle cx="30" cy="45" r="10" fill="url(#cultureGrad2)" />
-          <circle cx="70" cy="45" r="10" fill="url(#cultureGrad2)" />
-          <circle cx="50" cy="65" r="10" fill="url(#cultureGrad2)" />
-          <circle cx="20" cy="75" r="8" fill="url(#cultureGrad2)" opacity="0.7" />
-          <circle cx="80" cy="75" r="8" fill="url(#cultureGrad2)" opacity="0.7" />
-        </svg>
-      )
-    },
-    {
-      title: "Work-Life Harmony",
-      desc: "We promote flexibility, well-being, and sustainable performance to support long-term career success.",
-      icon: (
-        <svg viewBox="0 0 100 100" className="icon-pulse">
-          <defs>
-            <linearGradient id="harmonyGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#94a3b8" />
-              <stop offset="100%" stopColor="#64748b" />
-            </linearGradient>
-          </defs>
-          <rect x="22" y="55" width="16" height="30" rx="4" fill="url(#harmonyGrad2)" />
-          <rect x="62" y="55" width="16" height="30" rx="4" fill="url(#harmonyGrad2)" />
-          <line x1="22" y1="55" x2="78" y2="55" stroke="url(#harmonyGrad2)" strokeWidth="5" strokeLinecap="round" />
-          <circle cx="50" cy="35" r="8" fill="url(#harmonyGrad2)" />
-        </svg>
-      )
-    }
-  ].map((item, i) => (
-    <div
-      key={i}
-      className={`life-row ${i % 2 === 0 ? "left" : "right"}`}
-      style={{ flexDirection: i % 2 === 0 ? "row" : "row-reverse" }}
-    >
-      <div className="life-node"></div>
-      <div className="life-connector"></div>
-
-      <div className="life-icon-container">
-        {item.icon}
-        <div className="life-overlay"></div>
-      </div>
-
-      <div className="life-text">
-        <h4>{item.title}</h4>
-        <p>{item.desc}</p>
-      </div>
-    </div>
-  ))}
-</section>
-
-            {/* ========== CAREERS – ENHANCED (as per screenshot) ========== */}
-      <section className="careers-section-enhanced">
-        <style>{`
-          .careers-section-enhanced {
-            padding: 80px 24px;
-            background: linear-gradient(145deg, #fbfdff, #f5f9ff);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          .careers-hero {
+            padding-top: 104px;
+            padding-bottom: 52px;
           }
 
-          .careers-container {
-            max-width: 1200px;
-            margin: 0 auto;
+          .hero-bubble,
+          .hero-bubble-two,
+          .hero-illus {
+            display: none;
           }
 
-          .careers-header {
-            text-align: center;
-            margin-bottom: 60px;
-          }
-
-          .careers-header h2 {
-            font-size: 42px;
-            font-weight: 700;
-            color: #0a2540;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            position: relative;
-            display: inline-block;
-          }
-
-          .careers-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #2563eb, #7c3aed);
-            border-radius: 3px;
-          }
-
-          .careers-header p {
-            font-size: 18px;
-            line-height: 1.7;
-            color: #3a4a5e;
-            max-width: 900px;
-            margin: 0 auto;
-            font-weight: 400;
-          }
-
-          .careers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 40px;
-          }
-
-          .career-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 28px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(37,99,235,0.08);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .career-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 40px rgba(37,99,235,0.12);
-            border-color: rgba(37,99,235,0.25);
-          }
-
-          .card-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .career-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0a2540;
-            margin-bottom: 16px;
-          }
-
-          .career-card p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #4a5c6e;
-            margin: 0;
-          }
-
-          @media (max-width: 900px) {
-            .careers-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          @media (max-width: 600px) {
-            .careers-grid {
-              grid-template-columns: 1fr;
-            }
-            .careers-header h2 {
-              font-size: 36px;
-            }
-          }
-        `}</style>
-
-        <div className="careers-container">
-          {/* HEADER – exact text from screenshot */}
-          <div className="careers-header">
-            <h2>Careers</h2>
-            <p>
-              We are continuously looking for high-performing technology professionals to join our global delivery teams. If you are passionate about innovation, enterprise platforms, and solving complex business challenges, Galacticos Network offers the right environment to grow and lead.
-            </p>
-          </div>
-
-          {/* THREE CARDS – exact titles & descriptions from screenshot */}
-          <div className="careers-grid">
-            {/* 1. Lateral hirings */}
-            <div className="career-card">
-              <div className="card-icon">
-                <svg width="64" height="64" viewBox="0 0 100 100">
-                  <defs>
-                    <linearGradient id="lateralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#3b82f6" />
-                      <stop offset="100%" stopColor="#2563eb" />
-                    </linearGradient>
-                  </defs>
-                  <polygon points="50,20 75,40 75,70 50,90 25,70 25,40" fill="url(#lateralGrad)" opacity="0.9">
-                    <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="3s" repeatCount="indefinite" />
-                  </polygon>
-                  <circle cx="50" cy="55" r="8" fill="white" />
-                </svg>
-              </div>
-              <h3>Lateral hirings</h3>
-              <p>
-                Accelerate your career by working on large-scale global transformation programs with leading enterprises.
-              </p>
-            </div>
-
-            {/* 2. Interns & freshers */}
-            <div className="career-card">
-              <div className="card-icon">
-                <svg width="64" height="64" viewBox="0 0 100 100">
-                  <defs>
-                    <linearGradient id="internGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="100%" stopColor="#059669" />
-                    </linearGradient>
-                  </defs>
-                  <circle cx="50" cy="40" r="20" fill="url(#internGrad)">
-                    <animate attributeName="r" values="18;22;18" dur="2.8s" repeatCount="indefinite" />
-                  </circle>
-                  <rect x="40" y="60" width="20" height="25" fill="url(#internGrad)" />
-                  <circle cx="35" cy="40" r="4" fill="white" />
-                  <circle cx="65" cy="40" r="4" fill="white" />
-                </svg>
-              </div>
-              <h3>Interns & freshers</h3>
-              <p>
-                Kickstart your career with structured training, hands-on project experience, and continuous mentoring.
-              </p>
-            </div>
-
-            {/* 3. Back to work */}
-            <div className="career-card">
-              <div className="card-icon">
-                <svg width="64" height="64" viewBox="0 0 100 100">
-                  <defs>
-                    <linearGradient id="backGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#f97316" />
-                      <stop offset="100%" stopColor="#eab308" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M30 50 L55 30 L55 45 L80 45 L80 55 L55 55 L55 70 Z" fill="url(#backGrad)">
-                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite" />
-                  </path>
-                  <circle cx="50" cy="50" r="6" fill="white" />
-                </svg>
-              </div>
-              <h3>Back to work</h3>
-              <p>
-                Flexible engagement models help professionals seamlessly restart and grow their careers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-            {/* ========== OPPORTUNITIES + APPLY – CLASSIC EDITION ========== */}
-      <section className="opportunities-section">
-        <style>{`
-          .opportunities-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 48px;
-            padding: 60px 80px;
-            background: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', serif;
-          }
-
-          /* ---------- LEFT COLUMN – JOB LISTINGS ---------- */
-          .jobs-container {
-            position: relative;
-          }
-
-          .jobs-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 32px;
-            border-bottom: 2px solid #eaeef2;
-            padding-bottom: 16px;
-          }
-
-          .jobs-header h2 {
-            font-size: 28px;
-            font-weight: 600;
-            color: #1e3a5f; /* classic navy */
-            letter-spacing: -0.01em;
-            margin: 0;
-            font-family: 'Georgia', 'Times New Roman', serif;
-          }
-
-          .job-card {
-            background: #ffffff;
-            border: 1px solid #e6e9f0;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-          }
-
-          .job-card:hover {
-            border-color: #c0c9d5;
-            box-shadow: 0 8px 20px rgba(30,58,95,0.08);
-          }
-
-          .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-            cursor: pointer;
-          }
-
-          .job-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e3a5f;
-          }
-
-          .job-icon {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f0f4fa;
-            border-radius: 8px;
-            color: #1e3a5f;
-          }
-
-          .job-toggle {
-            font-size: 26px;
-            font-weight: 300;
-            color: #7c8b9c;
-            transition: color 0.2s;
-          }
-
-          .job-header:hover .job-toggle {
-            color: #1e3a5f;
-          }
-
-          .job-details {
-            padding: 24px 24px 24px 24px;
-            border-top: 1px solid #edf0f5;
-            background: #fafcff;
-            border-radius: 0 0 12px 12px;
-          }
-
-          .job-details .shift-info {
-            margin-bottom: 20px;
-            padding: 12px 16px;
-            background: #f0f4fa;
-            border-radius: 8px;
-            border-left: 3px solid #1e3a5f;
-          }
-
-          .job-details .section-title {
-            color: #1e3a5f;
-            font-weight: 700;
-            font-size: 16px;
-            margin: 20px 0 12px 0;
+          .hero-content {
             display: block;
           }
 
-          .job-details .description {
-            margin: 12px 0;
-            color: #3e4e62;
-            line-height: 1.7;
-            font-size: 15px;
+          .hero-chip {
+            font-size: 11px;
+            padding: 6px 12px;
+            margin-bottom: 14px;
           }
 
-          .job-details ul {
-            margin: 12px 0;
-            padding-left: 20px;
-            color: #3e4e62;
-            line-height: 1.8;
+          .hero-copy h1 {
+            font-size: clamp(1.7rem, 7.6vw, 2.05rem);
+            line-height: 1.2;
+            margin-bottom: 12px;
           }
 
-          .job-details li {
-            margin-bottom: 8px;
-            font-size: 15px;
+          .hero-copy p {
+            font-size: 0.96rem;
+            line-height: 1.65;
+            margin-bottom: 16px;
           }
 
-          .job-details strong {
-            color: #1e3a5f;
-            font-weight: 600;
-          }
-
-          .contact-note {
-            margin-top: 32px;
-            padding: 20px 24px;
-            background: #f8f4e9; /* warm, classic tone */
-            border-left: 4px solid #b4946a; /* gold/bronze */
-            border-radius: 0 8px 8px 0;
-            color: #4a4e5c;
-            font-size: 15px;
-          }
-
-          .contact-note strong {
-            color: #1e3a5f;
-            font-family: 'Georgia', serif;
-          }
-
-          /* ---------- RIGHT COLUMN – APPLICATION FORM ---------- */
-          .apply-card {
-            background: #ffffff;
-            border: 1px solid #e6e9f0;
-            border-radius: 16px;
-            padding: 36px 32px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.04);
-            position: sticky;
-            top: 20px;
-            align-self: flex-start;
-            max-height: calc(100vh - 40px);
-            overflow-y: auto;
-          }
-
-          .apply-card h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1e3a5f;
-            margin-bottom: 28px;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            border-bottom: 1px solid #e2e6ea;
-            padding-bottom: 16px;
-            letter-spacing: 0.5px;
-          }
-
-          .form-group {
-            margin-bottom: 20px;
-          }
-
-          .form-input {
+          .hero-cta {
             width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #d7dce2;
-            border-radius: 10px;
-            font-size: 15px;
-            color: #1e2b3c;
-            background: #fefefe;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
+            max-width: 280px;
           }
 
-          .form-input:focus {
-            outline: none;
-            border-color: #b4946a;
-            box-shadow: 0 0 0 4px rgba(180,148,106,0.1);
-            background: #ffffff;
+          .highlights-section {
+            margin-top: -14px;
           }
 
-          .form-input::placeholder {
-            color: #9aa5b5;
-            font-style: italic;
+          .media-block img {
+            height: 190px;
           }
+        }
+      `}</style>
 
-          .form-file {
-            padding: 12px;
-            background: #fafbfc;
-            border: 1px dashed #b0b8c2;
-            border-radius: 10px;
-            color: #4a5a6e;
-          }
+      <section className="careers-hero">
+        <div className="hero-bubble" />
+        <div className="hero-bubble-two" />
 
-          .form-file::-webkit-file-upload-button {
-            background: #eaeef2;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            margin-right: 16px;
-            color: #1e3a5f;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-          }
+        <div className="hero-content">
+          <div className="hero-copy">
+            <span className="hero-chip">Careers at Galacticos Network</span>
+            <h1>Build Enterprise-Grade Solutions. Accelerate Your Career.</h1>
+            <p>
+              At Galacticos Network, you don’t just write code — you solve complex business problems for
+              global enterprises across SAP, Cloud, Data, AI, and Digital platforms. Work alongside
+              certified experts, gain exposure to international programs, and grow in a culture built on
+              ownership, learning, and impact.
+            </p>
+            <a href="mailto:hr@galacticosnetwork.com?subject=Career%20Application" className="hero-cta">
+              Apply via Email
+            </a>
+          </div>
 
-          .form-file::-webkit-file-upload-button:hover {
-            background: #d0d9e2;
-          }
-
-          .submit-btn {
-            background: #2e6b4c; /* deep, classic green */
-            color: white;
-            border: none;
-            padding: 16px 24px;
-            width: 100%;
-            border-radius: 40px; /* pill shape – timeless */
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.25s;
-            margin-top: 12px;
-            box-shadow: 0 8px 18px rgba(46,107,76,0.15);
-            border: 1px solid rgba(255,255,255,0.2);
-          }
-
-          .submit-btn:hover {
-            background: #1f4f38;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(46,107,76,0.25);
-          }
-
-          .submit-btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 4px 12px rgba(46,107,76,0.2);
-          }
-
-          /* ---------- RESPONSIVE ---------- */
-          @media (max-width: 1000px) {
-            .opportunities-section {
-              grid-template-columns: 1fr;
-              padding: 40px 24px;
-            }
-          }
-        `}</style>
-
-        {/* LEFT COLUMN – JOBS */}
-        <div className="jobs-container">
-          <div className="jobs-header">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" strokeWidth="1.5">
-              <rect x="4" y="7" width="16" height="14" rx="2" strokeLinejoin="round" />
-              <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" strokeLinecap="round" />
+          <div className="hero-illus" aria-hidden="true">
+            <svg viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="24" y="28" width="452" height="244" rx="20" fill="rgba(255,255,255,0.15)" />
+              <rect x="58" y="64" width="170" height="170" rx="14" fill="rgba(255,255,255,0.22)" />
+              <circle cx="145" cy="126" r="42" fill="#60A5FA" opacity="0.9" />
+              <circle cx="145" cy="116" r="14" fill="white" />
+              <path d="M109 170c9-18 23-28 36-28 13 0 27 10 36 28" stroke="white" strokeWidth="8" strokeLinecap="round"/>
+              <rect x="252" y="76" width="196" height="24" rx="10" fill="rgba(255,255,255,0.72)" />
+              <rect x="252" y="116" width="152" height="15" rx="7" fill="rgba(255,255,255,0.5)" />
+              <rect x="252" y="142" width="168" height="15" rx="7" fill="rgba(255,255,255,0.5)" />
+              <rect x="252" y="168" width="120" height="15" rx="7" fill="rgba(255,255,255,0.5)" />
+              <rect x="252" y="198" width="108" height="32" rx="16" fill="#1D4ED8" />
+              <path d="M284 214h44" stroke="white" strokeWidth="4" strokeLinecap="round" />
             </svg>
-            <h2>Opportunities</h2>
           </div>
+        </div>
+      </section>
 
-          {jobs.map((job, i) => (
-            <div className="job-card" key={i}>
-              <div className="job-header" onClick={() => setOpenJob(openJob === i ? null : i)}>
-                <span className="job-title">
-                  <span className="job-icon">
-                    {job.icon === 'java' ? (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="6" y="8" width="4" height="12" />
-                        <rect x="14" y="4" width="4" height="16" />
-                      </svg>
-                    ) : (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="6" />
-                        <path d="M12 6 L12 12 L16 16" />
-                      </svg>
-                    )}
-                  </span>
-                  {job.title}
-                </span>
-                <span className="job-toggle">{openJob === i ? '−' : '+'}</span>
+      <section className="highlights-section">
+        <div className="highlights-grid">
+          {highlights.map((item) => (
+            <article key={item.title} className="highlight-card">
+              <div className="highlight-top">
+                <span className="highlight-value">{item.value}</span>
+                <span className="highlight-metric">{item.metric}</span>
               </div>
-              {openJob === i && (
-                <div className="job-details">
-                  <div className="shift-info">
-                    <strong>Shift Timings:</strong> {job.shift}
-                  </div>
-                  
-                  <div className="description">{job.overview}</div>
-                  
-                  <span className="section-title">Position Responsibilities:</span>
-                  <ul>
-                    {job.responsibilities.map((resp, idx) => (
-                      <li key={idx}>{resp}</li>
-                    ))}
-                  </ul>
-                  
-                  <span className="section-title">Position Requirements:</span>
-                  <ul>
-                    {job.requirements.map((req, idx) => (
-                      <li key={idx}>{req}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
           ))}
+        </div>
+      </section>
 
-          <div className="contact-note">
-            <strong>Please share profiles to:</strong> hr@galacticosnetwork.com
-            <br />
-            <span style={{ fontStyle: 'italic', fontSize: '14px' }}>All shortlisted candidates will receive details of the interview process via email.</span>
+      <section className="client-value-section">
+        <div className="client-value-box">
+          <div className="client-value-head">
+            <h2>Why Professionals Choose Galacticos Network</h2>
+            <p>
+              We invest in people as much as we invest in technology. From structured career paths to real
+              enterprise exposure, we create an environment where engineers, consultants, and leaders grow
+              faster and deliver meaningful impact.
+            </p>
+          </div>
+
+          <div className="client-value-grid">
+            {clientValueProps.map((item) => (
+              <article className="client-value-card" key={item.title}>
+                <span className="client-value-tag">{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="career-layout">
+        <div className="jobs-box">
+          <div className="box-head">
+            <h2>Current Openings</h2>
+            <p>Explore opportunities aligned with your skills and career goals.</p>
+          </div>
+
+          <div className="media-block">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80"
+              alt="Team collaboration at workplace"
+            />
+            <div className="media-overlay">
+              Work with cross-functional teams solving real enterprise challenges.
+            </div>
+          </div>
+
+          <div className="jobs-list">
+            {jobs.map((job, index) => {
+              const expanded = openJob === index;
+
+              return (
+                <article className="job-card" key={job.title}>
+                  <button
+                    type="button"
+                    className="job-header"
+                    onClick={() => setOpenJob(expanded ? null : index)}
+                    aria-expanded={expanded}
+                    aria-controls={`career-job-${index}`}
+                  >
+                    <div>
+                      <div className="job-role">{job.title}</div>
+                      <div className="job-meta">
+                        {job.location} • {job.shift} • {job.experience}
+                      </div>
+                    </div>
+                    <span className="job-toggle">{expanded ? "−" : "+"}</span>
+                  </button>
+
+                  {expanded && (
+                    <div className="job-details" id={`career-job-${index}`}>
+                      <p>{job.overview}</p>
+
+                      <h4>Responsibilities</h4>
+                      <ul>
+                        {job.responsibilities.map((item, i) => (
+                          <li key={`${job.title}-resp-${i}`}>{item}</li>
+                        ))}
+                      </ul>
+
+                      <h4>Requirements</h4>
+                      <ul>
+                        {job.requirements.map((item, i) => (
+                          <li key={`${job.title}-req-${i}`}>{item}</li>
+                        ))}
+                      </ul>
+
+                      <div className="job-related">
+                        <img src={job.image} alt={`${job.title} technology illustration`} />
+                        <div className="job-related-content">
+                          <h5>Role Snapshot</h5>
+                          <div className="tech-stack">
+                            {job.techStack.map((tech) => (
+                              <span className="tech-chip" key={`${job.title}-${tech}`}>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="job-impact">{job.clientImpact}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </div>
 
-        {/* RIGHT COLUMN – APPLICATION FORM */}
-        <div className="apply-card">
-          <h3>Apply Now</h3>
-          <div className="form-group">
-            <input className="form-input" type="text" placeholder="Name *" />
+        <aside className="side-box">
+          <div className="box-head">
+            <h3>Hiring Journey</h3>
+            <p>Structured, transparent, and designed to evaluate both technical excellence and cultural alignment.</p>
           </div>
-          <div className="form-group">
-            <input className="form-input" type="email" placeholder="Email Address *" />
+
+          <div className="side-content">
+            {process.map((step, i) => (
+              <div className="process-step" key={step}>
+                <span className="process-dot">{i + 1}</span>
+                <span>{step}</span>
+              </div>
+            ))}
+
+            <div className="mail-box">
+              <strong>Share your profile:</strong>
+              <br />
+              hr@galacticosnetwork.com
+            </div>
+
+            <a href="mailto:hr@galacticosnetwork.com?subject=Career%20Application" className="mail-btn">
+              Send Application
+            </a>
+
+            <div className="life-box">
+              <img src="/images/map.png" alt="Global delivery footprint" />
+              <div className="life-caption">
+                Our teams collaborate across regions to deliver consistent, high-quality outcomes.
+              </div>
+            </div>
           </div>
-          <div className="form-group">
-            <input className="form-input" type="tel" placeholder="Phone *" />
-          </div>
-          <div className="form-group">
-            <input className="form-input" type="text" placeholder="Job Title *" />
-          </div>
-          <div className="form-group">
-            <input className="form-input form-file" type="file" />
-          </div>
-          <div className="form-group">
-            <textarea className="form-input" rows="4" placeholder="Message (optional)"></textarea>
-          </div>
-          <button className="submit-btn">Send Message</button>
-        </div>
+        </aside>
       </section>
     </div>
   );
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "10px",
-  marginBottom: "10px",
-};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const styles = `
   @keyframes floatSlow {
@@ -126,6 +127,7 @@ const styles = `
 export default function Mobility() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const styleSheet = document.createElement("style");
@@ -882,6 +884,7 @@ export default function Mobility() {
                 transition: "all 0.3s ease",
                 boxShadow: "0 8px 25px rgba(0, 114, 255, 0.3)",
               }}
+              onClick={() => navigate('/contact')}
               onMouseEnter={(e) => {
                 e.target.style.transform = "translateY(-2px)";
                 e.target.style.boxShadow = "0 12px 35px rgba(0, 114, 255, 0.5)";
