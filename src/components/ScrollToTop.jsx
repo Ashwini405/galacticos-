@@ -5,7 +5,33 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    const forceTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    forceTop();
+
+    window.addEventListener("load", forceTop);
+    window.addEventListener("pageshow", forceTop);
+    window.addEventListener("popstate", forceTop);
+
+    return () => {
+      window.removeEventListener("load", forceTop);
+      window.removeEventListener("pageshow", forceTop);
+      window.removeEventListener("popstate", forceTop);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
 
   return null;
