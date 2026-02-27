@@ -286,7 +286,6 @@ export default function Mobility() {
         fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif",
         color: "#1a1a1a",
         backgroundColor: "#fafafa",
-        paddingTop: "clamp(84px, 9vw, 110px)",
       }}
     >
       <style>{styles}</style>
@@ -298,7 +297,7 @@ export default function Mobility() {
           minHeight: "85vh",
           display: "flex",
           alignItems: "center",
-          padding: "60px 5%",
+          padding: "clamp(96px, 10vw, 130px) 5% 60px",
           color: "#fff",
           overflow: "hidden",
           backgroundImage:

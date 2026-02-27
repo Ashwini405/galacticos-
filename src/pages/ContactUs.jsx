@@ -110,7 +110,7 @@ const styles = `
   @media (max-width: 768px) {
     .hero-section {
       min-height: 60vh !important;
-      padding: 40px 4% !important;
+      padding: 96px 4% 30px !important;
     }
     .hero-grid {
       gap: 30px !important;
@@ -166,7 +166,7 @@ const styles = `
   @media (max-width: 480px) {
     .hero-section {
       min-height: 50vh !important;
-      padding: 30px 4% !important;
+      padding: 92px 4% 24px !important;
     }
     .hero-grid {
       gap: 20px !important;
