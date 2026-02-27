@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function DevOps() {
   const navigate = useNavigate();
   const [flipped, setFlipped] = useState({}); // kept for compatibility but not used
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = viewportWidth <= 768;
+  const isSmallMobile = viewportWidth <= 480;
 
   const toggleFlip = (title) => {
     setFlipped(prev => ({
@@ -16,13 +26,14 @@ export default function DevOps() {
     // ENHANCED HERO STYLES
     heroContainer: {
       position: "relative",
-      height: "85vh",
+      minHeight: isMobile ? "auto" : "85vh",
       width: "100%",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
       backgroundColor: "#030712",
+      paddingTop: "clamp(84px, 9vw, 110px)",
     },
     heroWrapper: {
       display: "flex",
@@ -30,16 +41,18 @@ export default function DevOps() {
       justifyContent: "space-between",
       maxWidth: "1200px",
       margin: "0 auto",
-      padding: "100px 20px",
+      padding: isMobile ? "36px 14px 46px" : "100px 20px",
       position: "relative",
       zIndex: 2,
-      gap: "40px",
-      flexWrap: "wrap"
+      gap: isMobile ? "24px" : "40px",
+      flexWrap: "wrap",
+      flexDirection: isMobile ? "column" : "row",
     },
     heroLeft: {
       flex: 1,
-      minWidth: "300px",
-      height: "400px",
+      minWidth: isMobile ? "100%" : "300px",
+      width: isMobile ? "100%" : "auto",
+      height: isMobile ? (isSmallMobile ? "220px" : "260px") : "400px",
       animation: "float 6s ease-in-out infinite"
     },
     heroBg: {
@@ -57,30 +70,30 @@ export default function DevOps() {
       position: "relative",
       zIndex: 10,
       flex: 1,
-      minWidth: "300px",
-      padding: "60px 40px",
+      minWidth: isMobile ? "100%" : "300px",
+      padding: isMobile ? (isSmallMobile ? "24px 16px" : "30px 20px") : "60px 40px",
       maxWidth: "600px",
       background: "rgba(255, 255, 255, 0.03)",
       backdropFilter: "blur(15px)",
       WebkitBackdropFilter: "blur(15px)",
-      borderRadius: "40px",
+      borderRadius: isMobile ? "20px" : "40px",
       border: "1px solid rgba(255, 255, 255, 0.1)",
       boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
     },
     heroTag: {
-      fontSize: "14px",
+      fontSize: isMobile ? "11px" : "14px",
       fontWeight: "700",
-      letterSpacing: "4px",
+      letterSpacing: isMobile ? "2px" : "4px",
       textTransform: "uppercase",
       color: "#00d4ff",
-      marginBottom: "24px",
+      marginBottom: isMobile ? "14px" : "24px",
       display: "inline-block",
-      padding: "8px 20px",
+      padding: isMobile ? "7px 14px" : "8px 20px",
       background: "rgba(0, 212, 255, 0.1)",
       borderRadius: "100px",
     },
     heroTitle: {
-      fontSize: "62px",
+      fontSize: isMobile ? (isSmallMobile ? "34px" : "42px") : "62px",
       fontWeight: 800,
       lineHeight: 1.1,
       color: "#ffffff",
@@ -90,10 +103,10 @@ export default function DevOps() {
       WebkitTextFillColor: "transparent",
     },
     heroDesc: {
-      fontSize: "18px",
+      fontSize: isMobile ? "15px" : "18px",
       color: "rgba(255,255,255,0.8)",
-      marginTop: "30px",
-      lineHeight: "1.7",
+      marginTop: isMobile ? "18px" : "30px",
+      lineHeight: isMobile ? "1.6" : "1.7",
       maxWidth: "500px"
     },
     section: {
@@ -434,11 +447,210 @@ export default function DevOps() {
         .service-card-modern:hover {
           animation: glow-pulse 2s ease-in-out infinite;
         }
+
+        .methodology-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 32px;
+        }
+
+        .impact-section {
+          padding: 90px 10%;
+          background: #f8f9fa;
+        }
+
+        .impact-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 24px;
+        }
         
         @media (max-width: 1024px) {
           .split-modern { grid-template-columns: 1fr; gap: 40px; }
           .cta-container { grid-template-columns: 1fr; text-align: center; }
           .cta-left, .cta-buttons { border-right: none; padding-right: 0; }
+          .intro-header h2,
+          .services-header h2,
+          .impact-heading {
+            font-size: 38px !important;
+          }
+          .overview-section {
+            padding: 36px;
+          }
+          .cta-section {
+            background-attachment: scroll;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .devops-intro,
+          .devops-services,
+          .cta-section,
+          .impact-section {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+
+          .devops-intro,
+          .devops-services,
+          .impact-section {
+            padding-top: 56px !important;
+            padding-bottom: 56px !important;
+          }
+
+          .intro-header {
+            margin-bottom: 42px;
+          }
+
+          .intro-header h2,
+          .services-header h2,
+          .impact-heading {
+            font-size: 30px !important;
+            line-height: 1.2;
+          }
+
+          .intro-header p,
+          .services-subtitle,
+          .impact-subtitle {
+            font-size: 15px !important;
+            line-height: 1.65 !important;
+          }
+
+          .split-modern {
+            margin-top: 26px;
+            gap: 24px;
+          }
+
+          .overview-section {
+            padding: 24px;
+            border-radius: 16px;
+          }
+
+          .overview-section h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+          }
+
+          .overview-section p {
+            font-size: 14px;
+            line-height: 1.7;
+          }
+
+          .methodology-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+          }
+
+          .process-step {
+            padding: 18px;
+            border-radius: 14px;
+          }
+
+          .process-step h3 {
+            font-size: 17px !important;
+          }
+
+          .process-step p {
+            font-size: 13px !important;
+            line-height: 1.55 !important;
+          }
+
+          .services-header {
+            margin-bottom: 34px;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          .service-card-modern {
+            min-height: auto;
+            padding: 22px;
+          }
+
+          .service-icon-large {
+            font-size: 42px;
+            margin-bottom: 12px;
+          }
+
+          .service-card-modern h3 {
+            font-size: 20px;
+            line-height: 1.3;
+          }
+
+          .service-desc {
+            font-size: 14px;
+            line-height: 1.65;
+          }
+
+          .impact-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+          }
+
+          .benefit-card {
+            padding: 18px;
+          }
+
+          .cta-section {
+            padding-top: 60px;
+            padding-bottom: 60px;
+          }
+
+          .cta-container {
+            padding: 24px;
+            border-radius: 16px;
+            gap: 20px;
+          }
+
+          .cta-left h2 {
+            font-size: 24px;
+          }
+
+          .cta-left p {
+            font-size: 14px;
+          }
+
+          .cta-connect {
+            width: 100%;
+            padding: 14px 22px;
+            font-size: 16px;
+          }
+
+          .cta-btn {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .devops-intro,
+          .devops-services,
+          .cta-section,
+          .impact-section {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+          }
+
+          .intro-header h2,
+          .services-header h2,
+          .impact-heading {
+            font-size: 26px !important;
+          }
+
+          .service-card-modern {
+            padding: 18px;
+          }
+
+          .cta-container {
+            padding: 18px;
+          }
         }
       `}</style>
 
@@ -598,7 +810,7 @@ export default function DevOps() {
             <h3 style={{ fontSize: "28px", color: "#0b1929", marginBottom: "30px", fontWeight: 800 }}>
               <span style={{ color: "#00d4ff" }}>⚡</span> Our Transformation Methodology
             </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}>
+            <div className="methodology-grid">
               {[
                 { step: "01", title: "Discover", desc: "Assess current delivery maturity, toolchain, and business goals" },
                 { step: "02", title: "Architect", desc: "Define scalable, cloud‑native DevOps platform strategy" },
@@ -627,7 +839,7 @@ export default function DevOps() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px" }}>
+        <div className="services-grid">
           {[
             { 
               icon: "📊", 
@@ -684,14 +896,14 @@ export default function DevOps() {
       </section>
 
       {/* Business Impact Section (new) */}
-      <section style={{ padding: "90px 10%", background: "#f8f9fa" }}>
-        <h2 style={{ fontSize: "44px", color: "#0b1929", textAlign: "center", marginBottom: "20px", fontWeight: 800 }}>
+      <section className="impact-section">
+        <h2 className="impact-heading" style={{ fontSize: "44px", color: "#0b1929", textAlign: "center", marginBottom: "20px", fontWeight: 800 }}>
           Business Impact
         </h2>
-        <p style={{ fontSize: "18px", color: "#556b82", textAlign: "center", maxWidth: "700px", margin: "0 auto 60px", lineHeight: 1.8 }}>
+        <p className="impact-subtitle" style={{ fontSize: "18px", color: "#556b82", textAlign: "center", maxWidth: "700px", margin: "0 auto 60px", lineHeight: 1.8 }}>
           Real outcomes delivered through our DevOps transformation approach
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+        <div className="impact-grid">
           {[
             { title: "Faster time‑to‑market", desc: "Reduce release cycles from weeks to hours with automated pipelines.", icon: "⏱️" },
             { title: "Higher release quality", desc: "Prevent defects with shift‑left testing and automated quality gates.", icon: "✅" },

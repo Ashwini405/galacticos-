@@ -148,6 +148,7 @@ export default function CaseStudiesSection() {
           color: #ffffff;
           font-family: 'Plus Jakarta Sans', sans-serif;
           min-height: 100vh;
+          overflow-x: hidden;
         }
 
         /* Overlay to darken background slightly for better readability */
@@ -302,6 +303,127 @@ export default function CaseStudiesSection() {
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+          .case-section {
+            padding: 80px 5%;
+            background-attachment: scroll;
+          }
+
+          .case-header {
+            margin-bottom: 56px;
+          }
+
+          .case-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+          }
+
+          .case-content {
+            padding: 24px;
+          }
+
+          .case-content h3 {
+            font-size: 20px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .case-section {
+            padding: 64px 16px;
+            background-attachment: scroll;
+            min-height: auto;
+          }
+
+          .case-header {
+            margin-bottom: 36px;
+          }
+
+          .case-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .case-card {
+            border-radius: 18px;
+          }
+
+          .case-card:hover {
+            transform: translateY(-6px);
+          }
+
+          .case-img-container {
+            height: 170px;
+          }
+
+          .case-category {
+            top: 14px;
+            left: 14px;
+            font-size: 10px;
+            padding: 4px 10px;
+          }
+
+          .illusion-container svg {
+            width: 96px !important;
+            height: 96px !important;
+          }
+
+          .icon-glow {
+            width: 64px;
+            height: 64px;
+            filter: blur(28px);
+          }
+
+          .case-content {
+            padding: 18px;
+          }
+
+          .case-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+
+          .case-content p {
+            font-size: 14px;
+            line-height: 1.55;
+            margin-bottom: 18px;
+          }
+
+          .case-link {
+            width: 100%;
+            justify-content: center;
+            padding: 11px 14px;
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .case-section {
+            padding: 52px 12px;
+          }
+
+          .case-title {
+            letter-spacing: -0.4px;
+          }
+
+          .case-header p {
+            font-size: 14px;
+            margin-top: 8px !important;
+            line-height: 1.5;
+          }
+
+          .case-img-container {
+            height: 156px;
+          }
+
+          .case-content h3 {
+            font-size: 17px;
+          }
+
+          .case-content p {
+            font-size: 13px;
+          }
+        }
       `}</style>
 
       <div className={`case-header reveal ${isVisible ? 'active' : ''}`}>

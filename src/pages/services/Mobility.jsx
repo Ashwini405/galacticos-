@@ -281,7 +281,14 @@ export default function Mobility() {
   );
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif", color: "#1a1a1a", backgroundColor: "#fafafa" }}>
+    <div
+      style={{
+        fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif",
+        color: "#1a1a1a",
+        backgroundColor: "#fafafa",
+        paddingTop: "clamp(84px, 9vw, 110px)",
+      }}
+    >
       <style>{styles}</style>
 
       {/* ================= HERO SECTION ================= */}

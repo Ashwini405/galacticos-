@@ -3,6 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 export default function DataEngineering() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardRefs = useRef([]);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const isTablet = viewportWidth <= 1024;
+  const isMobile = viewportWidth <= 768;
+  const isSmallMobile = viewportWidth <= 480;
 
   const styles = {
     hero: {
@@ -209,8 +213,13 @@ export default function DataEngineering() {
         y: (e.clientY / window.innerHeight) * 100
       });
     };
+    const handleResize = () => setViewportWidth(window.innerWidth);
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const AnimatedBlob = ({ color, top, left, delay }) => (
@@ -357,11 +366,12 @@ export default function DataEngineering() {
 <section
   style={{
     position: "relative",
-    minHeight: "100vh",
+    minHeight: isMobile ? "auto" : "100vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "40px 20px",
+    padding: isMobile ? "24px 12px 42px" : "40px 20px",
+    paddingTop: "clamp(84px, 9vw, 110px)",
     overflow: "hidden",
     backgroundImage:
       "linear-gradient(rgba(10,15,30,0.85), rgba(10,15,30,0.9)), url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=2070&q=80')",
@@ -406,17 +416,18 @@ export default function DataEngineering() {
       position: "relative",
       maxWidth: "1100px",
       width: "100%",
-      padding: "60px",
-      borderRadius: "30px",
+      padding: isMobile ? (isSmallMobile ? "18px" : "24px") : "60px",
+      borderRadius: isMobile ? "18px" : "30px",
       backdropFilter: "blur(25px)",
       background: "rgba(255,255,255,0.05)",
       border: "1px solid rgba(255,255,255,0.1)",
       boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
       display: "flex",
       alignItems: "center",
-      gap: "60px",
+      gap: isMobile ? "18px" : "60px",
       color: "#fff",
       flexWrap: "wrap",
+      flexDirection: isMobile ? "column" : "row",
     }}
   >
     {/* LEFT ILLUSTRATION */}
@@ -425,12 +436,13 @@ export default function DataEngineering() {
     flex: "1",
     textAlign: "center",
     position: "relative",
+    width: isMobile ? "100%" : "auto",
   }}
 >
   <div
     style={{
-      width: "200px",
-      height: "200px",
+      width: isMobile ? (isSmallMobile ? "140px" : "170px") : "200px",
+      height: isMobile ? (isSmallMobile ? "140px" : "170px") : "200px",
       margin: "0 auto",
       position: "relative",
       animation: "floatCloud 6s ease-in-out infinite",
@@ -440,8 +452,8 @@ export default function DataEngineering() {
     <div
       style={{
         position: "absolute",
-        width: "200px",
-        height: "200px",
+        width: "100%",
+        height: "100%",
         borderRadius: "50%",
         background: "radial-gradient(circle, rgba(96,165,250,0.4) 0%, rgba(59,130,246,0.1) 60%, transparent 70%)",
         animation: "pulseGlow 4s ease-in-out infinite",
@@ -469,13 +481,13 @@ export default function DataEngineering() {
     <div
       style={{
         position: "absolute",
-        width: "12px",
-        height: "12px",
+        width: isSmallMobile ? "10px" : "12px",
+        height: isSmallMobile ? "10px" : "12px",
         background: "#93c5fd",
         borderRadius: "50%",
         top: "50%",
         left: "50%",
-        transformOrigin: "-80px center",
+        transformOrigin: isMobile ? "-58px center" : "-80px center",
         animation: "orbit 8s linear infinite",
       }}
     />
@@ -484,18 +496,18 @@ export default function DataEngineering() {
 
 
     {/* RIGHT CONTENT */}
-    <div style={{ flex: "2", textAlign: "left" }}>
+    <div style={{ flex: "2", textAlign: isMobile ? "center" : "left", width: isMobile ? "100%" : "auto" }}>
       <div
         style={{
           display: "inline-block",
-          padding: "8px 20px",
+          padding: isMobile ? "6px 14px" : "8px 20px",
           borderRadius: "50px",
           background: "rgba(59,130,246,0.2)",
           color: "#60a5fa",
-          fontSize: "14px",
-          letterSpacing: "2px",
+          fontSize: isMobile ? "11px" : "14px",
+          letterSpacing: isMobile ? "1px" : "2px",
           fontWeight: "600",
-          marginBottom: "25px",
+          marginBottom: isMobile ? "16px" : "25px",
         }}
       >
         DATA ENGINEERING
@@ -503,9 +515,9 @@ export default function DataEngineering() {
 
       <h1
         style={{
-          fontSize: "48px",
+          fontSize: isMobile ? (isSmallMobile ? "30px" : "36px") : "48px",
           fontWeight: "800",
-          lineHeight: "1.2",
+          lineHeight: isMobile ? "1.25" : "1.2",
           margin: 0,
         }}
       >
@@ -518,7 +530,7 @@ export default function DataEngineering() {
      {/* INTRO ENHANCED */}
 <section
   style={{
-    padding: "100px 20px",
+    padding: isMobile ? "56px 12px" : "100px 20px",
     background: "linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)",
     fontFamily: "Inter, sans-serif",
   }}
@@ -526,10 +538,10 @@ export default function DataEngineering() {
   <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
     <h2
       style={{
-        fontSize: "42px",
+        fontSize: isMobile ? (isSmallMobile ? "28px" : "34px") : "42px",
         textAlign: "center",
         fontWeight: "800",
-        marginBottom: "30px",
+        marginBottom: isMobile ? "20px" : "30px",
         background: "linear-gradient(135deg,#0f172a,#0284c7)",
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
@@ -543,9 +555,9 @@ export default function DataEngineering() {
         maxWidth: "900px",
         margin: "0 auto 20px",
         textAlign: "center",
-        fontSize: "18px",
+        fontSize: isMobile ? "15px" : "18px",
         color: "#334155",
-        lineHeight: "1.8",
+        lineHeight: isMobile ? "1.65" : "1.8",
       }}
     >
       We enable enterprises to transition from fragmented data landscapes to unified,
@@ -556,11 +568,11 @@ export default function DataEngineering() {
     <p
       style={{
         maxWidth: "900px",
-        margin: "0 auto 70px",
+        margin: isMobile ? "0 auto 34px" : "0 auto 70px",
         textAlign: "center",
-        fontSize: "18px",
+        fontSize: isMobile ? "15px" : "18px",
         color: "#334155",
-        lineHeight: "1.8",
+        lineHeight: isMobile ? "1.65" : "1.8",
       }}
     >
       Our platform-led approach ensures trusted, governed, and continuously available
@@ -572,19 +584,21 @@ export default function DataEngineering() {
     <div
       style={{
         display: "flex",
-        gap: "80px",
-        alignItems: "center",
+        gap: isMobile ? "28px" : "80px",
+        alignItems: isMobile ? "stretch" : "center",
         flexWrap: "wrap",
+        flexDirection: isMobile ? "column" : "row",
       }}
     >
       {/* LEFT - OVERVIEW + ILLUSTRATION */}
-      <div style={{ flex: "1" }}>
+      <div style={{ flex: "1", minWidth: isMobile ? "100%" : "auto" }}>
         <h3
           style={{
-            fontSize: "30px",
-            marginBottom: "20px",
+            fontSize: isMobile ? "24px" : "30px",
+            marginBottom: isMobile ? "14px" : "20px",
             fontWeight: "700",
             color: "#0f172a",
+            textAlign: isMobile ? "center" : "left",
           }}
         >
           Overview
@@ -592,10 +606,11 @@ export default function DataEngineering() {
 
         <p
           style={{
-            fontSize: "17px",
+            fontSize: isMobile ? "15px" : "17px",
             color: "#334155",
-            lineHeight: "1.8",
-            marginBottom: "40px",
+            lineHeight: isMobile ? "1.7" : "1.8",
+            marginBottom: isMobile ? "26px" : "40px",
+            textAlign: isMobile ? "center" : "left",
           }}
         >
           By combining modern data architectures, cloud-native technologies,
@@ -606,18 +621,20 @@ export default function DataEngineering() {
         {/* NEW ILLUSTRATION - DATA FLOW STYLE */}
         <div
           style={{
-            width: "260px",
-            height: "260px",
+            width: isMobile ? (isSmallMobile ? "200px" : "230px") : "260px",
+            height: isMobile ? (isSmallMobile ? "200px" : "230px") : "260px",
             position: "relative",
-            marginTop: "20px",
+            marginTop: isMobile ? "8px" : "20px",
+            marginLeft: "auto",
+            marginRight: "auto",
             animation: "floatData 6s ease-in-out infinite",
           }}
         >
           <div
             style={{
               position: "absolute",
-              width: "260px",
-              height: "260px",
+              width: "100%",
+              height: "100%",
               borderRadius: "50%",
               background:
                 "radial-gradient(circle, rgba(14, 222, 233, 0.25), transparent 70%)",
@@ -628,8 +645,8 @@ export default function DataEngineering() {
           <svg
   viewBox="0 0 200 200"
   style={{
-    width: "260px",
-    height: "260px",
+    width: "100%",
+    height: "100%",
     position: "relative",
     zIndex: 2,
   }}
@@ -719,13 +736,14 @@ export default function DataEngineering() {
       </div>
 
       {/* RIGHT - KEY CAPABILITIES */}
-      <div style={{ flex: "1" }}>
+      <div style={{ flex: "1", minWidth: isMobile ? "100%" : "auto" }}>
         <h3
           style={{
-            fontSize: "30px",
-            marginBottom: "30px",
+            fontSize: isMobile ? "24px" : "30px",
+            marginBottom: isMobile ? "18px" : "30px",
             fontWeight: "700",
             color: "#0f172a",
+            textAlign: isMobile ? "center" : "left",
           }}
         >
           Key capabilities
@@ -744,12 +762,12 @@ export default function DataEngineering() {
             key={item}
             style={{
               background: "white",
-              padding: "18px 24px",
+              padding: isMobile ? "14px 14px" : "18px 24px",
               borderRadius: "16px",
-              marginBottom: "18px",
+              marginBottom: isMobile ? "12px" : "18px",
               display: "flex",
               alignItems: "center",
-              gap: "15px",
+              gap: isMobile ? "10px" : "15px",
               boxShadow: "0 10px 25px rgba(2,132,199,0.08)",
               transition: "all 0.3s ease",
               cursor: "pointer",
@@ -776,7 +794,7 @@ export default function DataEngineering() {
                 <path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z" />
               </svg>
             </div>
-            <span style={{ color: "#334155", fontSize: "16px" }}>
+            <span style={{ color: "#334155", fontSize: isMobile ? "14px" : "16px" }}>
               {item}
             </span>
           </div>
@@ -789,13 +807,13 @@ export default function DataEngineering() {
 {/* DATA ENGINEERING SERVICES - IMAGE BACKGROUND */}
 <section
   style={{
-    padding: "120px 20px",
+    padding: isMobile ? "56px 12px" : "120px 20px",
     position: "relative",
     backgroundImage:
       "linear-gradient(rgba(75, 173, 168, 0.85), rgba(10,15,30,0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2070&q=80')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundAttachment: "fixed",
+    backgroundAttachment: isTablet ? "scroll" : "fixed",
   }}
 >
   <div
@@ -803,8 +821,8 @@ export default function DataEngineering() {
       maxWidth: "1200px",
       margin: "0 auto",
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-      gap: "40px",
+      gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(280px, 1fr))",
+      gap: isMobile ? "14px" : "40px",
       perspective: "1000px",
     }}
   >
@@ -850,7 +868,7 @@ export default function DataEngineering() {
         key={card.title}
         style={{
           position: "relative",
-          height: "280px",
+          height: isMobile ? "auto" : "280px",
           transformStyle: "preserve-3d",
           transition: "transform 0.6s",
         }}
@@ -866,7 +884,7 @@ export default function DataEngineering() {
             backdropFilter: "blur(20px)",
             border: "1px solid rgba(255,255,255,0.1)",
             boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-            padding: "40px",
+            padding: isMobile ? "20px" : "40px",
             color: "white",
             overflow: "hidden",
           }}
@@ -912,11 +930,11 @@ export default function DataEngineering() {
             </svg>
           </div>
 
-          <h3 style={{ fontSize: "22px", marginBottom: "15px" }}>
+          <h3 style={{ fontSize: isMobile ? "18px" : "22px", marginBottom: "15px", lineHeight: 1.35 }}>
             {card.title}
           </h3>
 
-          <p style={{ opacity: 0.85, lineHeight: "1.6" }}>
+          <p style={{ opacity: 0.85, lineHeight: "1.6", fontSize: isMobile ? "14px" : "16px" }}>
             {card.desc}
           </p>
         </div>
@@ -1059,6 +1077,39 @@ export default function DataEngineering() {
 
       .cta-left-text {
         text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cta-header {
+        margin-bottom: 30px;
+      }
+
+      .cta-header h2 {
+        font-size: 26px;
+        line-height: 1.25;
+      }
+
+      .cta-header p {
+        font-size: 14px;
+      }
+
+      .cta-box {
+        min-height: auto;
+        padding: 20px 14px;
+      }
+
+      .cta-left-text {
+        font-size: 20px;
+      }
+
+      .cta-left-text strong {
+        font-size: 22px;
+      }
+
+      .cta-white-btn,
+      .cta-orange-btn {
+        width: 100%;
       }
     }
   `}</style>
