@@ -39,7 +39,7 @@ export default function HireAITalent() {
 
         .hire-ai-enhanced {
           position: relative;
-          background: linear-gradient(180deg, #f6f9ff 0%, #eef4ff 55%, #e9f1ff 100%);
+          background: linear-gradient(180deg, #fbfdff 0%, #f2f7ff 50%, #edf4ff 100%);
           padding: 40px 6% 100px; /* Reduced top padding */
           color: #0f172a;
           overflow: hidden;
@@ -51,7 +51,7 @@ export default function HireAITalent() {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.1) 0%, transparent 42%);
+          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.18) 0%, rgba(129, 140, 248, 0.09) 22%, transparent 48%);
           z-index: 2;
           pointer-events: none;
         }
@@ -64,7 +64,7 @@ export default function HireAITalent() {
           transform: translate(-50%, -50%);
           width: 800px;
           height: 800px;
-          opacity: 0.25;
+          opacity: 0.4;
           z-index: 1;
           pointer-events: none;
         }
@@ -72,6 +72,7 @@ export default function HireAITalent() {
         .mesh-sphere {
           animation: rotateMesh 40s linear infinite;
           transform-origin: center;
+          filter: drop-shadow(0 0 26px rgba(129, 140, 248, 0.32));
         }
 
         @keyframes rotateMesh {
@@ -239,8 +240,8 @@ export default function HireAITalent() {
         <svg viewBox="0 0 200 200" className="mesh-sphere">
           <defs>
             <linearGradient id="meshGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#c084fc" stopOpacity="0.1" />
+              <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#c084fc" stopOpacity="0.22" />
             </linearGradient>
           </defs>
           <g fill="none" stroke="url(#meshGrad)" strokeWidth="0.5">
