@@ -47,11 +47,11 @@ export default function PremiumVanguardHero() {
         { icon: <Globe strokeWidth={1.5} size={20} />, text: "Global Rollouts" }
       ],
       badges: [
-        { text: "Digital Core Modernization", top: "5%", right: "-5%" },
-        { text: "Enterprise Ready", bottom: "15%", left: "-10%" }
+        { text: "Digital Core Modernization", top: "6%", right: "5%" },
+        { text: "Enterprise Ready", bottom: "8%", left: "6%" }
       ],
       chart: (d) => (
-        <AreaChart data={d}>
+        <AreaChart data={d} margin={{ top: 14, right: 10, left: 10, bottom: 4 }}>
           <Area type="monotone" dataKey="val" stroke="#007BFF" strokeWidth={2} fillOpacity={0.2} />
           <Line type="monotone" dataKey="val2" stroke="#FF00AA" strokeWidth={1.5} dot={false} />
         </AreaChart>
@@ -69,11 +69,11 @@ export default function PremiumVanguardHero() {
         { icon: <BarChart2 strokeWidth={1.5} size={20} />, text: "Cost Optimization" }
       ],
       badges: [
-        { text: "Optimized TCO", top: "10%", left: "-5%" },
-        { text: "Cloud Native Ready", bottom: "10%", right: "-5%" }
+        { text: "Optimized TCO", top: "10%", left: "6%" },
+        { text: "Cloud Native Ready", bottom: "8%", right: "6%" }
       ],
       chart: (d) => (
-        <BarChart data={d}>
+        <BarChart data={d} margin={{ top: 14, right: 10, left: 10, bottom: 4 }}>
           <Bar dataKey="val" fill="#00E5FF" radius={[4, 4, 0, 0]} />
           <Bar dataKey="val2" fill="rgba(112,0,255,0.4)" radius={[4, 4, 0, 0]} />
         </BarChart>
@@ -91,11 +91,11 @@ export default function PremiumVanguardHero() {
         { icon: <Globe strokeWidth={1.5} size={20} />, text: "Enterprise Scale" }
       ],
       badges: [
-        { text: "AI Driven Insights", top: "40%", right: "-12%" },
-        { text: "Executive Dashboards", bottom: "5%", left: "5%" }
+        { text: "AI Driven Insights", top: "8%", right: "4%" },
+        { text: "Executive Dashboards", bottom: "8%", left: "5%" }
       ],
       chart: (d) => (
-        <LineChart data={d}>
+        <LineChart data={d} margin={{ top: 14, right: 10, left: 10, bottom: 4 }}>
           <Line type="monotone" dataKey="val" stroke="#39FF14" strokeWidth={3} dot={false} />
           <Line type="monotone" dataKey="val2" stroke="rgba(255,255,255,0.3)" strokeWidth={2} dot={false} />
         </LineChart>
@@ -113,11 +113,11 @@ export default function PremiumVanguardHero() {
         { icon: <Layers strokeWidth={1.5} size={20} />, text: "Risk Mitigation" }
       ],
       badges: [
-        { text: "SOC & Governance", top: "-5%", right: "10%" },
-        { text: "Enterprise Resilience", bottom: "5%", left: "5%" }
+        { text: "SOC & Governance", top: "8%", right: "10%" },
+        { text: "Enterprise Resilience", bottom: "8%", left: "5%" }
       ],
       chart: (d) => (
-        <ComposedChart data={d}>
+        <ComposedChart data={d} margin={{ top: 14, right: 10, left: 10, bottom: 4 }}>
           <Area type="monotone" dataKey="val" fill="rgba(112, 0, 255, 0.25)" stroke="#7000FF" strokeWidth={3} />
           <Line type="monotone" dataKey="val2" stroke="#fff" strokeWidth={2} dot={false} />
         </ComposedChart>
@@ -239,7 +239,7 @@ export default function PremiumVanguardHero() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8%;
+          gap: 6%;
           padding: 0 10% 60px 10%;
           opacity: 0;
           visibility: hidden;
@@ -257,8 +257,8 @@ export default function PremiumVanguardHero() {
            LEFT COL: VISUALIZATION (GLASS)
            --------------------------------- */
         .h-viz-col {
-          flex: 0.9;
-          max-width: 500px;
+          flex: 1.05;
+          max-width: 700px;
           aspect-ratio: 1;
           position: relative;
         }
@@ -271,9 +271,10 @@ export default function PremiumVanguardHero() {
           border-radius: 24px;
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
-          padding: 40px;
+          padding: 28px;
           box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03);
           position: relative;
+          overflow: hidden;
           z-index: 2;
         }
 
@@ -485,11 +486,12 @@ export default function PremiumVanguardHero() {
         @media (max-width: 1200px) {
           .h-slide { gap: 5%; padding: 0 5%; }
           .h-text-col h1 { font-size: 3.5rem; }
+          .h-viz-col { max-width: 620px; }
         }
 
         @media (max-width: 1024px) {
           .h-slide { flex-direction: column-reverse; padding: 100px 5% 60px; gap: 40px; text-align: center; }
-          .h-viz-col { max-width: 400px; width: 100%; aspect-ratio: auto; height: 350px; }
+          .h-viz-col { max-width: 520px; width: 100%; aspect-ratio: auto; height: 430px; }
           .h-text-col { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
           .h-features { text-align: left; }
           .h-label { margin-bottom: 15px; }
@@ -552,21 +554,21 @@ export default function PremiumVanguardHero() {
 
               {/* Left Col: Visual */}
               <div className="h-viz-col">
-                {/* Badges */}
-                {slide.badges?.map((badge, bIdx) => (
-                  <div
-                    key={bIdx}
-                    className="h-badge"
-                    style={{
-                      top: badge.top, bottom: badge.bottom, left: badge.left, right: badge.right,
-                      animationDelay: `${bIdx * 1.5}s`
-                    }}
-                  >
-                    {badge.text}
-                  </div>
-                ))}
-
                 <div className="h-glass-card">
+                  {/* Badges */}
+                  {slide.badges?.map((badge, bIdx) => (
+                    <div
+                      key={bIdx}
+                      className="h-badge"
+                      style={{
+                        top: badge.top, bottom: badge.bottom, left: badge.left, right: badge.right,
+                        animationDelay: `${bIdx * 1.5}s`
+                      }}
+                    >
+                      {badge.text}
+                    </div>
+                  ))}
+
                   <div className="h-glass-content">
                     <ResponsiveContainer width="100%" height="100%">
                       {slide.chart(data)}

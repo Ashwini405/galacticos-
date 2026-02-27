@@ -42,7 +42,7 @@ export default function AboutSection() {
         this.y = Math.random() * canvas.height;
         this.vx = (Math.random() - 0.5) * 1.5;
         this.vy = (Math.random() - 0.5) * 1.5;
-        this.radius = Math.random() * 2 + 0.5;
+        this.radius = Math.random() * 3 + 1.2; // larger
         this.baseColor = Math.random() > 0.4 ? '0, 195, 255' : '100, 50, 255';
         this.pulse = Math.random() * Math.PI * 2;
       }
@@ -55,12 +55,11 @@ export default function AboutSection() {
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
-        // Mouse interaction
         if (mouse.x != null && mouse.y != null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 200) {
             this.x -= dx * 0.03;
             this.y -= dy * 0.03;
           }
@@ -68,25 +67,24 @@ export default function AboutSection() {
       }
 
       draw() {
-        const opacity = 0.5 + Math.sin(this.pulse) * 0.5;
+        const opacity = 0.6 + Math.sin(this.pulse) * 0.4;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${this.baseColor}, ${opacity})`;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 22;
         ctx.shadowColor = `rgba(${this.baseColor}, ${opacity})`;
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset
+        ctx.shadowBlur = 0;
       }
     }
 
-    particles = Array.from({ length: 70 }, () => new Particle());
+    particles = Array.from({ length: 110 }, () => new Particle()); // more particles
 
     function animate() {
-      // Create a trailing effect for smooth movement
-      ctx.fillStyle = 'rgba(2, 6, 23, 0.3)';
+      ctx.fillStyle = 'rgba(2, 6, 23, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw Connections
+      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         p1.update();
@@ -98,10 +96,10 @@ export default function AboutSection() {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
+          if (dist < 180) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 195, 255, ${0.15 - dist / 866})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(0, 195, 255, ${0.25 - dist / 720})`;
+            ctx.lineWidth = 1.4;
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
@@ -109,7 +107,7 @@ export default function AboutSection() {
         }
       }
 
-      // Draw connecting lines to mouse
+      // Draw mouse connections
       if (mouse.x != null && mouse.y != null) {
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
@@ -117,10 +115,10 @@ export default function AboutSection() {
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 160) {
+          if (dist < 250) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(100, 50, 255, ${0.4 - dist / 400})`;
-            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = `rgba(100, 50, 255, ${0.6 - dist / 416})`;
+            ctx.lineWidth = 2.2;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
@@ -147,23 +145,23 @@ export default function AboutSection() {
       <style>{`
         .about-section-wrapper {
           position: relative;
-          padding: clamp(88px, 10vw, 120px) 6%;
-          background: #020617; /* Deep Slate Background */
+          padding: clamp(72px, 9vw, 110px) 0 clamp(72px, 8vw, 96px) 6%;
+          background: #020617;
           display: flex;
-          align-items: center;
-          gap: clamp(34px, 5vw, 72px);
+          align-items: flex-start;
+          gap: clamp(40px, 6vw, 80px);
           overflow: hidden;
           font-family: 'Inter', sans-serif;
         }
 
-        /* Dynamic Glow Backgrounds */
+        /* Larger glows extending to left edge */
         .ambient-glow-1 {
           position: absolute;
-          width: 650px;
-          height: 650px;
-          background: radial-gradient(circle, rgba(0, 195, 255, 0.08) 0%, transparent 60%);
-          top: -150px;
-          left: -150px;
+          width: 1000px;
+          height: 1000px;
+          background: radial-gradient(circle, rgba(0, 195, 255, 0.15) 0%, transparent 70%);
+          top: -300px;
+          left: -300px;
           border-radius: 50%;
           z-index: 0;
           pointer-events: none;
@@ -171,44 +169,42 @@ export default function AboutSection() {
 
         .ambient-glow-2 {
           position: absolute;
-          width: 750px;
-          height: 750px;
-          background: radial-gradient(circle, rgba(100, 50, 255, 0.08) 0%, transparent 60%);
-          bottom: -250px;
-          right: -150px;
+          width: 1100px;
+          height: 1100px;
+          background: radial-gradient(circle, rgba(100, 50, 255, 0.15) 0%, transparent 70%);
+          bottom: -400px;
+          right: -250px;
           border-radius: 50%;
           z-index: 0;
           pointer-events: none;
         }
 
-        /* Left Side: Canvas & Visualization */
+        /* Left Side: Canvas & Visualization - flush left */
         .about-visual-side {
-          flex: 1;
+          flex: 1.3;
           position: relative;
           z-index: 2;
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           perspective: 1200px;
+          margin-left: 0;
         }
 
         .visual-container {
           position: relative;
           width: 100%;
-          max-width: 560px;
-          height: clamp(420px, 48vw, 500px);
-          border-radius: 26px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 30px 62px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(20px);
+          max-width: 800px; /* larger */
+          height: clamp(440px, 46vw, 560px);
           overflow: hidden;
-          transform: rotateY(6deg) rotateX(4deg);
-          transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+          background: transparent;
+          box-shadow: none;
+          border: none;
+          transform: rotateY(4deg) rotateX(2deg);
+          transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .visual-container:hover {
-          transform: rotateY(0deg) rotateX(0deg) translateY(-12px);
-          box-shadow: 0 50px 100px rgba(0, 195, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transform: rotateY(0deg) rotateX(0deg) translateY(-15px);
         }
 
         .glass-canvas {
@@ -217,135 +213,138 @@ export default function AboutSection() {
           left: 0;
           width: 100%;
           height: 100%;
-          border-radius: 26px;
           z-index: 1;
-          pointer-events: auto; /* Allow mouse events */
+          pointer-events: auto;
         }
 
-        /* Decorative Overlay */
         .visual-overlay {
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: linear-gradient(to bottom, transparent 40%, rgba(2, 6, 23, 0.85) 100%);
+          background: linear-gradient(to bottom, transparent 20%, rgba(2, 6, 23, 0.8) 95%);
           z-index: 2;
           pointer-events: none;
         }
 
-        /* Floating Stats Panels */
+        /* Floating cards - larger, positioned to stay within expanded canvas */
         .float-card {
           position: absolute;
-          background: rgba(15, 23, 42, 0.75);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 16px;
-          padding: 14px 18px;
+          background: rgba(15, 23, 42, 0.85);
+          backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 24px;
+          padding: 22px 28px;
           color: #fff;
           z-index: 3;
           display: flex;
           align-items: center;
-          gap: 12px;
-          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
-          animation: floatFloat 6s ease-in-out infinite;
+          gap: 20px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+          animation: floatFloat 8s ease-in-out infinite;
         }
 
         .float-card-1 {
-          top: 32px;
-          right: -18px;
+          top: 60px;
+          right: -20px;
           animation-delay: 0s;
         }
 
         .float-card-2 {
-          bottom: 42px;
-          left: -24px;
-          animation-delay: -3s;
+          bottom: 80px;
+          left: -30px;
+          animation-delay: -4s;
         }
 
         .card-icon {
-          width: 42px;
-          height: 42px;
-          border-radius: 10px;
+          width: 64px;
+          height: 64px;
+          border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0, 195, 255, 0.12);
+          background: rgba(0, 195, 255, 0.2);
           color: #00c3ff;
-          box-shadow: 0 0 20px rgba(0, 195, 255, 0.2);
+          box-shadow: 0 0 40px rgba(0, 195, 255, 0.4);
         }
         
         .float-card-2 .card-icon {
-          background: rgba(100, 50, 255, 0.12);
+          background: rgba(100, 50, 255, 0.2);
           color: #8b5cf6;
-          box-shadow: 0 0 20px rgba(100, 50, 255, 0.2);
+          box-shadow: 0 0 40px rgba(100, 50, 255, 0.4);
         }
 
         .card-text h4 {
-          font-size: 1.12rem;
+          font-size: 1.8rem;
           font-weight: 800;
-          margin: 0 0 2px 0;
+          margin: 0 0 4px 0;
           letter-spacing: -0.5px;
         }
 
         .card-text p {
-          font-size: 0.78rem;
-          color: #94a3b8;
+          font-size: 1rem;
+          color: #cbd5e1;
           margin: 0;
           font-weight: 500;
         }
 
         @keyframes floatFloat {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
+          50% { transform: translateY(-24px); }
         }
 
-        /* Right Side: Content */
+        /* Right Side: Content - now with normal padding */
         .about-content-side {
-          flex: 1.15;
+          flex: 1;
           z-index: 2;
           max-width: 650px;
+          padding-right: 2%; /* slight breathing */
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          min-height: clamp(440px, 46vw, 560px);
         }
 
         .section-tagline {
           display: inline-flex;
           align-items: center;
-          gap: 12px;
-          padding: 8px 18px;
-          background: rgba(0, 195, 255, 0.1);
-          border: 1px solid rgba(0, 195, 255, 0.2);
+          gap: 14px;
+          padding: 10px 22px;
+          background: rgba(0, 195, 255, 0.18);
+          border: 1px solid rgba(0, 195, 255, 0.3);
           border-radius: 100px;
           color: #00c3ff;
           font-weight: 600;
-          font-size: 0.85rem;
-          letter-spacing: 1.5px;
+          font-size: 0.92rem;
+          letter-spacing: 1.1px;
           text-transform: uppercase;
           margin-bottom: 20px;
         }
 
         .pulse-dot {
-          width: 8px;
-          height: 8px;
+          width: 12px;
+          height: 12px;
           background: #00c3ff;
           border-radius: 50%;
-          box-shadow: 0 0 12px #00c3ff;
+          box-shadow: 0 0 20px #00c3ff;
           animation: pulseDot 2s infinite;
         }
 
         @keyframes pulseDot {
           0% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0.7); }
-          70% { box-shadow: 0 0 0 10px rgba(0, 195, 255, 0); }
+          70% { box-shadow: 0 0 0 18px rgba(0, 195, 255, 0); }
           100% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0); }
         }
 
         .about-content-side h2 {
-          font-size: clamp(2.2rem, 3.8vw, 3.35rem);
+          font-size: clamp(1.9rem, 2.8vw, 2.7rem);
           font-weight: 800;
           color: #fff;
           line-height: 1.12;
           margin-bottom: 18px;
-          letter-spacing: -1.2px;
+          letter-spacing: -0.8px;
         }
 
         .text-gradient {
-          background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+          background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -357,19 +356,19 @@ export default function AboutSection() {
         }
 
         .about-content-side > p {
-          font-size: 1.04rem;
-          color: #94a3b8;
-          line-height: 1.7;
-          margin-bottom: 28px;
-          max-width: 92%;
+          font-size: 1.03rem;
+          color: #a0aec0;
+          line-height: 1.6;
+          margin-bottom: 30px;
+          max-width: 90%;
         }
 
         /* Features Modern Grid */
         .aesthetic-features {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 16px;
-          margin-bottom: 36px;
+          gap: 18px;
+          margin-bottom: 34px;
         }
 
         .feature-box {
@@ -377,24 +376,24 @@ export default function AboutSection() {
           align-items: flex-start;
           gap: 12px;
           padding: 18px;
-          background: rgba(255, 255, 255, 0.015);
-          border: 1px solid rgba(255, 255, 255, 0.04);
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.06);
           border-radius: 16px;
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .feature-box:hover {
-          background: rgba(255, 255, 255, 0.03);
-          border-color: rgba(0, 195, 255, 0.3);
-          transform: translateY(-4px);
-          box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+          background: rgba(255, 255, 255, 0.05);
+          border-color: rgba(0, 195, 255, 0.5);
+          transform: translateY(-6px);
+          box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
         }
 
         .f-icon-wrap {
-          width: 38px;
-          height: 38px;
-          border-radius: 9px;
-          background: rgba(0, 195, 255, 0.08);
+          width: 42px;
+          height: 42px;
+          border-radius: 10px;
+          background: rgba(0, 195, 255, 0.12);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -411,13 +410,13 @@ export default function AboutSection() {
         }
 
         .f-text p {
-          color: #64748b;
-          font-size: 0.9rem;
+          color: #6b7280;
+          font-size: 0.92rem;
           line-height: 1.45;
           margin: 0;
         }
 
-        /* Animated Call to Action Button */
+        /* Animated CTA Button */
         .cta-btn {
           display: inline-flex;
           align-items: center;
@@ -425,14 +424,16 @@ export default function AboutSection() {
           padding: 14px 30px;
           background: linear-gradient(135deg, #00c3ff 0%, #0066ff 100%);
           color: #fff;
-          font-size: 0.98rem;
+          font-size: 1rem;
           font-weight: 700;
           text-decoration: none;
           border-radius: 100px;
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           position: relative;
           overflow: hidden;
-          box-shadow: 0 9px 24px rgba(0, 195, 255, 0.24);
+          box-shadow: 0 15px 32px rgba(0, 195, 255, 0.35);
+          margin-top: auto;
+          align-self: flex-start;
         }
 
         .cta-btn::before {
@@ -440,13 +441,13 @@ export default function AboutSection() {
           position: absolute;
           top: 0; left: -100%;
           width: 100%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
           transition: left 0.6s ease;
         }
 
         .cta-btn:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 13px 32px rgba(0, 195, 255, 0.34);
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 195, 255, 0.5);
         }
 
         .cta-btn:hover::before {
@@ -458,21 +459,21 @@ export default function AboutSection() {
         }
         
         .cta-btn:hover .arrow-icon {
-          transform: translateX(6px);
+          transform: translateX(10px);
         }
 
         /* Responsive Breakpoints */
         @media (max-width: 1100px) {
           .about-section-wrapper {
             flex-direction: column;
-            padding: 88px 5% 82px;
+            padding: 88px 5% 72px 5%;
             text-align: center;
-            gap: 34px;
+            gap: 50px;
           }
           
           .about-visual-side {
+            justify-content: center;
             width: 100%;
-            margin-bottom: 14px;
           }
 
           .visual-container {
@@ -480,48 +481,51 @@ export default function AboutSection() {
           }
           
           .visual-container:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
           }
 
-          .float-card-1 { right: -6px; }
-          .float-card-2 { left: -6px; }
-          .float-card { padding: 14px 20px; }
+          .float-card-1 { right: 0; }
+          .float-card-2 { left: 0; }
 
-          .section-tagline { margin: 0 auto 18px; }
-          .about-content-side > p { margin: 0 auto 26px; max-width: 86%; }
+          .section-tagline { margin: 0 auto 22px; }
+          .about-content-side > p { margin: 0 auto 36px; max-width: 90%; }
           .aesthetic-features { text-align: left; }
+          .about-content-side {
+            padding-right: 0;
+            min-height: 0;
+            align-items: center;
+          }
+
+          .cta-btn {
+            margin-top: 0;
+            align-self: center;
+          }
         }
 
         @media (max-width: 768px) {
           .about-section-wrapper {
-            padding: 72px 5% 68px;
-            gap: 24px;
+            padding: 72px 5% 60px;
+            gap: 40px;
           }
 
           .visual-container {
-            height: 380px;
-            border-radius: 20px;
-          }
-
-          .glass-canvas {
-            border-radius: 20px;
+            height: 400px;
           }
 
           .aesthetic-features {
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 28px;
+            gap: 18px;
+            margin-bottom: 36px;
           }
           
           .about-content-side h2 {
-            font-size: 1.95rem;
-            line-height: 1.2;
-            margin-bottom: 14px;
+            font-size: 2.5rem;
+            margin-bottom: 22px;
           }
 
           .about-content-side > p {
-            font-size: 0.98rem;
-            margin-bottom: 22px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
             max-width: 100%;
           }
           
@@ -535,34 +539,8 @@ export default function AboutSection() {
         <div className="ambient-glow-1" />
         <div className="ambient-glow-2" />
 
-        <div className="about-visual-side">
-          <div className="visual-container">
-            <canvas ref={canvasRef} className="glass-canvas" />
-            <div className="visual-overlay" />
-
-            <div className="float-card float-card-1">
-              <div className="card-icon"><Network size={26} /></div>
-              <div className="card-text">
-                <h4>High Availability</h4>
-                <p>Resilient Architecture</p>
-              </div>
-            </div>
-
-            <div className="float-card float-card-2">
-              <div className="card-icon"><Cpu size={26} /></div>
-              <div className="card-text">
-                <h4>AI Ops</h4>
-                <p>Optimized Core</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="about-content-side">
-          <div className="section-tagline">
-            <span className="pulse-dot"></span>
-            Global Delivery Partner
-          </div>
+          
 
           <h2>
             <span className="text-gradient">Engineering transformation for </span>
@@ -570,49 +548,65 @@ export default function AboutSection() {
           </h2>
 
           <p>
-            We integrate SAP, cloud, data, and AI into a unified enterprise architecture that improves operational resilience,
-            financial visibility, and digital agility. Our teams design scalable platforms that align technology investments
-            with measurable business outcomes.
+            We combine deep expertise in SAP, cloud, data, and AI to help organizations
+            scale faster, operate smarter, and build an infrastructure prepared for tomorrow's challenges.
           </p>
 
           <div className="aesthetic-features">
             <div className="feature-box">
-              <div className="f-icon-wrap"><Globe size={22} /></div>
+              <div className="f-icon-wrap"><Globe size={26} /></div>
               <div className="f-text">
                 <h5>Global Scale</h5>
-                <p>Multi-region enterprise delivery with scalable architecture design.</p>
+                <p>Distributed infrastructure supporting millions of concurrent operations.</p>
               </div>
             </div>
 
             <div className="feature-box">
-              <div className="f-icon-wrap"><Zap size={22} /></div>
+              <div className="f-icon-wrap"><Zap size={26} /></div>
               <div className="f-text">
                 <h5>Outcome Driven</h5>
-                <p>KPI-aligned programs focused on measurable ROI and accelerated transformation timelines.</p>
+                <p>Focusing on measurable impact and accelerated time-to-market.</p>
               </div>
             </div>
 
             <div className="feature-box">
-              <div className="f-icon-wrap"><Shield size={22} /></div>
+              <div className="f-icon-wrap"><Shield size={26} /></div>
               <div className="f-text">
                 <h5>Enterprise Security</h5>
-                <p>Enterprise-grade security frameworks with governance, compliance, and risk controls embedded by design.</p>
+                <p>Bank-grade encryption and zero-trust architecture built-in.</p>
               </div>
             </div>
 
             <div className="feature-box">
-              <div className="f-icon-wrap"><Cpu size={22} /></div>
+              <div className="f-icon-wrap"><Cpu size={26} /></div>
               <div className="f-text">
                 <h5>Deep Expertise</h5>
-                <p>Certified SAP and enterprise technology consultants with deep domain specialization.</p>
+                <p>Specialized talent pools dedicated to solving complex hurdles.</p>
               </div>
             </div>
           </div>
 
           <Link to="/contact" className="cta-btn">
             Explore Capabilities
-            <ArrowRight className="arrow-icon" size={20} />
+            <ArrowRight className="arrow-icon" size={24} />
           </Link>
+        </div>
+
+        <div className="about-visual-side">
+          <div className="visual-container">
+            <canvas ref={canvasRef} className="glass-canvas" />
+            <div className="visual-overlay" />
+
+            <div className="float-card float-card-1">
+              <div className="card-icon"><Network size={34} /></div>
+              
+            </div>
+
+            <div className="float-card float-card-2">
+              <div className="card-icon"><Cpu size={34} /></div>
+             
+            </div>
+          </div>
         </div>
       </section>
     </>

@@ -39,9 +39,9 @@ export default function HireAITalent() {
 
         .hire-ai-enhanced {
           position: relative;
-          background: #020617; /* Deep midnight blue */
+          background: linear-gradient(180deg, #f6f9ff 0%, #eef4ff 55%, #e9f1ff 100%);
           padding: 40px 6% 100px; /* Reduced top padding */
-          color: #f8fafc;
+          color: #0f172a;
           overflow: hidden;
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
@@ -51,7 +51,7 @@ export default function HireAITalent() {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.15) 0%, transparent 40%);
+          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.1) 0%, transparent 42%);
           z-index: 2;
           pointer-events: none;
         }
@@ -64,7 +64,7 @@ export default function HireAITalent() {
           transform: translate(-50%, -50%);
           width: 800px;
           height: 800px;
-          opacity: 0.4;
+          opacity: 0.25;
           z-index: 1;
           pointer-events: none;
         }
@@ -96,16 +96,16 @@ export default function HireAITalent() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          background: rgba(255, 255, 255, 0.03);
+          background: rgba(255, 255, 255, 0.72);
           backdrop-filter: blur(10px);
           padding: 8px 20px;
           border-radius: 100px;
           font-size: 13px;
           font-weight: 600;
           margin-bottom: 24px;
-          color: #818cf8;
-          border: 1px solid rgba(129, 140, 248, 0.2);
-          box-shadow: 0 0 20px rgba(79, 70, 229, 0.1);
+          color: #4f46e5;
+          border: 1px solid rgba(79, 70, 229, 0.25);
+          box-shadow: 0 10px 24px rgba(79, 70, 229, 0.1);
         }
 
         .hire-ai-title {
@@ -114,7 +114,7 @@ export default function HireAITalent() {
           margin-bottom: 20px;
           line-height: 1.1;
           letter-spacing: -0.03em;
-          color: #ffffff;
+          color: #0f172a;
         }
 
         .hire-ai-title span {
@@ -131,7 +131,7 @@ export default function HireAITalent() {
 
         .hire-ai-description {
           font-size: 18px;
-          color: #94a3b8;
+          color: #475569;
           max-width: 650px;
           margin: 0 auto 40px;
           line-height: 1.7;
@@ -169,46 +169,47 @@ export default function HireAITalent() {
         }
 
         .stat-item {
-          background: rgba(255, 255, 255, 0.02);
+          background: rgba(255, 255, 255, 0.85);
           backdrop-filter: blur(12px);
           border-radius: 24px;
           padding: 32px 24px;
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(148, 163, 184, 0.25);
           transition: all 0.4s ease;
           position: relative;
+          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
         }
 
         .stat-item:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(129, 140, 248, 0.4);
+          background: rgba(255, 255, 255, 0.98);
+          border-color: rgba(79, 70, 229, 0.35);
           transform: translateY(-8px);
         }
 
         .stat-icon-box {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, rgba(22, 18, 85, 0.1), rgba(59, 39, 78, 0.1));
+          background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(192, 132, 252, 0.12));
           border-radius: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto 20px;
-          color: #818cf8;
-          border: 1px solid rgba(129, 140, 248, 0.2);
+          color: #4f46e5;
+          border: 1px solid rgba(79, 70, 229, 0.25);
         }
 
         .stat-number {
           font-size: 38px;
           font-weight: 800;
-          color: #fff;
+          color: #0f172a;
           display: block;
           margin-bottom: 4px;
         }
 
         .stat-label {
-          color: #64748b;
+          color: #334155;
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
