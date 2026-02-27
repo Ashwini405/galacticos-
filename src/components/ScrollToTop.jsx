@@ -16,12 +16,15 @@ export default function ScrollToTop() {
     };
 
     forceTop();
+    requestAnimationFrame(forceTop);
+    const timeoutId = window.setTimeout(forceTop, 120);
 
     window.addEventListener("load", forceTop);
     window.addEventListener("pageshow", forceTop);
     window.addEventListener("popstate", forceTop);
 
     return () => {
+      window.clearTimeout(timeoutId);
       window.removeEventListener("load", forceTop);
       window.removeEventListener("pageshow", forceTop);
       window.removeEventListener("popstate", forceTop);
@@ -29,9 +32,19 @@ export default function ScrollToTop() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    const forceTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    forceTop();
+    requestAnimationFrame(forceTop);
+    const timeoutId = window.setTimeout(forceTop, 120);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, [pathname]);
 
   return null;

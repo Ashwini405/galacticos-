@@ -144,6 +144,7 @@ export default function App() {
       <Routes>
         {/* MAIN ROUTES */}
         <Route path="/" element={<Home />} />
+        <Route path="/index.html" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/expertise" element={<Expertise />} />
         <Route path="/investors" element={<Investors />} />
@@ -273,6 +274,7 @@ export default function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/cookies" element={<CookiePolicy />} />
+        <Route path="*" element={<Home />} />
       </Routes>
 
       <Footer />
