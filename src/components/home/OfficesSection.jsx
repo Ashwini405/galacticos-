@@ -95,7 +95,30 @@ export default function OfficesSection() {
           padding: 40px 6%;
           font-family: 'Inter', sans-serif;
           overflow: hidden;
-          background: radial-gradient(ellipse 120% 80% at 50% 0%, #0f0826 0%, #060d1f 40%, #03080f 70%, #0a0415 100%);
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #dbeafe 60%, #bfdbfe 100%);
+        }
+
+        /* Enhanced background patterns */
+        .offices-root::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: 
+            radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
+          z-index: 0;
+        }
+
+        .offices-root::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: 
+            linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+          background-size: 60px 60px;
+          z-index: 0;
         }
 
         /* Background layers (unchanged) */
@@ -128,19 +151,19 @@ export default function OfficesSection() {
         .eyebrow {
           display: inline-flex; align-items: center; gap: 10px;
           font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-          color: #f59e0b; margin-bottom: 18px;
+          color: #0d6efd; margin-bottom: 18px;
         }
-        .eyebrow-line { width: 32px; height: 1px; background: #f59e0b; opacity: 0.6; }
+        .eyebrow-line { width: 32px; height: 1px; background: #0d6efd; opacity: 0.6; }
         .title {
-          font-size: clamp(36px, 5vw, 52px); font-weight: 800; color: #fff;
+          font-size: clamp(36px, 5vw, 52px); font-weight: 800; color: #1e293b;
           letter-spacing: -1px; line-height: 1.2; margin-bottom: 16px;
         }
         .title-accent {
-          background: linear-gradient(90deg, #f59e0b, #fbbf24);
+          background: linear-gradient(90deg, #0d6efd, #3b82f6);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .sub {
-          font-size: 16px; color: #fff; font-weight: 400; opacity: 0.72;
+          font-size: 16px; color: #475569; font-weight: 400; opacity: 0.9;
           max-width: 600px; margin: 0 auto; line-height: 1.6;
         }
 
@@ -153,8 +176,8 @@ export default function OfficesSection() {
         /* Card */
         .card {
           position: relative; border-radius: 18px;
-          border: 1px solid rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(0,0,0,0.08);
+          background: rgba(255,255,255,0.95);
           backdrop-filter: blur(24px);
           padding: 32px 24px 24px;
           display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -162,7 +185,7 @@ export default function OfficesSection() {
           transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
         }
         .card.active {
-          transform: translateY(-7px); background: rgba(255,255,255,0.09); border-color: var(--a);
+          transform: translateY(-7px); background: rgba(255,255,255,1); border-color: var(--a);
         }
         .topbar {
           position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -187,16 +210,16 @@ export default function OfficesSection() {
 
         .icon-wrap {
           width: 44px; height: 44px; border-radius: 12px;
-          border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02);
           display: flex; align-items: center; justify-content: center; flex-shrink: 0;
           transition: background 0.3s, border-color 0.3s;
         }
         .card.active .icon-wrap { background: var(--af); border-color: var(--a); }
 
         .card-name {
-          font-size: 19px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 18px;
+          font-size: 19px; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; margin-bottom: 18px;
         }
-        .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 18px; }
+        .divider { width: 100%; height: 1px; background: rgba(0,0,0,0.08); margin-bottom: 18px; }
 
         .info-list {
           display: flex; flex-direction: column; gap: 11px; margin-bottom: 22px;
@@ -204,7 +227,7 @@ export default function OfficesSection() {
         }
         .info-row {
           display: flex; align-items: center; justify-content: flex-start; gap: 9px;
-          font-size: 13px; color: #fff; font-weight: 400; width: 180px;
+          font-size: 13px; color: #475569; font-weight: 400; width: 180px;
         }
         .info-row svg { flex-shrink: 0; color: var(--a); opacity: 0.85; }
 
@@ -212,14 +235,14 @@ export default function OfficesSection() {
         .email-btn {
           display: flex; align-items: center; justify-content: center; gap: 9px;
           padding: 12px 16px; border-radius: 11px;
-          border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
-          text-decoration: none; color: #fff; font-size: 12.5px; font-weight: 500;
+          border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02);
+          text-decoration: none; color: #1e293b; font-size: 12.5px; font-weight: 500;
           transition: all 0.28s; margin-top: auto; width: 100%;
-          cursor: pointer;  /* ensure pointer cursor */
-          position: relative; z-index: 10; /* make sure it's above background */
+          cursor: pointer;
+          position: relative; z-index: 10;
         }
         .email-btn:hover { background: var(--af); border-color: var(--a); color: var(--a); }
-        .email-btn:active { transform: scale(0.98); } /* optional feedback */
+        .email-btn:active { transform: scale(0.98); }
 
         .email-icon-box {
           display: flex; align-items: center; justify-content: center;

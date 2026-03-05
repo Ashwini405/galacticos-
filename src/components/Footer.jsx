@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer ref={footerRef} className="gn-footer">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         :root {
           --footer-bg: #030014;
@@ -42,7 +42,7 @@ export default function Footer() {
         .gn-footer {
           background: var(--footer-bg);
           color: var(--footer-text-primary);
-          font-family: 'Outfit', sans-serif;
+          font-family: 'Inter', sans-serif;
           position: relative;
           overflow: hidden;
           border-top: 1px solid var(--footer-line);
@@ -104,9 +104,8 @@ export default function Footer() {
         .gn-inner {
           position: relative;
           z-index: 2;
-          max-width: 1320px;
-          margin: 0 auto;
-          padding: 0 36px;
+          width: 100%;
+          padding: 0;
         }
 
         /* ── HERO ROW ── */
@@ -114,7 +113,7 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 28px 0 22px;
+          padding: 5px 36px 18px;
           border-bottom: 1px solid var(--footer-line);
           gap: 28px;
           position: relative;
@@ -125,10 +124,9 @@ export default function Footer() {
         }
 
         .gn-wordmark-label {
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 4px;
+          font-weight: 600;
+          letter-spacing: 2px;
           text-transform: uppercase;
           color: var(--footer-accent-1);
           margin-bottom: 15px;
@@ -144,11 +142,11 @@ export default function Footer() {
         }
 
         .gn-wordmark-name {
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: clamp(34px, 5vw, 60px);
-          font-weight: 700;
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(36px, 5vw, 52px);
+          font-weight: 800;
           line-height: 1;
-          letter-spacing: -2px;
+          letter-spacing: -1px;
           color: #ffffff;
           margin: 0;
           text-shadow: 0 0 30px rgba(255,255,255,0.2);
@@ -166,7 +164,7 @@ export default function Footer() {
         }
 
         .gn-tagline p {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 400;
           color: var(--footer-text-secondary);
           line-height: 1.65;
@@ -182,10 +180,9 @@ export default function Footer() {
           background: rgba(255,255,255,0.05);
           border: 1px solid var(--footer-line-bright);
           backdrop-filter: blur(10px);
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 14px;
           font-weight: 600;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           text-transform: uppercase;
           padding: 13px 24px;
           border-radius: 30px;
@@ -216,23 +213,25 @@ export default function Footer() {
         .gn-cta-link svg { transition: transform 0.3s ease; }
         .gn-cta-link:hover svg { transform: translateX(5px); }
 
-        /* ── MAIN COLUMNS ── */
+        /* ── MAIN COLUMNS – FREE, NO CARD CONTAINER ── */
         .gn-cols {
           display: grid;
           grid-template-columns: 2fr 1fr 1.6fr 1.2fr;
           gap: 0;
           border-bottom: 1px solid var(--footer-line);
-          background: rgba(0,0,0,0.2);
-          backdrop-filter: blur(20px);
+          /* Removed background, backdrop-filter, borders that create a card */
+          background: transparent;
+          backdrop-filter: none;
         }
 
         .gn-col {
           padding: 24px 26px;
-          border-right: 1px solid var(--footer-line);
+          border-right: none;
         }
 
         .gn-col:last-child { border-right: none; }
-        .gn-col:first-child { padding-left: 0; }
+        .gn-col:first-child { padding-left: 36px; }
+        .gn-col:last-child { padding-right: 36px; }
 
         .gn-col-head {
           display: flex;
@@ -254,10 +253,9 @@ export default function Footer() {
         }
 
         .gn-col-title {
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 600;
-          letter-spacing: 2px;
+          letter-spacing: 1.5px;
           text-transform: uppercase;
           color: var(--footer-text-primary);
           margin: 0;
@@ -265,7 +263,7 @@ export default function Footer() {
 
         /* About col */
         .gn-about-desc {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 400;
           color: var(--footer-text-secondary);
           line-height: 1.65;
@@ -318,17 +316,17 @@ export default function Footer() {
           padding: 0;
         }
 
-        .gn-nav li + li { margin-top: 10px; }
+        .gn-nav li + li { margin-top: 8px; }
 
         .gn-nav a {
           text-decoration: none;
           color: var(--footer-text-secondary);
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 500;
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 6px 0;
+          padding: 4px 0;
           transition: all 0.3s ease;
         }
 
@@ -354,12 +352,12 @@ export default function Footer() {
         .gn-services {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 8px;
         }
 
         .gn-service-item {
           text-decoration: none;
-          padding: 13px 16px;
+          padding: 12px 16px;
           border: 1px solid var(--footer-line);
           border-radius: 12px;
           display: flex;
@@ -389,7 +387,7 @@ export default function Footer() {
         .gn-service-item:hover::before { opacity: 1; }
 
         .gn-service-icon {
-          font-size: 20px;
+          font-size: 18px;
           line-height: 1;
           position: relative;
           z-index: 1;
@@ -397,8 +395,8 @@ export default function Footer() {
         }
 
         .gn-service-label {
-          font-size: 14px;
-          font-weight: 600;
+          font-size: 13px;
+          font-weight: 500;
           color: var(--footer-text-secondary);
           transition: color 0.3s ease;
           position: relative;
@@ -414,7 +412,7 @@ export default function Footer() {
         .gn-stats {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 16px;
         }
 
         .gn-stat {
@@ -433,27 +431,26 @@ export default function Footer() {
         }
 
         .gn-stat-num {
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 34px;
-          font-weight: 700;
+          font-weight: 800;
           background: linear-gradient(135deg, #ffffff, var(--footer-text-secondary));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           line-height: 1;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
         
         .gn-stat-label {
-          font-size: 14px;
+          font-size: 13px;
           color: var(--footer-text-secondary);
           font-weight: 500;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
           text-transform: uppercase;
         }
 
         /* ── BOTTOM BAR ── */
         .gn-bottom {
-          padding: 14px 0;
+          padding: 14px 36px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -467,7 +464,6 @@ export default function Footer() {
         }
 
         .gn-copyright {
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 13px;
           font-weight: 500;
           color: var(--footer-text-muted);
@@ -488,7 +484,6 @@ export default function Footer() {
         }
 
         .gn-legal a {
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 13px;
           font-weight: 500;
           color: var(--footer-text-muted);
@@ -506,7 +501,6 @@ export default function Footer() {
           display: flex;
           align-items: center;
           gap: 10px;
-          font-family: 'Space Grotesk', sans-serif;
           font-size: 13px;
           font-weight: 600;
           color: var(--footer-text-primary);
@@ -534,7 +528,7 @@ export default function Footer() {
         /* ── RESPONSIVE ── */
         @media (max-width: 1200px) {
           .gn-cols { grid-template-columns: 1.5fr 1fr 1.5fr; }
-          .gn-col:first-child { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--footer-line); padding: 24px 0; }
+          .gn-col:first-child { grid-column: 1 / -1; padding: 24px 0; }
           .gn-col { padding: 24px 18px; }
           .gn-col:nth-child(2) { padding-left: 0; }
         }
@@ -543,15 +537,15 @@ export default function Footer() {
           .gn-hero { flex-direction: column; align-items: flex-start; gap: 18px; padding: 24px 0 18px; }
           .gn-tagline { text-align: left; }
           .gn-cols { grid-template-columns: 1fr 1fr; }
-          .gn-col:nth-child(2) { border-right: 1px solid var(--footer-line); padding-right: 20px; }
+          .gn-col:nth-child(2) { padding-right: 20px; }
           .gn-col:nth-child(3) { padding-left: 20px; }
-          .gn-col:nth-child(4) { grid-column: 1 / -1; border-top: 1px solid var(--footer-line); padding-left: 0; }
+          .gn-col:nth-child(4) { grid-column: 1 / -1; padding-left: 0; }
         }
 
         @media (max-width: 600px) {
           .gn-inner { padding: 0 24px; }
           .gn-cols { grid-template-columns: 1fr; }
-          .gn-col { border-right: none !important; border-bottom: 1px solid var(--footer-line); padding: 22px 0 !important; }
+          .gn-col { padding: 22px 0 !important; }
           .gn-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
           .gn-bottom-left { flex-wrap: wrap; gap: 12px; }
           .gn-wordmark-name { font-size: 36px; }
@@ -566,7 +560,6 @@ export default function Footer() {
         {/* ── HERO ROW ── */}
         <div className="gn-hero">
           <div className="gn-wordmark">
-            {/* <div className="gn-wordmark-label">Est. 2020 · Hyderabad, IN</div> */}
             <h2 className="gn-wordmark-name">
               Galacticos<br /><span>Network</span>
             </h2>
@@ -586,7 +579,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── COLUMNS ── */}
+        {/* ── COLUMNS – FREE LAYOUT ── */}
         <div className="gn-cols">
           {/* About */}
           <div className="gn-col">
