@@ -104,23 +104,20 @@ export default function Footer() {
         .gn-inner {
           position: relative;
           z-index: 2;
-          width: 100%;
+          max-width: 1320px;
+          margin: 0 auto;
           padding: 0;
+          width: 100%;
         }
 
-        /* ── HERO ROW ── */
+        /* ── HERO ROW — 1px top/bottom padding ── */
         .gn-hero {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          padding: 5px 36px 18px;
+          padding: 1px 26px 1px;
           border-bottom: 1px solid var(--footer-line);
-          gap: 28px;
-          position: relative;
-        }
-
-        .gn-wordmark {
-          flex-shrink: 0;
+          gap: 1px;
         }
 
         .gn-wordmark-label {
@@ -129,7 +126,7 @@ export default function Footer() {
           letter-spacing: 2px;
           text-transform: uppercase;
           color: var(--footer-accent-1);
-          margin-bottom: 15px;
+          margin: 0 0 1px 0;
           display: flex;
           align-items: center;
           gap: 10px;
@@ -148,8 +145,11 @@ export default function Footer() {
           line-height: 1;
           letter-spacing: -1px;
           color: #ffffff;
-          margin: 0;
+          margin: 0 0 1px 0;
+          padding: 0;
+          display: block;
           text-shadow: 0 0 30px rgba(255,255,255,0.2);
+          white-space: nowrap;
         }
 
         .gn-wordmark-name span {
@@ -159,8 +159,9 @@ export default function Footer() {
         }
 
         .gn-tagline {
-          max-width: 390px;
-          text-align: right;
+          width: 100%;
+          margin: 0;
+          text-align: center;
         }
 
         .gn-tagline p {
@@ -168,7 +169,8 @@ export default function Footer() {
           font-weight: 400;
           color: var(--footer-text-secondary);
           line-height: 1.65;
-          margin: 0 0 18px;
+          margin: 0;
+          width: 100%;
         }
 
         .gn-cta-link {
@@ -190,6 +192,7 @@ export default function Footer() {
           box-shadow: 0 4px 20px rgba(0,0,0,0.3);
           position: relative;
           overflow: hidden;
+          vertical-align: top;
         }
 
         .gn-cta-link::before {
@@ -213,13 +216,12 @@ export default function Footer() {
         .gn-cta-link svg { transition: transform 0.3s ease; }
         .gn-cta-link:hover svg { transform: translateX(5px); }
 
-        /* ── MAIN COLUMNS – FREE, NO CARD CONTAINER ── */
+        /* ── MAIN COLUMNS ── */
         .gn-cols {
           display: grid;
           grid-template-columns: 2fr 1fr 1.6fr 1.2fr;
           gap: 0;
           border-bottom: 1px solid var(--footer-line);
-          /* Removed background, backdrop-filter, borders that create a card */
           background: transparent;
           backdrop-filter: none;
         }
@@ -230,8 +232,6 @@ export default function Footer() {
         }
 
         .gn-col:last-child { border-right: none; }
-        .gn-col:first-child { padding-left: 36px; }
-        .gn-col:last-child { padding-right: 36px; }
 
         .gn-col-head {
           display: flex;
@@ -261,7 +261,6 @@ export default function Footer() {
           margin: 0;
         }
 
-        /* About col */
         .gn-about-desc {
           font-size: 14px;
           font-weight: 400;
@@ -309,7 +308,6 @@ export default function Footer() {
         .gn-social:hover::before { opacity: 1; }
         .gn-social svg { position: relative; z-index: 1; width: 18px; height: 18px; }
 
-        /* Nav col */
         .gn-nav {
           list-style: none;
           margin: 0;
@@ -348,7 +346,6 @@ export default function Footer() {
           transform: translateX(0);
         }
 
-        /* Services col */
         .gn-services {
           display: flex;
           flex-direction: column;
@@ -408,7 +405,6 @@ export default function Footer() {
           text-shadow: var(--text-glow);
         }
 
-        /* Stats col */
         .gn-stats {
           display: flex;
           flex-direction: column;
@@ -448,9 +444,9 @@ export default function Footer() {
           text-transform: uppercase;
         }
 
-        /* ── BOTTOM BAR ── */
+        /* ── BOTTOM BAR — 1px top/bottom padding ── */
         .gn-bottom {
-          padding: 14px 36px;
+          padding: 1px 26px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -525,30 +521,27 @@ export default function Footer() {
           50% { transform: scale(1.2); opacity: 0.7; box-shadow: 0 0 20px rgba(74, 222, 128, 0.8); }
         }
 
-        /* ── RESPONSIVE ── */
+        /* Responsive adjustments */
         @media (max-width: 1200px) {
           .gn-cols { grid-template-columns: 1.5fr 1fr 1.5fr; }
-          .gn-col:first-child { grid-column: 1 / -1; padding: 24px 0; }
-          .gn-col { padding: 24px 18px; }
-          .gn-col:nth-child(2) { padding-left: 0; }
+          .gn-col:first-child { grid-column: 1 / -1; }
         }
 
         @media (max-width: 900px) {
-          .gn-hero { flex-direction: column; align-items: flex-start; gap: 18px; padding: 24px 0 18px; }
-          .gn-tagline { text-align: left; }
           .gn-cols { grid-template-columns: 1fr 1fr; }
-          .gn-col:nth-child(2) { padding-right: 20px; }
-          .gn-col:nth-child(3) { padding-left: 20px; }
-          .gn-col:nth-child(4) { grid-column: 1 / -1; padding-left: 0; }
         }
 
         @media (max-width: 600px) {
-          .gn-inner { padding: 0 24px; }
           .gn-cols { grid-template-columns: 1fr; }
-          .gn-col { padding: 22px 0 !important; }
-          .gn-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
-          .gn-bottom-left { flex-wrap: wrap; gap: 12px; }
-          .gn-wordmark-name { font-size: 36px; }
+          .gn-col { padding: 22px 26px; }
+          .gn-hero, .gn-bottom { padding-left: 26px; padding-right: 26px; }
+          .gn-wordmark-name { 
+            font-size: 36px; 
+            white-space: normal;
+          }
+          .gn-tagline p {
+            white-space: normal;
+          }
         }
       `}</style>
 
@@ -557,29 +550,28 @@ export default function Footer() {
       <div className="gn-orb gn-orb-2" />
 
       <div className="gn-inner">
-        {/* ── HERO ROW ── */}
+        {/* HERO SECTION */}
         <div className="gn-hero">
-          <div className="gn-wordmark">
-            <h2 className="gn-wordmark-name">
-              Galacticos<br /><span>Network</span>
-            </h2>
-          </div>
+          <h2 className="gn-wordmark-name">
+            Galacticos <span>Network</span>
+          </h2>
 
           <div className="gn-tagline">
             <p>
               A global technology consulting partner delivering cloud, data, and intelligent automation
               through offshore delivery excellence.
             </p>
-            <Link to="/contact" className="gn-cta-link">
-              <span>Talk to Our Experts</span>
-              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
           </div>
+
+          <Link to="/contact" className="gn-cta-link">
+            <span>Talk to Our Experts</span>
+            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
         </div>
 
-        {/* ── COLUMNS – FREE LAYOUT ── */}
+        {/* MAIN COLUMNS */}
         <div className="gn-cols">
           {/* About */}
           <div className="gn-col">
@@ -696,7 +688,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── BOTTOM BAR ── */}
+        {/* BOTTOM BAR */}
         <div className="gn-bottom">
           <div className="gn-bottom-left">
             <span className="gn-copyright">© {currentYear} Galacticos Network</span>

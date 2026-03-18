@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 const offices = [
   { name: "Dubai, UAE", badge: "WORLDWIDE", icon: "building", location: "Ajman, Dubai", country: "United Arab Emirates", email: "hr@galacticosnetwork.com", accent: "#f59e0b" },
   { name: "Hyderabad, India", badge: "DELIVERY HUB", icon: "laptop", location: "Hi-Tech City", country: "Hyderabad – 500081", email: "hr@galacticosnetwork.com", accent: "#22d3ee" },
-  { name: "USA", badge: "WORLDWIDE", icon: "globe", location: "Raleigh", country: "North Carolina - 27526", email: "hr@galacticosnetwork.com", accent: "#a78bfa" },
+  { name: "USA", badge: "WORLDWIDE", icon: "globe", location: "Sterling", country: "Virginia - 20166", email: "hr@galacticosnetwork.com", accent: "#a78bfa" },
 ];
 
 function OfficeIcon({ type, color }) {

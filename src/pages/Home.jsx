@@ -60,8 +60,8 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
       <HireAITalent />
+      <AboutSection />
       <ServicesSection />
       <IndustriesSection />
       <CaseStudiesSection />

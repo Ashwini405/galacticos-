@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Globe, Shield, Database, Activity, Lock, Layers, BarChart2, Cpu, Cloud, TrendingUp, Users } from "lucide-react";
@@ -146,10 +144,10 @@ export default function PremiumVanguardHero() {
 
         .h-root {
           position: relative;
-          height: 100vh;
+          height: 105vh;
           width: 100%;
-          padding-top: 80px; /* Adjust for sticky navbar height, preventing overlap */
-          background: #050914; /* Deep cyber blue */
+          padding-top: 80px;
+          background: hsl(225, 86%, 3%);
           font-family: 'Plus Jakarta Sans', sans-serif;
           overflow: hidden;
           color: white;
@@ -240,7 +238,7 @@ export default function PremiumVanguardHero() {
           align-items: center;
           justify-content: center;
           gap: 6%;
-          padding: 0 10% 60px 10%;
+          padding: 0 6% 60px 4%;
           opacity: 0;
           visibility: hidden;
           transition: opacity 0.8s ease, visibility 0.8s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -254,11 +252,11 @@ export default function PremiumVanguardHero() {
         }
 
         /* ---------------------------------
-           LEFT COL: VISUALIZATION (GLASS)
+           LEFT COL: VISUALIZATION — NO CARD, NO TRANSPARENCY
            --------------------------------- */
         .h-viz-col {
-          flex: 1.05;
-          max-width: 700px;
+          flex: 1.3;
+          max-width: 850px;
           aspect-ratio: 1;
           position: relative;
         }
@@ -266,13 +264,13 @@ export default function PremiumVanguardHero() {
         .h-glass-card {
           width: 100%;
           height: 100%;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 24px;
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          padding: 28px;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03);
+          /* All card effects removed: no background, no border, no blur, no shadow */
+          background: transparent;
+          border: none;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          box-shadow: none;
+          padding: 32px;               /* keep inner spacing for chart */
           position: relative;
           overflow: hidden;
           z-index: 2;
@@ -285,7 +283,7 @@ export default function PremiumVanguardHero() {
           z-index: 3;
         }
 
-        /* Badge Pills */
+        /* Badge Pills — remain floating */
         .h-badge {
           position: absolute;
           background: rgba(14, 25, 45, 0.9);
@@ -552,10 +550,10 @@ export default function PremiumVanguardHero() {
           {slides.map((slide, i) => (
             <div key={i} className={`h-slide ${i === active ? 'active' : ''}`}>
 
-              {/* Left Col: Visual */}
+              {/* Left Col: Visual — now completely free of card styling */}
               <div className="h-viz-col">
                 <div className="h-glass-card">
-                  {/* Badges */}
+                  {/* Badges remain floating */}
                   {slide.badges?.map((badge, bIdx) => (
                     <div
                       key={bIdx}
@@ -632,8 +630,3 @@ export default function PremiumVanguardHero() {
     </>
   );
 }
-
-
-
-
-
