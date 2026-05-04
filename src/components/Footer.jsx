@@ -556,12 +556,12 @@ export default function Footer() {
             Galacticos <span>Network</span>
           </h2>
 
-          <div className="gn-tagline">
+          {/* <div className="gn-tagline">
             <p>
               A global technology consulting partner delivering cloud, data, and intelligent automation
               through offshore delivery excellence.
             </p>
-          </div>
+          </div> */}
 
           <Link to="/contact" className="gn-cta-link">
             <span>Talk to Our Experts</span>
