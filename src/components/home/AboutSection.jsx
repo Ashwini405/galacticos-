@@ -145,7 +145,7 @@ export default function AboutSection() {
       <style>{`
         .about-section-wrapper {
           position: relative;
-          padding: clamp(72px, 9vw, 110px) 0 clamp(72px, 8vw, 96px) 6%;
+padding: clamp(30px, 4vw, 50px) 0 clamp(20px, 3vw, 40px) 6%;
           background: #020617;
           display: flex;
           align-items: flex-start;
@@ -196,6 +196,7 @@ export default function AboutSection() {
           max-width: 800px; /* larger */
           height: clamp(440px, 46vw, 560px);
           overflow: hidden;
+
           background: transparent;
           box-shadow: none;
           border: none;
@@ -292,7 +293,7 @@ export default function AboutSection() {
         }
 
         /* Right Side: Content - now with normal padding */
-        .about-content-side {
+.about-content-side {
           flex: 1;
           z-index: 2;
           max-width: 650px;
@@ -300,7 +301,7 @@ export default function AboutSection() {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
-          min-height: clamp(440px, 46vw, 560px);
+          height: clamp(440px, 46vw, 560px);
         }
 
         .section-tagline {
@@ -359,7 +360,7 @@ export default function AboutSection() {
           font-size: 1.03rem;
           color: #a0aec0;
           line-height: 1.6;
-          margin-bottom: 30px;
+          margin-bottom: 18px;
           max-width: 90%;
         }
 
